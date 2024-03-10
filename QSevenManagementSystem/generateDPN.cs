@@ -31,8 +31,6 @@ namespace QSevenManagementSystem
             billColumns = new List<string>() { "dpn_id", "bt_id", "bill_meter_end_month", "bill_meter_start_month" };
 
             InitializeComponent();
-            ConnectToSQL.initialize();
-            ConnectToSQL.LoadDataGridView(roomData, "SELECT * from tbl_room");
 
         }
 
@@ -107,6 +105,11 @@ namespace QSevenManagementSystem
             MessageBox.Show("columns: " + columns + " values: " + values);//for testing
 
             ConnectToSQL.insertRecord(table, columns, values);
+        }
+
+        public DataGridView getTable()
+        {
+            return roomData;
         }
     }
 }

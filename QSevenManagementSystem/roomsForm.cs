@@ -15,14 +15,17 @@ namespace QSevenManagementSystem
         public roomsForm()
         {
             InitializeComponent();
-            ConnectToSQL.initialize();
-            ConnectToSQL.LoadDataGridView(roomsData, "SELECT * FROM tbl_room");
         }
 
         private void createButton_Click(object sender, EventArgs e)
         {
             mainForm mainForm = (mainForm)this.ParentForm;
             mainForm.roomsForm_createButtonClick(this, EventArgs.Empty);
+        }
+
+        public DataGridView getTable()
+        {
+            return roomsData;
         }
     }
 }

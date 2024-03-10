@@ -15,8 +15,12 @@ namespace QSevenManagementSystem
         public roomAvailabilityHistoryForm()
         {
             InitializeComponent();
-            ConnectToSQL.initialize();
-            ConnectToSQL.LoadDataGridView(rAData, "SELECT * FROM vw_room_availability_history");
+
+        }
+
+        public DataGridView getTable()
+        {
+            return rAData;
         }
     }
 }

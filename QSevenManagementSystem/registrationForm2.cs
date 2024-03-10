@@ -1,5 +1,6 @@
 ﻿using Google.Protobuf.WellKnownTypes;
 using Microsoft.VisualBasic;
+using MySqlX.XDevAPI.Relational;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -29,23 +30,22 @@ namespace QSevenManagementSystem
         public registrationForm2()
         {
             InitializeComponent();
-            ConnectToSQL.initialize();
-            ConnectToSQL.LoadDataGridView(selectRoomData, "SELECT * FROM tbl_room");
         }
 
         public registrationForm2(List<string> renterValues, List<string> renterColumns)
         {
             InitializeComponent();
-            ConnectToSQL.initialize();
+            loadSearchCBox();
+            searchTBox.TextChanged += searchTBox_TextChanged;
+            selectRoomData.CellClick += selectRoomData_CellContentClick;
             this.renterValues = renterValues ?? new List<string>();
             this.renterColumns = renterColumns ?? new List<string>();
-            ConnectToSQL.LoadDataGridView(selectRoomData, "SELECT * FROM tbl_room");
         }
         private void nextButton_Click(object sender, EventArgs e)
         {
 
             mainForm mainForm = (mainForm)this.ParentForm;
-            mainForm.Form2_nextButtonClick(this, EventArgs.Empty);
+            mainForm.rForm2_nextButtonClick(this, EventArgs.Empty);
 
             insertRentersRecords();
             loadMoveinValues();
@@ -139,7 +139,7 @@ namespace QSevenManagementSystem
 
         private void loadMoveinValues()
         {
-            string depositAmount = depositTBox.Text;
+            string depositAmount = depositAmountTBox.Text;
             string mDate = moveInDate.Value.ToShortDateString();
             mDate = moveInDate.Value.ToString("yyyy-MM-dd");
 
@@ -176,7 +176,108 @@ namespace QSevenManagementSystem
         private void prevButton_Click(object sender, EventArgs e)
         {
             mainForm mainForm = (mainForm)this.ParentForm;
-            mainForm.Form2_prevButtonClick(this, EventArgs.Empty);
+            mainForm.rForm2_prevButtonClick(this, EventArgs.Empty);
         }
+
+        public DataGridView getTable()
+        {
+            return selectRoomData;
+        }
+
+
+        private void loadDataToLabels(List<string> rowData)
+        {
+
+            if (rowData.Count > 0)
+            {
+                roomLabel.Text = rowData[0];
+                availLabel.Text = rowData[1];
+                floorLabel.Text = rowData[2];
+                maxLabel.Text = rowData[3];
+                renterLabel.Text = rowData[4];
+                fNameLabel.Text = rowData[5];
+                mNameLabel.Text = rowData[6];
+                lNameLabel.Text = rowData[7];
+
+                roomTBox.Text = rowData[0];
+            }
+            else
+            {
+                // Clear labels if there is no selected row
+                roomLabel.Text = "None";
+                availLabel.Text = "None";
+                floorLabel.Text = "None";
+                maxLabel.Text = "None";
+                renterLabel.Text = "None";
+                fNameLabel.Text = "None";
+                mNameLabel.Text = "None";
+                lNameLabel.Text = "None";
+
+                roomTBox.Text = "";
+            }
+        }
+
+        private void selectRoomData_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            List<string> rowData = new List<string>();
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow selectedRow = selectRoomData.Rows[e.RowIndex];
+                foreach (DataGridViewCell cell in selectedRow.Cells)
+                {
+                    rowData.Add(cell.Value?.ToString() ?? "");
+                }
+            }
+            loadDataToLabels(rowData);
+        }
+
+        private void loadSearchCBox()//adds items to the search combo box
+        {
+            searchCBox.Items.Add("Room ID");
+            searchCBox.Items.Add("Availability");
+            searchCBox.Items.Add("Floor");
+            searchCBox.Items.Add("Max # of renters");
+            searchCBox.Items.Add("Renter ID");
+            searchCBox.Items.Add("Renter First Name");
+            searchCBox.Items.Add("Renter Middle Name");
+            searchCBox.Items.Add("Renter Last Name");
+        }
+
+        private void searchTBox_TextChanged(object sender, EventArgs e)
+        {
+            string table = "vw_current_rooms";
+            // Get the selected column from the ComboBox
+            string selectedColumn = searchCBox.SelectedItem?.ToString();
+
+            // Get the search value from the TextBox
+            string searchValue = searchTBox.Text.Trim();
+
+            // Check if a column and search value are provided
+            if (!string.IsNullOrEmpty(selectedColumn) && !string.IsNullOrEmpty(searchValue))
+            {
+                // Define the SQL query
+                string query = $"SELECT * FROM {table} WHERE `{selectedColumn}` LIKE '%{searchValue}%'";
+                //MessageBox.Show(query); //For testing
+                //Execute the query and update the DataGridView
+                ConnectToSQL.LoadDataGridView(selectRoomData, query);
+            }
+        }
+        /*
+        private void UpdateTextBoxesAvailabilityStatus(string availabilityStatus)
+        {
+            // Assuming textBox1 and textBox2 are the textboxes you want to enable/disable
+            if (availabilityStatus == "occupied" || availabilityStatus == "reserved")
+            {
+                textBox1.Enabled = false;
+                textBox2.Enabled = false;
+            }
+            else // Unoccupied
+            {
+                textBox1.Enabled = true;
+                textBox2.Enabled = true;
+            }
+        }
+        */
+
     }
 }

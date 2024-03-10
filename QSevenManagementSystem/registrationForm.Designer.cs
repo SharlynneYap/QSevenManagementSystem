@@ -36,8 +36,8 @@
             label7 = new Label();
             label8 = new Label();
             label6 = new Label();
-            fNameTBox = new TextBox();
             mNameTBox = new TextBox();
+            fNameTBox = new TextBox();
             contactTBox = new TextBox();
             addressTBox = new TextBox();
             sexCBox = new ComboBox();
@@ -122,21 +122,21 @@
             label6.TabIndex = 5;
             label6.Text = "Contact Number";
             // 
-            // fNameTBox
-            // 
-            fNameTBox.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            fNameTBox.Location = new Point(193, 53);
-            fNameTBox.Name = "fNameTBox";
-            fNameTBox.Size = new Size(262, 25);
-            fNameTBox.TabIndex = 8;
-            // 
             // mNameTBox
             // 
             mNameTBox.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            mNameTBox.Location = new Point(193, 3);
+            mNameTBox.Location = new Point(193, 53);
             mNameTBox.Name = "mNameTBox";
             mNameTBox.Size = new Size(262, 25);
-            mNameTBox.TabIndex = 9;
+            mNameTBox.TabIndex = 8;
+            // 
+            // fNameTBox
+            // 
+            fNameTBox.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            fNameTBox.Location = new Point(193, 3);
+            fNameTBox.Name = "fNameTBox";
+            fNameTBox.Size = new Size(262, 25);
+            fNameTBox.TabIndex = 9;
             // 
             // contactTBox
             // 
@@ -193,8 +193,8 @@
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 35.3227768F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 64.67722F));
             tableLayoutPanel1.Controls.Add(label2, 0, 0);
-            tableLayoutPanel1.Controls.Add(mNameTBox, 1, 0);
-            tableLayoutPanel1.Controls.Add(fNameTBox, 1, 1);
+            tableLayoutPanel1.Controls.Add(fNameTBox, 1, 0);
+            tableLayoutPanel1.Controls.Add(mNameTBox, 1, 1);
             tableLayoutPanel1.Controls.Add(dobDate, 1, 3);
             tableLayoutPanel1.Controls.Add(addressTBox, 1, 6);
             tableLayoutPanel1.Controls.Add(sexCBox, 1, 4);
@@ -276,8 +276,8 @@
         private Label label7;
         private Label label8;
         private Label label6;
-        private TextBox fNameTBox;
         private TextBox mNameTBox;
+        private TextBox fNameTBox;
         private TextBox contactTBox;
         private TextBox addressTBox;
         private ComboBox sexCBox;

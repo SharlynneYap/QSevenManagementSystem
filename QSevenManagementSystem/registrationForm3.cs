@@ -15,7 +15,7 @@ namespace QSevenManagementSystem
         public registrationForm3()
         {
             InitializeComponent();
-            ConnectToSQL.initialize();
+
             registrationLabel.Text = ConnectToSQL.readTableString("SELECT registration_id FROM tbl_registration WHERE renter_id = (SELECT MAX(renter_id) FROM tbl_registration);");
             renterLabel.Text = ConnectToSQL.readTableString("SELECT MAX(renter_id) FROM tbl_registration;");
         }
@@ -23,7 +23,7 @@ namespace QSevenManagementSystem
         private void nextButton_Click(object sender, EventArgs e)
         {
             mainForm mainForm = (mainForm)this.ParentForm;
-            mainForm.Form2_prevButtonClick(this, EventArgs.Empty);
+            mainForm.rForm3_nextButtonClick(this, EventArgs.Empty);
         }
     }
 }

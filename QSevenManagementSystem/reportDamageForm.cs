@@ -66,6 +66,9 @@ namespace QSevenManagementSystem
             ConnectToSQL.insertRecord(table, columns, values);
         }
 
-
+        public DataGridView getTable()
+        {
+            return roomsData;
+        }
     }
 }

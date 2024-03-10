@@ -14,15 +14,20 @@ namespace QSevenManagementSystem
     {
         public roomDamagesHistoryForm()
         {
-            ConnectToSQL.initialize();
+            
             InitializeComponent();
-            ConnectToSQL.LoadDataGridView(rDHData, "select * from vw_room_damage_record");
+            
         }
 
         private void reportButton_Click(object sender, EventArgs e)
         {
             mainForm mainForm = (mainForm)this.ParentForm;
             mainForm.rDHForm_reportButtonClick(this, EventArgs.Empty);
+        }
+
+        public DataGridView getTable()
+        {
+            return rDHData;
         }
     }
 }

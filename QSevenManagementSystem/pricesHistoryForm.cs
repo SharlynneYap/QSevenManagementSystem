@@ -15,9 +15,12 @@ namespace QSevenManagementSystem
         public pricesHistoryForm()
         {
             InitializeComponent();
-            ConnectToSQL.initialize();
-            ConnectToSQL.LoadDataGridView(pricesData, "SELECT * FROM tbl_room_price_record;");
-            ConnectToSQL.LoadDataGridView(rateData, "SELECT * FROM vw_bill_rate_history;");
+            
+        }
+
+        public DataGridView getTable(int num)
+        {
+            return num == 1 ? pricesData : rateData;
         }
     }
 }

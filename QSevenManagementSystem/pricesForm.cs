@@ -21,8 +21,7 @@ namespace QSevenManagementSystem
         public pricesForm()
         {
             InitializeComponent();
-            ConnectToSQL.initialize();
-            ConnectToSQL.LoadDataGridView(priceData, "SELECT * FROM vw_room_price_history");
+        
             BillRateValues = new List<string>();
             BillRateColumns = new List<string> { "BT_ID", "BR_price", "BR_date" };
             BillRateValues2 = new List<string>();
@@ -126,6 +125,11 @@ namespace QSevenManagementSystem
         {
             loadPriceValues();
             insertPriceRecords();
+        }
+
+        public DataGridView getData()
+        {
+            return priceData;
         }
     }
 }

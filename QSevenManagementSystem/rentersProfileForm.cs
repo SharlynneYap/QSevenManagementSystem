@@ -15,8 +15,11 @@ namespace QSevenManagementSystem
         public rentersProfileForm()
         {
             InitializeComponent();
-            ConnectToSQL.initialize();
-            ConnectToSQL.LoadDataGridView(rentersData, "SELECT * FROM tbl_renter;");
+        }
+
+        public DataGridView getTable()
+        {
+            return rentersData;
         }
     }
 }

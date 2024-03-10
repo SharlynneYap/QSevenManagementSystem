@@ -15,9 +15,11 @@ namespace QSevenManagementSystem
         public paymentsHistoryForm()
         {
             InitializeComponent();
-            ConnectToSQL.initialize();
-            ConnectToSQL.LoadDataGridView(dpnData, "SELECT * FROM vw_dpn_total;");
-            ConnectToSQL.LoadDataGridView(receiptData, "SELECT * FROM vw_receipt_is_fully_paid;");
+        }
+
+        public DataGridView getTable(int num)
+        {
+            return num == 1 ? dpnData : receiptData;
         }
     }
 }

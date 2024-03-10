@@ -17,8 +17,6 @@ namespace QSevenManagementSystem
         public generateReceipt()
         {
             InitializeComponent();
-            ConnectToSQL.initialize();
-            ConnectToSQL.LoadDataGridView(dpnData, "SELECT * FROM vw_dpn_total;");
             receiptValues = new List<string>();
             receiptColumns = new List<string>() { "dpn_id", "receipt_amount_paid", "receipt_date_issued" };
         }
@@ -58,6 +56,11 @@ namespace QSevenManagementSystem
         {
             loadReceiptValues();
             insertReceiptRecords();
+        }
+
+        public DataGridView getTable()
+        {
+            return dpnData;
         }
     }
 }

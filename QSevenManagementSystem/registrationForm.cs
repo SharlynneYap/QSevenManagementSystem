@@ -29,14 +29,14 @@ namespace QSevenManagementSystem
         {
 
             mainForm mainForm = (mainForm)this.ParentForm;
-            mainForm.Form1_nextButtonClick(this, EventArgs.Empty);
+            mainForm.rForm_nextButtonClick(this, EventArgs.Empty);
             loadRenterValues();
         }
 
         private void loadRenterValues()
         {
-            string fName = fNameTBox.Text;
-            string mName = string.IsNullOrEmpty(mNameTBox.Text) ? "NULL" : mNameTBox.Text;
+            string fName = mNameTBox.Text;
+            string mName = string.IsNullOrEmpty(fNameTBox.Text) ? "NULL" : fNameTBox.Text;
             string lName = lNameTBox.Text;
             string dob = dobDate.Value.ToString("yyyy-MM-dd");
             string sex = (sexCBox.SelectedItem ?? "").ToString();
@@ -56,6 +56,7 @@ namespace QSevenManagementSystem
             MessageBox.Show(string.Join(", ", renterValues)); //testing
         }
 
+
         public List<string> getRenterColumns()
         {
             return renterColumns;
@@ -67,5 +68,6 @@ namespace QSevenManagementSystem
             return renterValues;
 
         }
+
     }
 }

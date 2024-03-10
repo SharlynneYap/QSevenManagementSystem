@@ -1,66 +1,71 @@
-﻿    using System;
-    using System.Data;
-    using System.Windows.Forms;
-    using MySql.Data.MySqlClient;
+﻿using System;
+using System.Data;
+using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
-    namespace QSevenManagementSystem
+namespace QSevenManagementSystem
+{
+    public static class ConnectToSQL
     {
-        public static class ConnectToSQL
+        private static string database;
+        private static string connectionString;
+        private static MySqlConnection cnn;
+
+        static ConnectToSQL(){
+            initialize();
+        }
+        public static void initialize()
         {
-            public static string database;
-            public static string connectionString;
-            public static MySqlConnection cnn;
-            public static void initialize()
+            connectionString = "server=localhost;uid=root;pwd=\"\";";
+            database = "db_qsevenc";
+            cnn = new MySqlConnection(connectionString);
+
+            try
             {
-                connectionString = "server=localhost;uid=root;pwd=\"\";";
-                database = "db_qsevenc";
-                cnn = new MySqlConnection(connectionString);
+                cnn.Open();
 
-                try
+                // Check if the database exists
+                MySqlCommand checkDbCmd = cnn.CreateCommand();
+                checkDbCmd.CommandText = "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '" + database + "';";
+                object result = checkDbCmd.ExecuteScalar();
+
+                if (result == null)
                 {
-                    cnn.Open();
-
-                    // Check if the database exists
-                    MySqlCommand checkDbCmd = cnn.CreateCommand();
-                    checkDbCmd.CommandText = "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '"+database+"';";
-                    object result = checkDbCmd.ExecuteScalar();
-
-                    if (result == null)
-                    {
-                        // Database does not exist, create it
-                        MySqlCommand createDbCmd = cnn.CreateCommand();
-                        createDbCmd.CommandText = "CREATE DATABASE IF NOT EXISTS "+database+"; use "+database+";";
-                        createDbCmd.ExecuteNonQuery();
-                        MessageBox.Show("Database created successfully!");
-
-                        // Create initial tables
-                        createTables(cnn);
-                        createViews(cnn);
-                        createInitialRecords(cnn);
-
-                    }
-                    else
-                    {
-                        MessageBox.Show("Database already exists!");
-                        executeQuery(cnn, "use "+database+"; ");
-                    }
-
-                    MessageBox.Show("Connection Open!");
+                    createDatabase();
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show("Can not open connection! " + ex.Message);
+                    MessageBox.Show("Database already exists!");
+                    executeQuery(cnn, "use " + database + "; ");
                 }
-                finally
-                {
-                    cnn.Close();
-                }
+
+                MessageBox.Show("Connection Open!");
             }
-            
-            private static void createTables(MySqlConnection connection)// Creates initial tables
+            catch (Exception ex)
             {
-                try
-                {
+                MessageBox.Show("Can not open connection! " + ex.Message);
+            }
+            finally
+            {
+                cnn.Close();
+            }
+        }
+        private static void createDatabase()
+        {
+            MySqlCommand createDbCmd = cnn.CreateCommand();
+            createDbCmd.CommandText = "CREATE DATABASE IF NOT EXISTS " + database + "; use " + database + ";";
+            createDbCmd.ExecuteNonQuery();
+            MessageBox.Show("Database created successfully!");
+
+            //creating tables, views, and records
+            createTables(cnn);
+            createViews(cnn);
+            createInitialRecords(cnn);
+        }
+        private static void createTables(MySqlConnection connection)// Creates initial tables
+        {
+            try
+            {
                 // Create table queries
                 string createTableQuery = @"CREATE TABLE tbl_renter ( 
 	                renter_id INT(5) PRIMARY KEY AUTO_INCREMENT, 
@@ -73,16 +78,19 @@
  	                renter_sex CHAR(1) NOT NULL, 
  	                CONSTRAINT check_renter_sex CHECK (renter_sex IN ('M', 'F')) 
                 ); 
+
                 CREATE TABLE tbl_movein ( 
  	                movein_id INT(5) AUTO_INCREMENT PRIMARY KEY, 
  	                movein_total_deposit_paid DECIMAL(7,2) NOT NULL, 
  	                movein_date DATE NOT NULL 
-                ); 
+                );
+
                 CREATE TABLE tbl_room ( 
 	                room_id VARCHAR(2) PRIMARY KEY, 
  	                room_floor INT(3) NOT NULL, 
  	                room_max_renters INT(2) NOT NULL 
                 ); 
+
                 CREATE TABLE tbl_registration ( 
  	                registration_id INT(5) AUTO_INCREMENT, 
  	                renter_id INT(5) NOT NULL, 
@@ -94,16 +102,19 @@
  	                FOREIGN KEY (room_id) REFERENCES tbl_room(room_id), 
  	                FOREIGN KEY (movein_id) REFERENCES tbl_movein(movein_id) 
                 ); 
+
                 CREATE TABLE tbl_moveout( 
 	                moveout_id INT(5) PRIMARY KEY AUTO_INCREMENT, 
 	                registration_id INT(5) NOT NULL, 
 	                moveout_date DATE NOT NULL, 
 	                FOREIGN KEY (registration_id) REFERENCES tbl_registration(registration_id) 
                 ); 
+
                 CREATE TABLE tbl_room_damage_type ( 
 	                rdt_id INT(2) PRIMARY KEY AUTO_INCREMENT, 
 	                rdt_description varchar(30) NOT NULL
                 ); 
+
                 CREATE TABLE tbl_room_damage_record( 
 	                rd_id INT(5) AUTO_INCREMENT, 
 	                room_id VARCHAR(2) NOT NULL, 
@@ -115,10 +126,12 @@
 	                FOREIGN KEY (room_id) REFERENCES tbl_room(room_id), 
 	                FOREIGN KEY (rdt_id) REFERENCES tbl_room_damage_type(rdt_id) 
                 ); 
+
                 CREATE TABLE tbl_room_availability_type ( 
 	                rat_id INT(2) PRIMARY KEY AUTO_INCREMENT, 
 	                rat_description VARCHAR(30) NOT NULL
                 ); 
+
                 Create table tbl_room_availability_record( 
 	                ra_id INT (5) AUTO_INCREMENT, 
 	                room_id VARCHAR(2) NOT NULL, 
@@ -128,6 +141,7 @@
 	                FOREIGN KEY(room_id) REFERENCES tbl_room(room_id), 
 	                FOREIGN KEY(rat_id) REFERENCES tbl_room_availability_type(rat_id) 
                 ); 
+
                 CREATE TABLE tbl_room_price_record( 
  	                rp_id INT(5) AUTO_INCREMENT, 
  	                room_id VARCHAR(2), 
@@ -136,6 +150,7 @@
  	                PRIMARY KEY(rp_id,room_id), 
  	                FOREIGN KEY (room_ID) REFERENCES tbl_room(room_id) 
                 ); 
+
                 CREATE TABLE tbl_dpn ( 
  	                dpn_id INT(5) AUTO_INCREMENT PRIMARY KEY, 
  	                registration_id INT(5) NOT NULL, 
@@ -144,6 +159,7 @@
  	                dpn_is_deposit_used TINYINT(1) NOT NULL, 
  	                FOREIGN KEY (registration_id) REFERENCES tbl_registration(registration_id) 
                 ); 
+
                 CREATE TABLE tbl_receipt ( 
  	                receipt_id INT(5) AUTO_INCREMENT, 
  	                dpn_id INT(5), 
@@ -151,11 +167,13 @@
  	                receipt_date_issued DATE NOT NULL, 
  	                PRIMARY KEY (receipt_id, dpn_id), 
  	                FOREIGN KEY (dpn_id) REFERENCES tbl_dpn(dpn_id) 
-                ); 
+                );
+
                 CREATE TABLE tbl_bill_type ( 
  	                bt_id INT(2) AUTO_INCREMENT PRIMARY KEY, 
  	                bt_description VARCHAR(30) NOT NULL 
                 ); 
+
                 CREATE TABLE tbl_bill_rate_record ( 
  	                br_id INT(5) AUTO_INCREMENT, 
  	                bt_id INT(2), 
@@ -164,6 +182,7 @@
  	                PRIMARY KEY(br_id,bt_id), 
  	                FOREIGN KEY (bt_id) REFERENCES tbl_bill_type(bt_id) 
                 ); 
+
                 CREATE TABLE tbl_bill ( 
  	                bill_id INT(5) AUTO_INCREMENT, 
  	                dpn_id INT(5), 
@@ -174,6 +193,7 @@
  	                FOREIGN KEY (dpn_id) REFERENCES tbl_dpn(dpn_id), 
  	                FOREIGN KEY (bt_id) REFERENCES tbl_bill_type(bt_id) 
                 ); 
+
                 CREATE TABLE tbl_other_charges ( 
  	                oc_id INT(5) AUTO_INCREMENT, 
  	                dpn_id INT(5), 
@@ -184,21 +204,21 @@
                 ); 
                 ";
 
-                    // Execute queries
-                    executeQuery(connection, createTableQuery);
+                // Execute queries
+                executeQuery(connection, createTableQuery);
 
-                    MessageBox.Show("Tables created successfully!");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error creating tables: " + ex.Message);
-                }
+                MessageBox.Show("Tables created successfully!");
             }
-
-            private static void createViews(MySqlConnection connection) //Creates initial views
+            catch (Exception ex)
             {
-                try
-                {
+                MessageBox.Show("Error creating tables: " + ex.Message);
+            }
+        }
+
+        private static void createViews(MySqlConnection connection) //Creates initial views
+        {
+            try
+            {
                 // Create table queries
                 string createViewsQuery = @"CREATE VIEW vw_room_availability_history AS 
                     SELECT 
@@ -247,41 +267,23 @@
 
                     CREATE VIEW vw_bill_total AS   
                     SELECT     
-
                         b.bill_id,     
-
                         b.dpn_id,     
-
                         b.bt_id,    
-
                         b.bill_meter_start_month AS bill_meterstartmonth,     
-
                         b.bill_meter_end_month AS bill_meterendmonth,     
-
                         (SELECT br_price   
-
                          FROM tbl_bill_rate_record   
-
                          WHERE bt_id = b.bt_id   
-
                          AND br_date <= (SELECT dpn_date_issued FROM tbl_dpn WHERE dpn_id = b.dpn_id)   
-
                          ORDER BY br_date DESC   
-
                          LIMIT 1) AS bill_rate,     
-
                         ROUND((b.bill_meter_end_month - b.bill_meter_start_month) *   
-
                               (SELECT br_price   
-
                                FROM tbl_bill_rate_record   
-
                                WHERE bt_id = b.bt_id   
-
                                AND br_date <= (SELECT dpn_date_issued FROM tbl_dpn WHERE dpn_id = b.dpn_id)   
-
                                ORDER BY br_date DESC   
-
                                LIMIT 1), 2) AS bill_total     
 
                     FROM     
@@ -382,25 +384,65 @@
                     tbl_MoveIn MI ON R.MoveIn_ID = MI.MoveIn_ID
                 JOIN 
                     tbl_Room RM ON R.Room_ID = RM.Room_ID;
+
+                
+                CREATE VIEW vw_current_rooms AS
+                SELECT 
+                    RO.room_id AS `Room ID`,
+                    RAT.rat_description AS `Availability`, 
+                    RO.room_floor AS `Floor`, 
+                    RO.room_max_renters AS `Max # of Renters`,
+                    R.renter_id AS 'Renter ID',
+                    R.renter_fname AS `Renter First Name`, 
+                    R.renter_mname AS `Renter Middle Name`, 
+                    R.renter_lname AS `Renter Last Name`
+                FROM 
+                    tbl_room RO
+                LEFT JOIN 
+                    (
+                        SELECT 
+                            room_id,
+                            MAX(ra_id) AS max_ra_id
+                        FROM 
+                            tbl_room_availability_record
+                        GROUP BY 
+                            room_id
+                    ) max_ra ON RO.room_id = max_ra.room_id
+                LEFT JOIN 
+                    tbl_room_availability_record RAR ON max_ra.room_id = RAR.room_id AND max_ra.max_ra_id = RAR.ra_id
+                LEFT JOIN 
+                    tbl_room_availability_type RAT ON RAR.rat_id = RAT.rat_id
+                LEFT JOIN 
+                    tbl_registration REG ON RO.room_id = REG.room_id
+                LEFT JOIN 
+                    tbl_renter R ON REG.renter_id = R.renter_id
+                LEFT JOIN 
+                    tbl_movein MI ON REG.movein_id = MI.movein_id
+                WHERE 
+                    (RAT.rat_description = 'Unoccupied' OR MI.movein_date <= CURRENT_DATE())
+                GROUP BY 
+                    RO.room_id;
+
                 ";
 
-                    // Execute queries
-                    executeQuery(connection, createViewsQuery);
+                // Execute queries
+                executeQuery(connection, createViewsQuery);
 
-                    MessageBox.Show("Views created successfully!");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error creating views: " + ex.Message);
-                }
+                MessageBox.Show("Views created successfully!");
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error creating views: " + ex.Message);
+            }
+        }
 
         private static void createInitialRecords(MySqlConnection connection) //Creates initial views
         {
             try
             {
                 // Create record queries
-                string createRecordsQuery = @"insert into tbl_room_availability_type values(1,'Unoccupied');
+                string createRecordsQuery = @"
+                    insert into tbl_room_availability_type values(1,'Unoccupied');
                     insert into tbl_room_availability_type values(2,'Reserved');
                     insert into tbl_room_availability_type values(3,'Occupied');
                     insert into tbl_room_availability_type values(4,'Removed');
@@ -424,63 +466,63 @@
         }
 
         private static void executeQuery(MySqlConnection connection, string query)
+        {
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+            cmd.ExecuteNonQuery();
+        }
+
+        public static void insertRecord(string table, string column, string values)
+        {
+            try
             {
-                MySqlCommand cmd = new MySqlCommand(query, connection);
-                cmd.ExecuteNonQuery();
-            }
+                if (cnn.State == ConnectionState.Closed)
+                {
+                    cnn.Open();
+                }
 
-            public static void insertRecord(string table, string column, string values)
+                string insertQuery = $"INSERT INTO {table} ({column}) VALUES ({values});";
+                executeQuery(cnn, insertQuery);
+                MessageBox.Show("Record inserted successfully!");
+            }
+            catch (Exception ex)
             {
-                try
-                {
-                    if (cnn.State == ConnectionState.Closed)
-                    {
-                        cnn.Open();
-                    }
-
-                    string insertQuery = $"INSERT INTO {table} ({column}) VALUES ({values});";
-
-                    executeQuery(cnn, insertQuery);
-
-                    cnn.Close();
-
-                    MessageBox.Show("Record inserted successfully!");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error inserting record: " + ex.Message);
-                }
+                MessageBox.Show("Error inserting record: " + ex.Message);
             }
+            finally
+            {
+                cnn.Close();
+            }
+        }
 
         public static string readTableString(string query)
+        {
+            string value = null;
+
+            try
             {
-                string value = null;
-
-                try
+                if (cnn.State == ConnectionState.Closed)
                 {
-                    if (cnn.State == ConnectionState.Closed)
-                    {
-                        cnn.Open();
-                    }
-                    MySqlCommand cmd = new MySqlCommand(query, cnn);
-                    object result = cmd.ExecuteScalar();
+                    cnn.Open();
+                }
+                MySqlCommand cmd = new MySqlCommand(query, cnn);
+                object result = cmd.ExecuteScalar();
 
-                    if (result != null)
-                    {
-                        value = result.ToString();
-                    }
-                }
-                catch (Exception ex)
+                if (result != null)
                 {
-                    MessageBox.Show("Error reading value: " + ex.Message);
+                    value = result.ToString();
                 }
-                finally
-                {
-                    cnn.Close();
-                }
-
-                return value;
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error reading value: " + ex.Message);
+            }
+            finally
+            {
+                cnn.Close();
+            }
+
+            return value;
+        }
 
         public static string[,] readTableArray(string query)
         {
@@ -534,30 +576,30 @@
 
 
         public static void LoadDataGridView(DataGridView dataGridView, string query)
+        {
+            try
             {
-                try
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
-                    using (MySqlConnection connection = new MySqlConnection(connectionString))
-                    {
-                        connection.Open();
+                    connection.Open();
 
-                        // Create a MySqlDataAdapter to execute the query and fill a DataTable
-                        MySqlDataAdapter adapter = new MySqlDataAdapter(query, connection);
-                        DataTable dataTable = new DataTable();
+                    // Create a MySqlDataAdapter to execute the query and fill a DataTable
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(query, connection);
+                    DataTable dataTable = new DataTable();
 
-                        // Fill the DataTable with the retrieved data
-                        adapter.Fill(dataTable);
+                    // Fill the DataTable with the retrieved data
+                    adapter.Fill(dataTable);
 
-                        // Bind the DataTable to the DataGridView
-                        dataGridView.DataSource = dataTable;
-                    }
+                    // Bind the DataTable to the DataGridView
+                    dataGridView.DataSource = dataTable;
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error loading data into DataGridView: " + ex.Message);
-                }
-
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading data into DataGridView: " + ex.Message);
             }
 
         }
+
     }
+}

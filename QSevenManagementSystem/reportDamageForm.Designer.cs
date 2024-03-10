@@ -39,14 +39,14 @@
             roomIdTBox = new TextBox();
             label12 = new Label();
             damageCBox = new ComboBox();
-            dataGridView1 = new DataGridView();
+            roomsData = new DataGridView();
             label2 = new Label();
             label4 = new Label();
             label5 = new Label();
             confirmButton = new Button();
             panel1 = new Panel();
             label6 = new Label();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)roomsData).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -149,15 +149,15 @@
             damageCBox.Size = new Size(151, 28);
             damageCBox.TabIndex = 61;
             // 
-            // dataGridView1
+            // roomsData
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(74, 235);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(464, 302);
-            dataGridView1.TabIndex = 62;
+            roomsData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            roomsData.Location = new Point(74, 235);
+            roomsData.Name = "roomsData";
+            roomsData.RowHeadersWidth = 51;
+            roomsData.RowTemplate.Height = 29;
+            roomsData.Size = new Size(464, 302);
+            roomsData.TabIndex = 62;
             // 
             // label2
             // 
@@ -234,7 +234,7 @@
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label2);
-            Controls.Add(dataGridView1);
+            Controls.Add(roomsData);
             Controls.Add(damageCBox);
             Controls.Add(rdDate);
             Controls.Add(label3);
@@ -248,7 +248,7 @@
             Controls.Add(label12);
             Name = "reportDamageForm";
             Text = "reportDamageForm";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)roomsData).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
@@ -268,7 +268,7 @@
         private TextBox roomIdTBox;
         private Label label12;
         private ComboBox damageCBox;
-        private DataGridView dataGridView1;
+        private DataGridView roomsData;
         private Label label2;
         private Label label4;
         private Label label5;

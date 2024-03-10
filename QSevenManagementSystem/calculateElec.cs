@@ -16,7 +16,6 @@ namespace QSevenManagementSystem
         public calculateElec()
         {
             InitializeComponent();
-            ConnectToSQL.initialize();
             billValues = new List<String>();
             billRateLabel.Text = ConnectToSQL.readTableString(@"SELECT br_price FROM tbl_bill_rate_record 
                                                                 WHERE bt_id = 1 
