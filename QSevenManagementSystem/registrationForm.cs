@@ -35,8 +35,8 @@ namespace QSevenManagementSystem
 
         private void loadRenterValues()
         {
-            string fName = mNameTBox.Text;
-            string mName = string.IsNullOrEmpty(fNameTBox.Text) ? "NULL" : fNameTBox.Text;
+            string fName = fNameTBox.Text;
+            string mName = string.IsNullOrEmpty(fNameTBox.Text) ? "NULL" : mNameTBox.Text;
             string lName = lNameTBox.Text;
             string dob = dobDate.Value.ToString("yyyy-MM-dd");
             string sex = (sexCBox.SelectedItem ?? "").ToString();

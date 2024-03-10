@@ -83,7 +83,7 @@ namespace QSevenManagementSystem
         }
         public void rForm_nextButtonClick(object sender, EventArgs e)
         {
-            ConnectToSQL.LoadDataGridView(rForm2.getTable(), "SELECT * FROM vw_current_rooms");
+            ConnectToSQL.LoadDataGridView(rForm2.getTable(), "SELECT * FROM vw_current_rooms_tenants");
             dockForm(rForm2);
             Controls.Remove((Control)sender);
         }
@@ -92,6 +92,7 @@ namespace QSevenManagementSystem
         {
             dockForm(rForm3);
             Controls.Remove((Control)sender);
+            
         }
 
         public void rForm2_prevButtonClick(object sender, EventArgs e)
@@ -109,21 +110,22 @@ namespace QSevenManagementSystem
         // renters profile form buttons
         public void rentersProfileButton_Click(object sender, EventArgs e)
         {
-            ConnectToSQL.LoadDataGridView(rPForm.getTable(), "SELECT * FROM tbl_renter");
+            ConnectToSQL.LoadDataGridView(rPForm.getTable(), "SELECT * FROM vw_renters_profile");
             dockForm(rPForm);
         }
 
         // renters history form buttons
         private void rentersHistoryButton_Click(object sender, EventArgs e)
         {
-            ConnectToSQL.LoadDataGridView(rHForm.getTable(), "SELECT * FROM vw_renter_history;");
+            ConnectToSQL.LoadDataGridView(rHForm.getTable(1), "SELECT * FROM vw_movein_history;");
+            ConnectToSQL.LoadDataGridView(rHForm.getTable(2), "SELECT * FROM vw_moveout_history;");
             dockForm(rHForm);
         }
 
         //rroms form buttons
         private void roomsButton_Click(object sender, EventArgs e)
         {
-            ConnectToSQL.LoadDataGridView(roForm.getTable(), "SELECT * FROM tbl_room");
+            ConnectToSQL.LoadDataGridView(roForm.getTable(), "SELECT * FROM vw_current_rooms");
             dockForm(roForm);
         }
         public void roomsForm_createButtonClick(object sender, EventArgs e)

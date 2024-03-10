@@ -194,7 +194,6 @@
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 64.67722F));
             tableLayoutPanel1.Controls.Add(label2, 0, 0);
             tableLayoutPanel1.Controls.Add(fNameTBox, 1, 0);
-            tableLayoutPanel1.Controls.Add(mNameTBox, 1, 1);
             tableLayoutPanel1.Controls.Add(dobDate, 1, 3);
             tableLayoutPanel1.Controls.Add(addressTBox, 1, 6);
             tableLayoutPanel1.Controls.Add(sexCBox, 1, 4);
@@ -206,6 +205,7 @@
             tableLayoutPanel1.Controls.Add(label3, 0, 1);
             tableLayoutPanel1.Controls.Add(label5, 0, 3);
             tableLayoutPanel1.Controls.Add(label7, 0, 4);
+            tableLayoutPanel1.Controls.Add(mNameTBox, 1, 1);
             tableLayoutPanel1.Location = new Point(156, 135);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 7;

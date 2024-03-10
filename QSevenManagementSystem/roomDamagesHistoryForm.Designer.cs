@@ -28,52 +28,56 @@
         /// </summary>
         private void InitializeComponent()
         {
-            comboBox1 = new ComboBox();
-            textBox1 = new TextBox();
+            searchCBox = new ComboBox();
+            searchTBox = new TextBox();
             label3 = new Label();
             label2 = new Label();
             rDHData = new DataGridView();
-            label1 = new Label();
             reportButton = new Button();
             applyButton = new Button();
-            textBox7 = new TextBox();
-            label11 = new Label();
-            textBox6 = new TextBox();
-            label9 = new Label();
-            textBox5 = new TextBox();
-            label8 = new Label();
-            textBox4 = new TextBox();
-            label7 = new Label();
-            textBox3 = new TextBox();
-            label6 = new Label();
-            label5 = new Label();
-            textBox2 = new TextBox();
-            label4 = new Label();
+            tableLayoutPanel5 = new TableLayoutPanel();
+            dateLabel = new Label();
+            label1 = new Label();
+            descLabel = new Label();
+            damageLabel = new Label();
+            label13 = new Label();
+            label14 = new Label();
+            label16 = new Label();
+            roomLabel = new Label();
+            label21 = new Label();
+            roomDamageLabel = new Label();
+            label22 = new Label();
+            totalLabel = new Label();
+            label20 = new Label();
+            panel1 = new Panel();
+            label10 = new Label();
             ((System.ComponentModel.ISupportInitialize)rDHData).BeginInit();
+            tableLayoutPanel5.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
-            // comboBox1
+            // searchCBox
             // 
-            comboBox1.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(888, 77);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(165, 25);
-            comboBox1.TabIndex = 11;
+            searchCBox.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            searchCBox.FormattingEnabled = true;
+            searchCBox.Location = new Point(452, 67);
+            searchCBox.Name = "searchCBox";
+            searchCBox.Size = new Size(165, 25);
+            searchCBox.TabIndex = 11;
             // 
-            // textBox1
+            // searchTBox
             // 
-            textBox1.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox1.Location = new Point(611, 77);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(232, 25);
-            textBox1.TabIndex = 10;
+            searchTBox.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            searchTBox.Location = new Point(78, 67);
+            searchTBox.Name = "searchTBox";
+            searchTBox.Size = new Size(320, 25);
+            searchTBox.TabIndex = 10;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(857, 83);
+            label3.Location = new Point(421, 73);
             label3.Name = "label3";
             label3.Size = new Size(27, 17);
             label3.TabIndex = 9;
@@ -83,7 +87,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(548, 80);
+            label2.Location = new Point(15, 70);
             label2.Name = "label2";
             label2.Size = new Size(65, 17);
             label2.TabIndex = 8;
@@ -94,28 +98,18 @@
             rDHData.AllowUserToAddRows = false;
             rDHData.AllowUserToDeleteRows = false;
             rDHData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            rDHData.Location = new Point(79, 149);
+            rDHData.Location = new Point(15, 114);
             rDHData.Name = "rDHData";
             rDHData.ReadOnly = true;
             rDHData.RowHeadersWidth = 51;
             rDHData.RowTemplate.Height = 29;
-            rDHData.Size = new Size(602, 527);
+            rDHData.Size = new Size(602, 562);
             rDHData.TabIndex = 7;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(79, 80);
-            label1.Name = "label1";
-            label1.Size = new Size(178, 17);
-            label1.TabIndex = 6;
-            label1.Text = "Room Damages History";
             // 
             // reportButton
             // 
             reportButton.BackColor = SystemColors.GradientActiveCaption;
-            reportButton.Location = new Point(739, 566);
+            reportButton.Location = new Point(623, 428);
             reportButton.Name = "reportButton";
             reportButton.Size = new Size(174, 42);
             reportButton.TabIndex = 44;
@@ -126,130 +120,198 @@
             // applyButton
             // 
             applyButton.BackColor = Color.DarkSeaGreen;
-            applyButton.Location = new Point(739, 480);
+            applyButton.Location = new Point(623, 380);
             applyButton.Name = "applyButton";
             applyButton.Size = new Size(145, 42);
             applyButton.TabIndex = 42;
             applyButton.Text = "APPLY CHANGES";
             applyButton.UseVisualStyleBackColor = false;
             // 
-            // textBox7
+            // tableLayoutPanel5
             // 
-            textBox7.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox7.Location = new Point(925, 417);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(145, 25);
-            textBox7.TabIndex = 41;
+            tableLayoutPanel5.BackColor = SystemColors.GradientInactiveCaption;
+            tableLayoutPanel5.CellBorderStyle = TableLayoutPanelCellBorderStyle.Inset;
+            tableLayoutPanel5.ColumnCount = 2;
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 37.5F));
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 62.5F));
+            tableLayoutPanel5.Controls.Add(dateLabel, 1, 6);
+            tableLayoutPanel5.Controls.Add(label1, 0, 6);
+            tableLayoutPanel5.Controls.Add(descLabel, 1, 4);
+            tableLayoutPanel5.Controls.Add(damageLabel, 1, 3);
+            tableLayoutPanel5.Controls.Add(label13, 0, 2);
+            tableLayoutPanel5.Controls.Add(label14, 0, 3);
+            tableLayoutPanel5.Controls.Add(label16, 0, 4);
+            tableLayoutPanel5.Controls.Add(roomLabel, 1, 2);
+            tableLayoutPanel5.Controls.Add(label21, 0, 1);
+            tableLayoutPanel5.Controls.Add(roomDamageLabel, 1, 1);
+            tableLayoutPanel5.Controls.Add(label22, 0, 5);
+            tableLayoutPanel5.Controls.Add(totalLabel, 1, 5);
+            tableLayoutPanel5.Controls.Add(label20, 0, 0);
+            tableLayoutPanel5.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            tableLayoutPanel5.Location = new Point(623, 114);
+            tableLayoutPanel5.Name = "tableLayoutPanel5";
+            tableLayoutPanel5.RowCount = 7;
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
+            tableLayoutPanel5.Size = new Size(502, 239);
+            tableLayoutPanel5.TabIndex = 70;
             // 
-            // label11
+            // dateLabel
             // 
-            label11.AutoSize = true;
-            label11.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label11.Location = new Point(890, 420);
-            label11.Name = "label11";
-            label11.Size = new Size(22, 17);
-            label11.TabIndex = 40;
-            label11.Text = "at";
+            dateLabel.AutoSize = true;
+            dateLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dateLabel.Location = new Point(193, 200);
+            dateLabel.Name = "dateLabel";
+            dateLabel.Size = new Size(44, 18);
+            dateLabel.TabIndex = 72;
+            dateLabel.Text = "None";
             // 
-            // textBox6
+            // label1
             // 
-            textBox6.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox6.Location = new Point(739, 417);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(145, 25);
-            textBox6.TabIndex = 39;
+            label1.AutoSize = true;
+            label1.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(5, 200);
+            label1.Name = "label1";
+            label1.Size = new Size(47, 17);
+            label1.TabIndex = 72;
+            label1.Text = "Date:";
             // 
-            // label9
+            // descLabel
             // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label9.Location = new Point(733, 392);
-            label9.Name = "label9";
-            label9.Size = new Size(114, 17);
-            label9.TabIndex = 38;
-            label9.Text = "Room Damage";
+            descLabel.AutoSize = true;
+            descLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            descLabel.Location = new Point(193, 134);
+            descLabel.Name = "descLabel";
+            descLabel.Size = new Size(44, 18);
+            descLabel.TabIndex = 56;
+            descLabel.Text = "None";
             // 
-            // textBox5
+            // damageLabel
             // 
-            textBox5.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox5.Location = new Point(863, 303);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(67, 25);
-            textBox5.TabIndex = 37;
+            damageLabel.AutoSize = true;
+            damageLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            damageLabel.Location = new Point(193, 101);
+            damageLabel.Name = "damageLabel";
+            damageLabel.Size = new Size(44, 18);
+            damageLabel.TabIndex = 56;
+            damageLabel.Text = "None";
             // 
-            // label8
+            // label13
             // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label8.Location = new Point(733, 306);
-            label8.Name = "label8";
-            label8.Size = new Size(125, 17);
-            label8.TabIndex = 36;
-            label8.Text = "Max # of renters";
+            label13.AutoSize = true;
+            label13.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label13.Location = new Point(5, 68);
+            label13.Name = "label13";
+            label13.Size = new Size(70, 17);
+            label13.TabIndex = 44;
+            label13.Text = "Room ID";
             // 
-            // textBox4
+            // label14
             // 
-            textBox4.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox4.Location = new Point(863, 272);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(67, 25);
-            textBox4.TabIndex = 35;
+            label14.AutoSize = true;
+            label14.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label14.Location = new Point(5, 101);
+            label14.Name = "label14";
+            label14.Size = new Size(112, 17);
+            label14.TabIndex = 46;
+            label14.Text = "Damage Type:";
             // 
-            // label7
+            // label16
             // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label7.Location = new Point(733, 275);
-            label7.Name = "label7";
-            label7.Size = new Size(123, 17);
-            label7.TabIndex = 34;
-            label7.Text = "Located at floor";
+            label16.AutoSize = true;
+            label16.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label16.Location = new Point(5, 134);
+            label16.Name = "label16";
+            label16.Size = new Size(97, 17);
+            label16.TabIndex = 47;
+            label16.Text = "Description:";
             // 
-            // textBox3
+            // roomLabel
             // 
-            textBox3.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox3.Location = new Point(863, 241);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(93, 25);
-            textBox3.TabIndex = 33;
+            roomLabel.AutoSize = true;
+            roomLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            roomLabel.Location = new Point(193, 68);
+            roomLabel.Name = "roomLabel";
+            roomLabel.Size = new Size(44, 18);
+            roomLabel.TabIndex = 54;
+            roomLabel.Text = "None";
             // 
-            // label6
+            // label21
             // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.Location = new Point(733, 244);
-            label6.Name = "label6";
-            label6.Size = new Size(92, 17);
-            label6.TabIndex = 32;
-            label6.Text = "Room price";
+            label21.AutoSize = true;
+            label21.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label21.Location = new Point(5, 35);
+            label21.Name = "label21";
+            label21.Size = new Size(139, 17);
+            label21.TabIndex = 49;
+            label21.Text = "Room Damage ID:";
             // 
-            // label5
+            // roomDamageLabel
             // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(733, 177);
-            label5.Name = "label5";
-            label5.Size = new Size(104, 17);
-            label5.TabIndex = 31;
-            label5.Text = "Room Details";
+            roomDamageLabel.AutoSize = true;
+            roomDamageLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            roomDamageLabel.Location = new Point(193, 35);
+            roomDamageLabel.Name = "roomDamageLabel";
+            roomDamageLabel.Size = new Size(44, 18);
+            roomDamageLabel.TabIndex = 56;
+            roomDamageLabel.Text = "None";
             // 
-            // textBox2
+            // label22
             // 
-            textBox2.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox2.Location = new Point(863, 210);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(67, 25);
-            textBox2.TabIndex = 30;
+            label22.AutoSize = true;
+            label22.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label22.Location = new Point(5, 167);
+            label22.Name = "label22";
+            label22.Size = new Size(121, 17);
+            label22.TabIndex = 43;
+            label22.Text = "Total Damages:";
             // 
-            // label4
+            // totalLabel
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(733, 213);
-            label4.Name = "label4";
-            label4.Size = new Size(70, 17);
-            label4.TabIndex = 29;
-            label4.Text = "Room ID";
+            totalLabel.AutoSize = true;
+            totalLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            totalLabel.Location = new Point(193, 167);
+            totalLabel.Name = "totalLabel";
+            totalLabel.Size = new Size(44, 18);
+            totalLabel.TabIndex = 53;
+            totalLabel.Text = "None";
+            // 
+            // label20
+            // 
+            label20.AutoSize = true;
+            label20.Font = new Font("Arial Rounded MT Bold", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label20.Location = new Point(5, 2);
+            label20.Name = "label20";
+            label20.Size = new Size(138, 23);
+            label20.TabIndex = 48;
+            label20.Text = "Room Details";
+            // 
+            // panel1
+            // 
+            panel1.BackColor = SystemColors.Highlight;
+            panel1.Controls.Add(label10);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1132, 52);
+            panel1.TabIndex = 71;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Dock = DockStyle.Fill;
+            label10.Font = new Font("Arial Rounded MT Bold", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            label10.ForeColor = SystemColors.ControlLight;
+            label10.Location = new Point(0, 0);
+            label10.Name = "label10";
+            label10.Size = new Size(359, 34);
+            label10.TabIndex = 0;
+            label10.Text = "Room Damages History";
             // 
             // roomDamagesHistoryForm
             // 
@@ -257,56 +319,50 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
             ClientSize = new Size(1132, 753);
+            Controls.Add(panel1);
+            Controls.Add(tableLayoutPanel5);
             Controls.Add(reportButton);
             Controls.Add(applyButton);
-            Controls.Add(textBox7);
-            Controls.Add(label11);
-            Controls.Add(textBox6);
-            Controls.Add(label9);
-            Controls.Add(textBox5);
-            Controls.Add(label8);
-            Controls.Add(textBox4);
-            Controls.Add(label7);
-            Controls.Add(textBox3);
-            Controls.Add(label6);
-            Controls.Add(label5);
-            Controls.Add(textBox2);
-            Controls.Add(label4);
-            Controls.Add(comboBox1);
-            Controls.Add(textBox1);
+            Controls.Add(searchCBox);
+            Controls.Add(searchTBox);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(rDHData);
-            Controls.Add(label1);
             Name = "roomDamagesHistoryForm";
             Text = "roomDamagesHistoryForm";
             ((System.ComponentModel.ISupportInitialize)rDHData).EndInit();
+            tableLayoutPanel5.ResumeLayout(false);
+            tableLayoutPanel5.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private ComboBox comboBox1;
-        private TextBox textBox1;
+        private ComboBox searchCBox;
+        private TextBox searchTBox;
         private Label label3;
         private Label label2;
         private DataGridView rDHData;
-        private Label label1;
         private Button reportButton;
         private Button applyButton;
-        private TextBox textBox7;
-        private Label label11;
-        private TextBox textBox6;
-        private Label label9;
-        private TextBox textBox5;
-        private Label label8;
-        private TextBox textBox4;
-        private Label label7;
-        private TextBox textBox3;
-        private Label label6;
-        private Label label5;
-        private TextBox textBox2;
-        private Label label4;
+        private TableLayoutPanel tableLayoutPanel5;
+        private Label descLabel;
+        private Label damageLabel;
+        private Label label13;
+        private Label label14;
+        private Label label16;
+        private Label roomLabel;
+        private Label label21;
+        private Label roomDamageLabel;
+        private Label label22;
+        private Label totalLabel;
+        private Label label20;
+        private Panel panel1;
+        private Label label10;
+        private Label dateLabel;
+        private Label label1;
     }
 }

@@ -245,7 +245,7 @@ namespace QSevenManagementSystem
 
         private void searchTBox_TextChanged(object sender, EventArgs e)
         {
-            string table = "vw_current_rooms";
+            string table = "vw_current_rooms_tenants";
             // Get the selected column from the ComboBox
             string selectedColumn = searchCBox.SelectedItem?.ToString();
 
