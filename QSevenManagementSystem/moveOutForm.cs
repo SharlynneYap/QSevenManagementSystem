@@ -15,7 +15,7 @@ namespace QSevenManagementSystem
     {
         rentersProfileForm rPForm;
         List<string> moveOutValues = new List<string>();
-        List<string> moveOutColumns = new List<string>() { "registration_id", "moveout_date" };
+        List<string> moveOutColumns = new List<string>() { "renter_id", "moveout_date" };
         public moveOutForm(rentersProfileForm rPForm)
         {
             InitializeComponent();
@@ -24,11 +24,12 @@ namespace QSevenManagementSystem
 
         private void loadMoveOutValues()
         {
-            string registrationID = rPForm.getRegistrationID();
+            string registrationID = rPForm.getRenterID();
             MessageBox.Show(registrationID);//for testing
             string date = moveOutDate.Value.ToString("yyyy-MM-dd");
 
             moveOutValues.Clear();
+
             moveOutValues.Add(registrationID);
             moveOutValues.Add(date);
 

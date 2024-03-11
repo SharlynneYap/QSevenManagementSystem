@@ -32,6 +32,7 @@ namespace QSevenManagementSystem
             string date = removeRoomDate.Value.ToString("yyyy-MM-dd");
 
             rAValues.Clear();
+
             rAValues.Add(roomID);
             MessageBox.Show(roomID);
             rAValues.Add(ratID);

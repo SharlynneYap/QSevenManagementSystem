@@ -98,6 +98,7 @@ namespace QSevenManagementSystem
         public void rForm2_prevButtonClick(object sender, EventArgs e)
         {
             dockForm(rForm);
+            rForm.clearForm();
             Controls.Remove((Control)sender);
         }
 
@@ -122,7 +123,7 @@ namespace QSevenManagementSystem
             dockForm(rHForm);
         }
 
-        //rroms form buttons
+        //rooms form buttons
         private void roomsButton_Click(object sender, EventArgs e)
         {
             ConnectToSQL.LoadDataGridView(roForm.getTable(), "SELECT * FROM vw_current_rooms");
@@ -142,6 +143,7 @@ namespace QSevenManagementSystem
 
         public void createRoomForm2_okButtonClick(object sender, EventArgs e)
         {
+            ConnectToSQL.LoadDataGridView(roForm.getTable(), "SELECT * FROM vw_current_rooms");
             dockForm(roForm);
             Controls.Remove((Control)sender);
         }
@@ -168,7 +170,8 @@ namespace QSevenManagementSystem
 
         public void rDForm2_okButtonClick(object sender, EventArgs e)
         {
-            dockForm(rDForm);
+            ConnectToSQL.LoadDataGridView(rDHForm.getTable(), "select * from vw_room_damage_record");
+            dockForm(rDHForm);
             Controls.Remove((Control)sender);
         }
 
@@ -182,7 +185,7 @@ namespace QSevenManagementSystem
         //prices firm buttons
         private void pricesButton_Click(object sender, EventArgs e)
         {
-            ConnectToSQL.LoadDataGridView(pForm.getData(), "SELECT * FROM vw_room_price_history");
+            ConnectToSQL.LoadDataGridView(pForm.getTable(), "SELECT * FROM vw_room_price_history");
             dockForm(pForm);
         }
 

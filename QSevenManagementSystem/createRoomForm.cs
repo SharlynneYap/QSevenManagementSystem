@@ -89,6 +89,8 @@ namespace QSevenManagementSystem
             string date = raDate.Value.ToShortDateString();
             date = raDate.Value.ToString("yyyy-MM-dd");
 
+            rAValues.Clear();
+
             rAValues.Add(roomID);
             rAValues.Add(ratID);
             rAValues.Add(date);

@@ -298,7 +298,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1132, 52);
+            panel1.Size = new Size(1152, 52);
             panel1.TabIndex = 71;
             // 
             // label10
@@ -318,7 +318,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
-            ClientSize = new Size(1132, 753);
+            ClientSize = new Size(1152, 753);
             Controls.Add(panel1);
             Controls.Add(tableLayoutPanel5);
             Controls.Add(reportButton);

@@ -111,6 +111,7 @@ namespace QSevenManagementSystem
 
         private void applyElecButton_Click(object sender, EventArgs e)
         {
+
             loadBillRateValues();
             insertBillRateRecord();
         }
@@ -122,12 +123,13 @@ namespace QSevenManagementSystem
         }
 
         private void applyRoomButton_Click(object sender, EventArgs e)
-        {
+        {       
             loadPriceValues();
             insertPriceRecords();
+            ConnectToSQL.LoadDataGridView(this.getTable(), "SELECT * FROM vw_room_price_history");
         }
 
-        public DataGridView getData()
+        public DataGridView getTable()
         {
             return priceData;
         }

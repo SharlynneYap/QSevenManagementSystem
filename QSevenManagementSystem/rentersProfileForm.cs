@@ -25,9 +25,9 @@ namespace QSevenManagementSystem
             return rentersData;
         }
 
-        public string getRegistrationID()
+        public string getRenterID()
         {
-            return registrationLabel.Text;
+            return renterLabel.Text;
         }
 
         private void moveOutButton_Click(object sender, EventArgs e)
