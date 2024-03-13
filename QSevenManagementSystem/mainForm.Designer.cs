@@ -366,6 +366,7 @@
             ClientSize = new Size(1382, 753);
             Controls.Add(sideMenuPanel);
             Name = "mainForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "mainMenuForm";
             Load += mainForm_Load;
             sideMenuPanel.ResumeLayout(false);

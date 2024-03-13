@@ -12,6 +12,8 @@ namespace QSevenManagementSystem
 {
     public partial class roomsForm : Form
     {
+        List<string> rowData = new List<string>();
+
         public roomsForm()
         {
             InitializeComponent();
@@ -49,18 +51,18 @@ namespace QSevenManagementSystem
             {
                 roomLabel.Text = rowData[0];
                 priceLabel.Text = rowData[1];
-                maxLabel.Text = rowData[2];
-                floorLabel.Text = rowData[3];
-                availabilityLabel.Text = rowData[4];
+                txtNoRenters.Text = rowData[2];
+                txtFloor.Text = rowData[3];
+                txtAvail.Text = rowData[4];
             }
             else
             {
                 // Clear labels if there is no selected row
                 roomLabel.Text = "None";
                 priceLabel.Text = "None";
-                maxLabel.Text = "None";
-                floorLabel.Text = "None";
-                availabilityLabel.Text = "None";
+                txtNoRenters.Text = "None";
+                txtFloor.Text = "None";
+                txtAvail.Text = "None";
             }
         }
 
@@ -76,6 +78,7 @@ namespace QSevenManagementSystem
                 }
             }
             loadDataToLabels(rowData);
+            this.rowData = rowData;
         }
 
         private void loadSearchCBox()//adds items to the search combo box
@@ -106,6 +109,51 @@ namespace QSevenManagementSystem
                 //Execute the query and update the DataGridView
                 ConnectToSQL.LoadDataGridView(roomsData, query);
             }
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            applyButton.Visible = true;
+            btnEdit.Visible = false;
+            btnCancel.Visible = true;
+            removeButton.Enabled = false;
+            createButton.Enabled = false;
+            roomsData.Enabled = false;
+
+            txtNoRenters.ReadOnly = false;
+            txtFloor.ReadOnly = false;
+            txtAvail.ReadOnly = false;
+        }
+
+        private void applyButton_Click(object sender, EventArgs e)
+        {
+            applyButton.Visible = false;
+            btnEdit.Visible = true;
+            btnCancel.Visible = false;
+            removeButton.Enabled = true;
+            createButton.Enabled = true;
+            roomsData.Enabled = true;
+
+            txtNoRenters.ReadOnly = true;
+            txtFloor.ReadOnly = true;
+            txtAvail.ReadOnly = true;
+
+            //INSERT QUERY HERE
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            loadDataToLabels(this.rowData);
+            applyButton.Visible = false;
+            btnCancel.Visible = false;
+            btnEdit.Visible = true;
+            removeButton.Enabled = true;
+            createButton.Enabled = true;
+            roomsData.Enabled = true;
+
+            txtNoRenters.ReadOnly = true;
+            txtFloor.ReadOnly = true;
+            txtAvail.ReadOnly = true;
         }
     }
 }

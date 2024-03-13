@@ -275,11 +275,10 @@ namespace QSevenManagementSystem
                 floorLabel.Text = rowData[3];
                 maxLabel.Text = rowData[4];
                 renterLabel.Text = rowData[5];
-                fNameLabel.Text = rowData[6];
-                mNameLabel.Text = rowData[7];
-                lNameLabel.Text = rowData[8];
 
                 roomTBox.Text = rowData[0];
+
+                depositAmountTBox.Text = $"{double.Parse(priceLabel.Text) * 2}";
             }
             else
             {

@@ -66,12 +66,6 @@
             label13 = new Label();
             label14 = new Label();
             label34 = new Label();
-            lLabel = new Label();
-            label27 = new Label();
-            mLabel = new Label();
-            label29 = new Label();
-            fNameLabel = new Label();
-            label31 = new Label();
             renterLabel = new Label();
             label33 = new Label();
             label32 = new Label();
@@ -473,71 +467,11 @@
             label34.TabIndex = 69;
             label34.Text = "Select a room:";
             // 
-            // lLabel
-            // 
-            lLabel.AutoSize = true;
-            lLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            lLabel.Location = new Point(193, 322);
-            lLabel.Name = "lLabel";
-            lLabel.Size = new Size(44, 18);
-            lLabel.TabIndex = 56;
-            lLabel.Text = "None";
-            // 
-            // label27
-            // 
-            label27.AutoSize = true;
-            label27.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label27.Location = new Point(5, 322);
-            label27.Name = "label27";
-            label27.Size = new Size(144, 17);
-            label27.TabIndex = 52;
-            label27.Text = "Renter Last Name:";
-            // 
-            // mLabel
-            // 
-            mLabel.AutoSize = true;
-            mLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            mLabel.Location = new Point(193, 282);
-            mLabel.Name = "mLabel";
-            mLabel.Size = new Size(44, 18);
-            mLabel.TabIndex = 56;
-            mLabel.Text = "None";
-            // 
-            // label29
-            // 
-            label29.AutoSize = true;
-            label29.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label29.Location = new Point(5, 282);
-            label29.Name = "label29";
-            label29.Size = new Size(160, 17);
-            label29.TabIndex = 51;
-            label29.Text = "Renter Middle Name:";
-            // 
-            // fNameLabel
-            // 
-            fNameLabel.AutoSize = true;
-            fNameLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            fNameLabel.Location = new Point(193, 242);
-            fNameLabel.Name = "fNameLabel";
-            fNameLabel.Size = new Size(44, 18);
-            fNameLabel.TabIndex = 56;
-            fNameLabel.Text = "None";
-            // 
-            // label31
-            // 
-            label31.AutoSize = true;
-            label31.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label31.Location = new Point(5, 242);
-            label31.Name = "label31";
-            label31.Size = new Size(146, 17);
-            label31.TabIndex = 50;
-            label31.Text = "Renter First Name:";
-            // 
             // renterLabel
             // 
             renterLabel.AutoSize = true;
             renterLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            renterLabel.Location = new Point(193, 202);
+            renterLabel.Location = new Point(193, 307);
             renterLabel.Name = "renterLabel";
             renterLabel.Size = new Size(44, 18);
             renterLabel.TabIndex = 56;
@@ -547,27 +481,27 @@
             // 
             label33.AutoSize = true;
             label33.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label33.Location = new Point(5, 202);
+            label33.Location = new Point(5, 307);
             label33.Name = "label33";
-            label33.Size = new Size(83, 17);
+            label33.Size = new Size(176, 17);
             label33.TabIndex = 49;
-            label33.Text = "Renter ID:";
+            label33.Text = "Occupant Renter ID(s):";
             // 
             // label32
             // 
             label32.AutoSize = true;
             label32.Font = new Font("Arial Rounded MT Bold", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label32.Location = new Point(5, 162);
+            label32.Location = new Point(5, 246);
             label32.Name = "label32";
-            label32.Size = new Size(148, 23);
+            label32.Size = new Size(178, 23);
             label32.TabIndex = 48;
-            label32.Text = "Renter Details";
+            label32.Text = "Occupant Details";
             // 
             // maxLabel
             // 
             maxLabel.AutoSize = true;
             maxLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            maxLabel.Location = new Point(193, 122);
+            maxLabel.Location = new Point(193, 185);
             maxLabel.Name = "maxLabel";
             maxLabel.Size = new Size(44, 18);
             maxLabel.TabIndex = 56;
@@ -577,7 +511,7 @@
             // 
             label30.AutoSize = true;
             label30.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label30.Location = new Point(5, 122);
+            label30.Location = new Point(5, 185);
             label30.Name = "label30";
             label30.Size = new Size(134, 17);
             label30.TabIndex = 47;
@@ -587,7 +521,7 @@
             // 
             floorLabel.AutoSize = true;
             floorLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            floorLabel.Location = new Point(193, 82);
+            floorLabel.Location = new Point(193, 124);
             floorLabel.Name = "floorLabel";
             floorLabel.Size = new Size(44, 18);
             floorLabel.TabIndex = 56;
@@ -597,7 +531,7 @@
             // 
             label28.AutoSize = true;
             label28.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label28.Location = new Point(5, 82);
+            label28.Location = new Point(5, 124);
             label28.Name = "label28";
             label28.Size = new Size(51, 17);
             label28.TabIndex = 46;
@@ -607,7 +541,7 @@
             // 
             roomLabel.AutoSize = true;
             roomLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            roomLabel.Location = new Point(193, 42);
+            roomLabel.Location = new Point(193, 63);
             roomLabel.Name = "roomLabel";
             roomLabel.Size = new Size(44, 18);
             roomLabel.TabIndex = 53;
@@ -617,7 +551,7 @@
             // 
             label25.AutoSize = true;
             label25.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label25.Location = new Point(5, 42);
+            label25.Location = new Point(5, 63);
             label25.Name = "label25";
             label25.Size = new Size(75, 17);
             label25.TabIndex = 43;
@@ -650,16 +584,10 @@
             tableLayoutPanel4.Controls.Add(label32, 0, 4);
             tableLayoutPanel4.Controls.Add(label33, 0, 5);
             tableLayoutPanel4.Controls.Add(renterLabel, 1, 5);
-            tableLayoutPanel4.Controls.Add(label31, 0, 6);
-            tableLayoutPanel4.Controls.Add(fNameLabel, 1, 6);
-            tableLayoutPanel4.Controls.Add(label29, 0, 7);
-            tableLayoutPanel4.Controls.Add(mLabel, 1, 7);
-            tableLayoutPanel4.Controls.Add(label27, 0, 8);
-            tableLayoutPanel4.Controls.Add(lLabel, 1, 8);
             tableLayoutPanel4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             tableLayoutPanel4.Location = new Point(586, 294);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
-            tableLayoutPanel4.RowCount = 9;
+            tableLayoutPanel4.RowCount = 6;
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 11.1111107F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 11.1111107F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 11.1111107F));
@@ -756,12 +684,6 @@
         private Label label13;
         private Label label14;
         private Label label34;
-        private Label lLabel;
-        private Label label27;
-        private Label mLabel;
-        private Label label29;
-        private Label fNameLabel;
-        private Label label31;
         private Label renterLabel;
         private Label label33;
         private Label label32;

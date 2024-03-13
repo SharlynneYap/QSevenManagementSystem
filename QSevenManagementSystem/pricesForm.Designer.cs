@@ -47,11 +47,13 @@
             label8 = new Label();
             applyRoomButton = new Button();
             elecDate = new DateTimePicker();
-            label7 = new Label();
-            label9 = new Label();
+            lblElecDate = new Label();
+            lblWaterDate = new Label();
             waterDate = new DateTimePicker();
             label10 = new Label();
             priceDate = new DateTimePicker();
+            cancelElecButton = new Button();
+            cancelWaterButton = new Button();
             ((System.ComponentModel.ISupportInitialize)priceData).BeginInit();
             SuspendLayout();
             // 
@@ -129,7 +131,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(77, 467);
+            label5.Location = new Point(79, 462);
             label5.Name = "label5";
             label5.Size = new Size(201, 17);
             label5.TabIndex = 13;
@@ -141,19 +143,21 @@
             elecTBox.Name = "elecTBox";
             elecTBox.Size = new Size(125, 27);
             elecTBox.TabIndex = 14;
+            elecTBox.TextChanged += elecTBox_TextChanged;
             // 
             // waterTBox
             // 
-            waterTBox.Location = new Point(304, 613);
+            waterTBox.Location = new Point(309, 505);
             waterTBox.Name = "waterTBox";
             waterTBox.Size = new Size(125, 27);
             waterTBox.TabIndex = 16;
+            waterTBox.TextChanged += waterTBox_TextChanged;
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.Location = new Point(72, 618);
+            label6.Location = new Point(79, 510);
             label6.Name = "label6";
             label6.Size = new Size(170, 17);
             label6.TabIndex = 15;
@@ -162,28 +166,30 @@
             // applyElecButton
             // 
             applyElecButton.BackColor = Color.DarkSeaGreen;
-            applyElecButton.Location = new Point(304, 499);
+            applyElecButton.Location = new Point(923, 454);
             applyElecButton.Name = "applyElecButton";
-            applyElecButton.Size = new Size(145, 42);
+            applyElecButton.Size = new Size(73, 42);
             applyElecButton.TabIndex = 82;
-            applyElecButton.Text = "APPLY CHANGES";
+            applyElecButton.Text = "APPLY";
             applyElecButton.UseVisualStyleBackColor = false;
+            applyElecButton.Visible = false;
             applyElecButton.Click += applyElecButton_Click;
             // 
             // applyWaterButton
             // 
             applyWaterButton.BackColor = Color.DarkSeaGreen;
-            applyWaterButton.Location = new Point(304, 646);
+            applyWaterButton.Location = new Point(923, 494);
             applyWaterButton.Name = "applyWaterButton";
-            applyWaterButton.Size = new Size(145, 42);
+            applyWaterButton.Size = new Size(73, 42);
             applyWaterButton.TabIndex = 83;
-            applyWaterButton.Text = "APPLY CHANGES";
+            applyWaterButton.Text = "APPLY";
             applyWaterButton.UseVisualStyleBackColor = false;
+            applyWaterButton.Visible = false;
             applyWaterButton.Click += applyWaterButton_Click;
             // 
             // priceTBox
             // 
-            priceTBox.Location = new Point(908, 182);
+            priceTBox.Location = new Point(836, 182);
             priceTBox.Name = "priceTBox";
             priceTBox.Size = new Size(125, 27);
             priceTBox.TabIndex = 85;
@@ -200,7 +206,7 @@
             // 
             // roomIdTBox
             // 
-            roomIdTBox.Location = new Point(908, 149);
+            roomIdTBox.Location = new Point(836, 149);
             roomIdTBox.Name = "roomIdTBox";
             roomIdTBox.Size = new Size(44, 27);
             roomIdTBox.TabIndex = 87;
@@ -218,7 +224,7 @@
             // applyRoomButton
             // 
             applyRoomButton.BackColor = Color.DarkSeaGreen;
-            applyRoomButton.Location = new Point(676, 245);
+            applyRoomButton.Location = new Point(961, 258);
             applyRoomButton.Name = "applyRoomButton";
             applyRoomButton.Size = new Size(145, 42);
             applyRoomButton.TabIndex = 88;
@@ -228,43 +234,47 @@
             // 
             // elecDate
             // 
-            elecDate.Location = new Point(634, 505);
+            elecDate.Location = new Point(600, 460);
             elecDate.Name = "elecDate";
-            elecDate.Size = new Size(272, 27);
+            elecDate.Size = new Size(277, 27);
             elecDate.TabIndex = 89;
+            elecDate.Visible = false;
             // 
-            // label7
+            // lblElecDate
             // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label7.Location = new Point(481, 512);
-            label7.Name = "label7";
-            label7.Size = new Size(124, 17);
-            label7.TabIndex = 90;
-            label7.Text = "Change price at";
+            lblElecDate.AutoSize = true;
+            lblElecDate.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            lblElecDate.Location = new Point(460, 462);
+            lblElecDate.Name = "lblElecDate";
+            lblElecDate.Size = new Size(124, 17);
+            lblElecDate.TabIndex = 90;
+            lblElecDate.Text = "Change price at";
+            lblElecDate.Visible = false;
             // 
-            // label9
+            // lblWaterDate
             // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label9.Location = new Point(476, 659);
-            label9.Name = "label9";
-            label9.Size = new Size(124, 17);
-            label9.TabIndex = 92;
-            label9.Text = "Change price at";
+            lblWaterDate.AutoSize = true;
+            lblWaterDate.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            lblWaterDate.Location = new Point(460, 512);
+            lblWaterDate.Name = "lblWaterDate";
+            lblWaterDate.Size = new Size(124, 17);
+            lblWaterDate.TabIndex = 92;
+            lblWaterDate.Text = "Change price at";
+            lblWaterDate.Visible = false;
             // 
             // waterDate
             // 
-            waterDate.Location = new Point(629, 652);
+            waterDate.Location = new Point(600, 505);
             waterDate.Name = "waterDate";
             waterDate.Size = new Size(277, 27);
             waterDate.TabIndex = 91;
+            waterDate.Visible = false;
             // 
             // label10
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label10.Location = new Point(681, 301);
+            label10.Location = new Point(676, 223);
             label10.Name = "label10";
             label10.Size = new Size(124, 17);
             label10.TabIndex = 94;
@@ -272,10 +282,34 @@
             // 
             // priceDate
             // 
-            priceDate.Location = new Point(834, 294);
+            priceDate.Location = new Point(836, 216);
             priceDate.Name = "priceDate";
             priceDate.Size = new Size(270, 27);
             priceDate.TabIndex = 93;
+            // 
+            // cancelElecButton
+            // 
+            cancelElecButton.BackColor = Color.Crimson;
+            cancelElecButton.Location = new Point(995, 454);
+            cancelElecButton.Name = "cancelElecButton";
+            cancelElecButton.Size = new Size(73, 42);
+            cancelElecButton.TabIndex = 95;
+            cancelElecButton.Text = "CANCEL";
+            cancelElecButton.UseVisualStyleBackColor = false;
+            cancelElecButton.Visible = false;
+            cancelElecButton.Click += cancelElecButton_Click;
+            // 
+            // cancelWaterButton
+            // 
+            cancelWaterButton.BackColor = Color.Crimson;
+            cancelWaterButton.Location = new Point(995, 494);
+            cancelWaterButton.Name = "cancelWaterButton";
+            cancelWaterButton.Size = new Size(73, 42);
+            cancelWaterButton.TabIndex = 96;
+            cancelWaterButton.Text = "CANCEL";
+            cancelWaterButton.UseVisualStyleBackColor = false;
+            cancelWaterButton.Visible = false;
+            cancelWaterButton.Click += cancelWaterButton_Click;
             // 
             // pricesForm
             // 
@@ -283,11 +317,13 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
             ClientSize = new Size(1132, 753);
+            Controls.Add(cancelWaterButton);
+            Controls.Add(cancelElecButton);
             Controls.Add(label10);
             Controls.Add(priceDate);
-            Controls.Add(label9);
+            Controls.Add(lblWaterDate);
             Controls.Add(waterDate);
-            Controls.Add(label7);
+            Controls.Add(lblElecDate);
             Controls.Add(elecDate);
             Controls.Add(applyRoomButton);
             Controls.Add(roomIdTBox);
@@ -336,10 +372,12 @@
         private Label label8;
         private Button applyRoomButton;
         private DateTimePicker elecDate;
-        private Label label7;
-        private Label label9;
+        private Label lblElecDate;
+        private Label lblWaterDate;
         private DateTimePicker waterDate;
         private Label label10;
         private DateTimePicker priceDate;
+        private Button cancelElecButton;
+        private Button cancelWaterButton;
     }
 }

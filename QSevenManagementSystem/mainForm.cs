@@ -91,6 +91,7 @@ namespace QSevenManagementSystem
         public void rForm2_nextButtonClick(object sender, EventArgs e)
         {
             dockForm(rForm3);
+            rForm.clearForm();
             Controls.Remove((Control)sender);
             
         }
@@ -98,7 +99,6 @@ namespace QSevenManagementSystem
         public void rForm2_prevButtonClick(object sender, EventArgs e)
         {
             dockForm(rForm);
-            rForm.clearForm();
             Controls.Remove((Control)sender);
         }
 

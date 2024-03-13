@@ -17,16 +17,22 @@ namespace QSevenManagementSystem
         private List<string> BillRateValues2;
         private List<string> priceValues;
         private List<string> priceColumns;
+        private String elecBill, waterBill;
 
         public pricesForm()
         {
             InitializeComponent();
-        
+
             BillRateValues = new List<string>();
             BillRateColumns = new List<string> { "BT_ID", "BR_price", "BR_date" };
             BillRateValues2 = new List<string>();
             priceValues = new List<string>();
             priceColumns = new List<string> { "room_id", "rp_price", "rp_date" };
+
+            /*elecTBox.Text = ConnectToSQL.readTableString("");
+            elecBill = elecTBox.Text;
+            waterTBox.Text = //insert query
+            waterBill = waterTBox.Text; */
         }
         private void loadBillRateValues()
         {
@@ -111,19 +117,26 @@ namespace QSevenManagementSystem
 
         private void applyElecButton_Click(object sender, EventArgs e)
         {
-
+            lblElecDate.Visible = false;
+            elecDate.Visible = false;
+            applyElecButton.Visible = false;
+            MessageBox.Show("Changes made!");
             loadBillRateValues();
             insertBillRateRecord();
         }
 
         private void applyWaterButton_Click(object sender, EventArgs e)
         {
+            lblWaterDate.Visible = false;
+            waterDate.Visible = false;
+            applyWaterButton.Visible = false;
+            MessageBox.Show("Changes made!");
             loadBillRateValues2();
             insertBillRateRecord2();
         }
 
         private void applyRoomButton_Click(object sender, EventArgs e)
-        {       
+        {
             loadPriceValues();
             insertPriceRecords();
             ConnectToSQL.LoadDataGridView(this.getTable(), "SELECT * FROM vw_room_price_history");
@@ -132,6 +145,40 @@ namespace QSevenManagementSystem
         public DataGridView getTable()
         {
             return priceData;
+        }
+
+        private void elecTBox_TextChanged(object sender, EventArgs e)
+        {
+            lblElecDate.Visible = true;
+            elecDate.Visible = true;
+            applyElecButton.Visible = true;
+            cancelElecButton.Visible = true;
+        }
+
+        private void waterTBox_TextChanged(object sender, EventArgs e)
+        {
+            lblWaterDate.Visible = true;
+            waterDate.Visible = true;
+            applyWaterButton.Visible = true;
+            cancelWaterButton.Visible = true;
+        }
+
+        private void cancelElecButton_Click(object sender, EventArgs e)
+        {
+            elecTBox.Text = elecBill;
+            lblElecDate.Visible = false;
+            elecDate.Visible = false;
+            applyElecButton.Visible = false;
+            cancelElecButton.Visible = false;
+        }
+
+        private void cancelWaterButton_Click(object sender, EventArgs e)
+        {
+            waterTBox.Text = waterBill;
+            lblWaterDate.Visible = false;
+            waterDate.Visible = false;
+            applyWaterButton.Visible = false;
+            cancelWaterButton.Visible = false;
         }
     }
 }

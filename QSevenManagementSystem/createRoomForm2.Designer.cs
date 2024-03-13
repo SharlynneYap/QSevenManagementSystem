@@ -114,6 +114,7 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Name = "createRoomForm2";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "createRoomForm2";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

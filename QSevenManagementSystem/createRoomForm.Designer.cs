@@ -211,6 +211,7 @@
             Controls.Add(roomIdTBox);
             Controls.Add(label12);
             Name = "createRoomForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "createRoomForm";
             Load += createRoomForm_Load;
             panel1.ResumeLayout(false);

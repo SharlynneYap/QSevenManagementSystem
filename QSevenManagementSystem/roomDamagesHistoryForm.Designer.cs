@@ -34,7 +34,6 @@
             label2 = new Label();
             rDHData = new DataGridView();
             reportButton = new Button();
-            applyButton = new Button();
             tableLayoutPanel5 = new TableLayoutPanel();
             dateLabel = new Label();
             label1 = new Label();
@@ -108,24 +107,14 @@
             // 
             // reportButton
             // 
-            reportButton.BackColor = SystemColors.GradientActiveCaption;
-            reportButton.Location = new Point(623, 428);
+            reportButton.BackColor = Color.IndianRed;
+            reportButton.Location = new Point(785, 368);
             reportButton.Name = "reportButton";
-            reportButton.Size = new Size(174, 42);
+            reportButton.Size = new Size(192, 42);
             reportButton.TabIndex = 44;
-            reportButton.Text = "REPORT DAMAGE";
+            reportButton.Text = "ADD DAMAGE REPORT";
             reportButton.UseVisualStyleBackColor = false;
             reportButton.Click += reportButton_Click;
-            // 
-            // applyButton
-            // 
-            applyButton.BackColor = Color.DarkSeaGreen;
-            applyButton.Location = new Point(623, 380);
-            applyButton.Name = "applyButton";
-            applyButton.Size = new Size(145, 42);
-            applyButton.TabIndex = 42;
-            applyButton.Text = "APPLY CHANGES";
-            applyButton.UseVisualStyleBackColor = false;
             // 
             // tableLayoutPanel5
             // 
@@ -322,7 +311,6 @@
             Controls.Add(panel1);
             Controls.Add(tableLayoutPanel5);
             Controls.Add(reportButton);
-            Controls.Add(applyButton);
             Controls.Add(searchCBox);
             Controls.Add(searchTBox);
             Controls.Add(label3);
@@ -347,7 +335,6 @@
         private Label label2;
         private DataGridView rDHData;
         private Button reportButton;
-        private Button applyButton;
         private TableLayoutPanel tableLayoutPanel5;
         private Label descLabel;
         private Label damageLabel;

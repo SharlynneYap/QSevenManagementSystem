@@ -65,6 +65,7 @@
             moveOutButton = new Button();
             applyButton = new Button();
             editBtn = new Button();
+            btnCancel = new Button();
             ((System.ComponentModel.ISupportInitialize)rentersData).BeginInit();
             tableLayoutPanel5.SuspendLayout();
             panel1.SuspendLayout();
@@ -327,7 +328,6 @@
             txtFname.ReadOnly = true;
             txtFname.Size = new Size(125, 24);
             txtFname.TabIndex = 79;
-            txtFname.UseSystemPasswordChar = true;
             // 
             // txtMname
             // 
@@ -338,7 +338,6 @@
             txtMname.ReadOnly = true;
             txtMname.Size = new Size(125, 24);
             txtMname.TabIndex = 80;
-            txtMname.UseSystemPasswordChar = true;
             // 
             // txtLname
             // 
@@ -349,7 +348,6 @@
             txtLname.ReadOnly = true;
             txtLname.Size = new Size(125, 24);
             txtLname.TabIndex = 81;
-            txtLname.UseSystemPasswordChar = true;
             // 
             // txtContact
             // 
@@ -360,7 +358,6 @@
             txtContact.ReadOnly = true;
             txtContact.Size = new Size(125, 24);
             txtContact.TabIndex = 82;
-            txtContact.UseSystemPasswordChar = true;
             // 
             // txtDob
             // 
@@ -371,7 +368,6 @@
             txtDob.ReadOnly = true;
             txtDob.Size = new Size(125, 24);
             txtDob.TabIndex = 83;
-            txtDob.UseSystemPasswordChar = true;
             // 
             // txtAddress
             // 
@@ -382,7 +378,6 @@
             txtAddress.ReadOnly = true;
             txtAddress.Size = new Size(306, 24);
             txtAddress.TabIndex = 84;
-            txtAddress.UseSystemPasswordChar = true;
             // 
             // lblRegIDVal
             // 
@@ -497,12 +492,25 @@
             editBtn.UseVisualStyleBackColor = false;
             editBtn.Click += editBtn_Click;
             // 
+            // btnCancel
+            // 
+            btnCancel.BackColor = Color.Crimson;
+            btnCancel.Location = new Point(616, 697);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(145, 42);
+            btnCancel.TabIndex = 77;
+            btnCancel.Text = "CANCEL";
+            btnCancel.UseVisualStyleBackColor = false;
+            btnCancel.Visible = false;
+            btnCancel.Click += btnCancel_Click;
+            // 
             // rentersProfileForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
             ClientSize = new Size(1152, 753);
+            Controls.Add(btnCancel);
             Controls.Add(editBtn);
             Controls.Add(moveOutButton);
             Controls.Add(applyButton);
@@ -563,5 +571,6 @@
         private Button editBtn;
         private Label lblRegIDVal;
         private Label lblRenterIDVal;
+        private Button btnCancel;
     }
 }
