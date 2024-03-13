@@ -38,13 +38,13 @@ namespace QSevenManagementSystem
         {
             string btId = "1";
             string price = elecTBox.Text;
-            string date = elecDate.Value.ToString("yyyy-MM-dd");
+            //string date = elecDate.Value.ToString("yyyy-MM-dd");
 
             BillRateValues.Clear();
 
             BillRateValues.Add(btId);
             BillRateValues.Add(price);
-            BillRateValues.Add(date);
+            //BillRateValues.Add(date);
 
             MessageBox.Show(string.Join(", ", BillRateValues)); // Testing
         }
@@ -63,13 +63,13 @@ namespace QSevenManagementSystem
         {
             string btId = "2";
             string price = waterTBox.Text;
-            string date = waterDate.Value.ToString("yyyy-MM-dd");
+            //string date = waterDate.Value.ToString("yyyy-MM-dd");
 
             BillRateValues2.Clear();
 
             BillRateValues2.Add(btId);
             BillRateValues2.Add(price);
-            BillRateValues2.Add(date);
+            //BillRateValues2.Add(date);
 
 
             MessageBox.Show(string.Join(", ", BillRateValues2)); // Testing
@@ -117,9 +117,6 @@ namespace QSevenManagementSystem
 
         private void applyElecButton_Click(object sender, EventArgs e)
         {
-            lblElecDate.Visible = false;
-            elecDate.Visible = false;
-            applyElecButton.Visible = false;
             MessageBox.Show("Changes made!");
             loadBillRateValues();
             insertBillRateRecord();
@@ -127,9 +124,6 @@ namespace QSevenManagementSystem
 
         private void applyWaterButton_Click(object sender, EventArgs e)
         {
-            lblWaterDate.Visible = false;
-            waterDate.Visible = false;
-            applyWaterButton.Visible = false;
             MessageBox.Show("Changes made!");
             loadBillRateValues2();
             insertBillRateRecord2();
@@ -147,38 +141,10 @@ namespace QSevenManagementSystem
             return priceData;
         }
 
-        private void elecTBox_TextChanged(object sender, EventArgs e)
-        {
-            lblElecDate.Visible = true;
-            elecDate.Visible = true;
-            applyElecButton.Visible = true;
-            cancelElecButton.Visible = true;
-        }
 
-        private void waterTBox_TextChanged(object sender, EventArgs e)
+        private void changeElecBillBtn_Click(object sender, EventArgs e)
         {
-            lblWaterDate.Visible = true;
-            waterDate.Visible = true;
-            applyWaterButton.Visible = true;
-            cancelWaterButton.Visible = true;
-        }
 
-        private void cancelElecButton_Click(object sender, EventArgs e)
-        {
-            elecTBox.Text = elecBill;
-            lblElecDate.Visible = false;
-            elecDate.Visible = false;
-            applyElecButton.Visible = false;
-            cancelElecButton.Visible = false;
-        }
-
-        private void cancelWaterButton_Click(object sender, EventArgs e)
-        {
-            waterTBox.Text = waterBill;
-            lblWaterDate.Visible = false;
-            waterDate.Visible = false;
-            applyWaterButton.Visible = false;
-            cancelWaterButton.Visible = false;
         }
     }
 }
