@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Org.BouncyCastle.Asn1.X509;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -27,7 +28,7 @@ namespace QSevenManagementSystem
 
         public string getRenterID()
         {
-            return renterLabel.Text;
+            return lblRenterIDVal.Text;
         }
 
         private void moveOutButton_Click(object sender, EventArgs e)
@@ -41,14 +42,14 @@ namespace QSevenManagementSystem
 
             if (rowData.Count > 0)
             {
-                registrationLabel.Text = rowData[0];
-                renterLabel.Text = rowData[1];
-                fLabel.Text = rowData[2];
-                mLabel.Text = rowData[3];
-                lLabel.Text = rowData[4];
-                contactLabel.Text = rowData[5];
-                dobLabel.Text = rowData[6];
-                addressLabel.Text = rowData[7];
+                lblRegIDVal.Text = rowData[0];
+                lblRenterIDVal.Text = rowData[1];
+                txtFname.Text = rowData[2];
+                txtMname.Text = rowData[3];
+                txtLname.Text = rowData[4];
+                txtContact.Text = rowData[5];
+                txtDob.Text = rowData[6];
+                txtAddress.Text = rowData[7];
                 roomLabel.Text = rowData[8];
                 depositLabel.Text = rowData[9];
                 moveInLabel.Text = rowData[10];
@@ -58,14 +59,14 @@ namespace QSevenManagementSystem
             else
             {
                 // Clear labels if there is no selected row
-                registrationLabel.Text = "None";
-                renterLabel.Text = "None";
-                fLabel.Text = "None";
-                mLabel.Text = "None";
-                lLabel.Text = "None";
-                contactLabel.Text = "None";
-                dobLabel.Text = "None";
-                addressLabel.Text = "None";
+                lblRegIDVal.Text = "None";
+                lblRenterIDVal.Text = "None";
+                txtFname.Text = "None";
+                txtMname.Text = "None";
+                txtLname.Text = "None";
+                txtContact.Text = "None";
+                txtDob.Text = "None";
+                txtAddress.Text = "None";
                 roomLabel.Text = "None";
                 depositLabel.Text = "None";
                 moveInLabel.Text = "None";
@@ -123,5 +124,33 @@ namespace QSevenManagementSystem
                 ConnectToSQL.LoadDataGridView(rentersData, query);
             }
         }
+
+        private void applyButton_Click(object sender, EventArgs e)
+        {
+            applyButton.Visible = false;
+            editBtn.Visible = true;
+            txtFname.ReadOnly = true;
+            txtMname.ReadOnly = true;
+            txtLname.ReadOnly = true;
+            txtContact.ReadOnly = true;
+            txtDob.ReadOnly = true;
+            txtAddress.ReadOnly = true;
+
+            //INSERT QUERY HERE
+            ConnectToSQL.LoadDataGridView(getTable(), "SELECT * FROM vw_renters_profile");
+        }
+
+        private void editBtn_Click(object sender, EventArgs e)
+        {
+            applyButton.Visible = true;
+            editBtn.Visible = false;
+            txtFname.ReadOnly = false;
+            txtMname.ReadOnly = false;
+            txtLname.ReadOnly = false;
+            txtContact.ReadOnly = false;
+            txtDob.ReadOnly = false;
+            txtAddress.ReadOnly = false;
+        }
+
     }
 }
