@@ -74,10 +74,10 @@ namespace QSevenManagementSystem
                 insertMoveinRecords();
                 loadRegistrationValues2();
                 insertRegistrationRecords2();
-                loadRAValues();
-                insertRARecords();
-                loadRAValues2();
-                insertRARecords2();
+                //loadRAValues();
+                //insertRARecords();
+                //loadRAValues2();
+                //insertRARecords2();
             }
         }
         private void insertRentersRecords()

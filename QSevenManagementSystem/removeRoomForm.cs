@@ -55,6 +55,8 @@ namespace QSevenManagementSystem
         {
             loadRAValues();
             insertRARecord();
+            ConnectToSQL.LoadDataGridView(roForm.getTable(), "SELECT * FROM vw_current_rooms");
+            this.Close();
         }
     }
 }

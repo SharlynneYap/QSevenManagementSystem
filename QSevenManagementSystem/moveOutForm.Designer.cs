@@ -34,7 +34,7 @@
             moveOutDate = new DateTimePicker();
             confirmButton = new Button();
             label3 = new Label();
-            registrationLabel = new Label();
+            renterLabel = new Label();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -95,19 +95,19 @@
             label3.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label3.Location = new Point(52, 119);
             label3.Name = "label3";
-            label3.Size = new Size(122, 17);
+            label3.Size = new Size(83, 17);
             label3.TabIndex = 41;
-            label3.Text = "Registration ID:";
+            label3.Text = "Renter ID:";
             // 
-            // registrationLabel
+            // renterLabel
             // 
-            registrationLabel.AutoSize = true;
-            registrationLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            registrationLabel.Location = new Point(198, 119);
-            registrationLabel.Name = "registrationLabel";
-            registrationLabel.Size = new Size(44, 18);
-            registrationLabel.TabIndex = 42;
-            registrationLabel.Text = "None";
+            renterLabel.AutoSize = true;
+            renterLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            renterLabel.Location = new Point(198, 119);
+            renterLabel.Name = "renterLabel";
+            renterLabel.Size = new Size(44, 18);
+            renterLabel.TabIndex = 42;
+            renterLabel.Text = "None";
             // 
             // moveOutForm
             // 
@@ -115,7 +115,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
             ClientSize = new Size(682, 353);
-            Controls.Add(registrationLabel);
+            Controls.Add(renterLabel);
             Controls.Add(label3);
             Controls.Add(confirmButton);
             Controls.Add(moveOutDate);
@@ -137,6 +137,6 @@
         private DateTimePicker moveOutDate;
         private Button confirmButton;
         private Label label3;
-        private Label registrationLabel;
+        private Label renterLabel;
     }
 }
