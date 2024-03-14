@@ -1,17 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Windows.Forms.DataFormats;
-
-namespace QSevenManagementSystem
+﻿namespace QSevenManagementSystem
 {
     public partial class mainForm : Form
     {
@@ -38,6 +25,7 @@ namespace QSevenManagementSystem
         public mainForm()
         {
             InitializeComponent();
+            loadMainFormPanels();
             rForm2 = new registrationForm2(rForm.getRenterValues(), rForm.getRenterColumns());
         }
         private void mainForm_Load(object sender, EventArgs e)
@@ -64,6 +52,30 @@ namespace QSevenManagementSystem
             cEForm.Visible = false;
             cWForm.Visible = false;
             gRForm.Visible = false;
+
+            //panels from mainForm
+            this.roomsPanel.Visible = false;
+            this.occupiedPanel.Visible = false;
+            this.unoccupiedPanel.Visible = false;
+            this.reservedPanel.Visible = false;
+            this.rentersPanel.Visible = false;
+        }
+
+        private void loadMainFormPanels()
+        {
+            this.roomsPanel.Visible = true;
+            this.occupiedPanel.Visible = true;
+            this.unoccupiedPanel.Visible = true;
+            this.reservedPanel.Visible = true;
+            this.rentersPanel.Visible = true;
+
+
+            this.roomsLabel.Text = ConnectToSQL.readTableString("SELECT COUNT(*) FROM vw_current_rooms;");
+            this.occupiedLabel.Text = ConnectToSQL.readTableString("SELECT COUNT(*) FROM vw_current_rooms WHERE Availability = 'Occupied';");
+            this.unoccupiedLabel.Text = ConnectToSQL.readTableString("SELECT COUNT(*) FROM vw_current_rooms WHERE Availability = 'Unoccupied';");
+            this.reservedLabel.Text = ConnectToSQL.readTableString("SELECT COUNT(*) FROM vw_current_rooms WHERE Availability = 'Reserved';");
+            this.rentersLabel.Text = ConnectToSQL.readTableString("SELECT COUNT(*) FROM vw_renters_profile;");
+            
         }
 
         private void dockForm(Form form)
@@ -79,7 +91,15 @@ namespace QSevenManagementSystem
         // registration forms buttons
         private void registrationButton_Click(object sender, EventArgs e)
         {
-            dockForm(rForm);
+            if (rForm.Visible == true)
+            {
+                rForm.Visible = false;
+                loadMainFormPanels();
+            }
+            else
+            {
+                dockForm(rForm);
+            }
         }
         public void rForm_nextButtonClick(object sender, EventArgs e)
         {
@@ -92,7 +112,7 @@ namespace QSevenManagementSystem
         {
             dockForm(rForm3);
             Controls.Remove((Control)sender);
-            
+
         }
 
         public void rForm2_prevButtonClick(object sender, EventArgs e)
@@ -111,28 +131,54 @@ namespace QSevenManagementSystem
         // renters profile form buttons
         public void rentersProfileButton_Click(object sender, EventArgs e)
         {
-            ConnectToSQL.LoadDataGridView(rPForm.getTable(), "SELECT * FROM vw_renters_profile");
-            dockForm(rPForm);
+            if (rPForm.Visible == true)
+            {
+                rPForm.Visible = false;
+                loadMainFormPanels();
+            }
+            else
+            {
+                ConnectToSQL.LoadDataGridView(rPForm.getTable(), "SELECT * FROM vw_renters_profile");
+                dockForm(rPForm);
+            }
+
         }
 
         // renters history form buttons
         private void rentersHistoryButton_Click(object sender, EventArgs e)
         {
-            ConnectToSQL.LoadDataGridView(rHForm.getTable(1), "SELECT * FROM vw_movein_history;");
-            ConnectToSQL.LoadDataGridView(rHForm.getTable(2), "SELECT * FROM vw_moveout_history;");
-            dockForm(rHForm);
+            if (rHForm.Visible == true)
+            {
+                rHForm.Visible = false;
+                loadMainFormPanels();
+            }
+            else
+            {
+                ConnectToSQL.LoadDataGridView(rHForm.getTable(1), "SELECT * FROM vw_movein_history;");
+                ConnectToSQL.LoadDataGridView(rHForm.getTable(2), "SELECT * FROM vw_moveout_history;");
+                dockForm(rHForm);
+            }
         }
 
         //rooms form buttons
         private void roomsButton_Click(object sender, EventArgs e)
         {
-            ConnectToSQL.LoadDataGridView(roForm.getTable(), "SELECT * FROM vw_current_rooms");
-            dockForm(roForm);
+            if (roForm.Visible == true)
+            {
+                roForm.Visible = false;
+                loadMainFormPanels();
+            }
+            else
+            {
+                ConnectToSQL.LoadDataGridView(roForm.getTable(), "SELECT * FROM vw_current_rooms");
+                dockForm(roForm);
+            }
         }
         public void roomsForm_createButtonClick(object sender, EventArgs e)
         {
             dockForm(cRForm);
             Controls.Remove((Control)sender);
+
         }
 
         public void createRoomForm_submitButtonClick(object sender, EventArgs e)
@@ -151,8 +197,16 @@ namespace QSevenManagementSystem
         // room damage history form buttons
         private void damageHistoryButton_Click(object sender, EventArgs e)
         {
-            ConnectToSQL.LoadDataGridView(rDHForm.getTable(), "select * from vw_room_damage_record");
-            dockForm(rDHForm);
+            if (rDHForm.Visible == true)
+            {
+                rDHForm.Visible = false;
+                loadMainFormPanels();
+            }
+            else
+            {
+                ConnectToSQL.LoadDataGridView(rDHForm.getTable(), "select * from vw_room_damage_record");
+                dockForm(rDHForm);
+            }
         }
 
         public void rDHForm_reportButtonClick(object sender, EventArgs e)
@@ -178,46 +232,93 @@ namespace QSevenManagementSystem
         //room availability record form buttons
         private void availabilityHistoryButton_Click(object sender, EventArgs e)
         {
-            ConnectToSQL.LoadDataGridView(rAHForm.getTable(), "SELECT * FROM vw_room_availability_history");
-            dockForm(rAHForm);
+            if (rAHForm.Visible == true)
+            {
+                rAHForm.Visible = false;
+                loadMainFormPanels();
+            }
+            else
+            {
+                ConnectToSQL.LoadDataGridView(rAHForm.getTable(), "SELECT * FROM vw_room_availability_history");
+                dockForm(rAHForm);
+            }
         }
 
         //prices firm buttons
         private void pricesButton_Click(object sender, EventArgs e)
         {
-            ConnectToSQL.LoadDataGridView(pForm.getTable(), "SELECT * FROM vw_room_price_history");
-            dockForm(pForm);
+            if (pForm.Visible == true)
+            {
+                pForm.Visible = false;
+                loadMainFormPanels();
+            }
+            else
+            {
+                ConnectToSQL.LoadDataGridView(pForm.getTable(), "SELECT * FROM vw_rooms_current_prices");
+                dockForm(pForm);
+            }
         }
 
         //dpn form buttons
         private void dpnButton_Click(object sender, EventArgs e)
         {
-
-            ConnectToSQL.LoadDataGridView(gDForm.getTable(), "SELECT * from vw_current_renters");
-            dockForm(gDForm);
+            if (gDForm.Visible == true)
+            {
+                gDForm.Visible = false;
+                loadMainFormPanels();
+            }
+            else
+            {
+                ConnectToSQL.LoadDataGridView(gDForm.getTable(), "SELECT * from vw_current_renters");
+                dockForm(gDForm);
+            }
         }
 
         //receipt form buttons
         private void receiptButton_Click(object sender, EventArgs e)
         {
-            ConnectToSQL.LoadDataGridView(gRForm.getTable(), "SELECT * FROM vw_dpn_total;");
-            dockForm(gRForm);
+            if (gRForm.Visible == true)
+            {
+                gRForm.Visible = false;
+                loadMainFormPanels();
+            }
+            else
+            {
+                ConnectToSQL.LoadDataGridView(gRForm.getTable(), "SELECT * FROM vw_dpn_total;");
+                dockForm(gRForm);
+            }
         }
 
         //payments history button
         private void paymentsHistoryButton_Click(object sender, EventArgs e)
         {
-            ConnectToSQL.LoadDataGridView(paHForm.getTable(1), "SELECT * FROM vw_dpn_total;");
-            ConnectToSQL.LoadDataGridView(paHForm.getTable(2), "SELECT * FROM vw_receipt_is_fully_paid;");
-            dockForm(paHForm);
+            if (paHForm.Visible == true)
+            {
+                paHForm.Visible = false;
+                loadMainFormPanels();
+            }
+            else
+            {
+                ConnectToSQL.LoadDataGridView(paHForm.getTable(1), "SELECT * FROM vw_dpn_total;");
+                ConnectToSQL.LoadDataGridView(paHForm.getTable(2), "SELECT * FROM vw_receipt_is_fully_paid;");
+                dockForm(paHForm);
+            }
         }
 
+        //price history button
         private void pricesHistoryButton_Click(object sender, EventArgs e)
         {
-            ConnectToSQL.LoadDataGridView(pHForm.getTable(1), "SELECT * FROM tbl_room_price_record;");
-            ConnectToSQL.LoadDataGridView(pHForm.getTable(2), "SELECT * FROM vw_bill_rate_history;");
-            dockForm(pHForm);
-
+            if (pHForm.Visible == true)
+            {
+                pHForm.Visible = false;
+                loadMainFormPanels();
+            }
+            else
+            {
+                ConnectToSQL.LoadDataGridView(pHForm.getTable(1), "SELECT * FROM vw_room_price_history;");
+                ConnectToSQL.LoadDataGridView(pHForm.getTable(2), "SELECT * FROM vw_bill_rate_history;");
+                dockForm(pHForm);
+            }
         }
     }
 }

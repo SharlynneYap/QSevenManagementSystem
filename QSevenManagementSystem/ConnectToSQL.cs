@@ -231,6 +231,81 @@ namespace QSevenManagementSystem
             {
                 // Create table queries
                 string createViewsQuery = @"
+                CREATE VIEW vw_dpn_renter_details AS
+                SELECT 
+                    r.room_id,
+                    rp.rp_price AS room_price,
+                    r.room_floor,
+                    r.room_max_renters,
+                    reg.registration_id,
+                    rt.renter_fname,
+                    rt.renter_mname,
+                    rt.renter_lname
+                FROM 
+                    tbl_registration reg
+                JOIN 
+                    tbl_renter rt ON reg.renter_id = rt.renter_id
+                JOIN 
+                    tbl_room r ON reg.room_id = r.room_id
+                JOIN 
+                    tbl_moveout mo ON reg.renter_id = mo.renter_id
+                JOIN 
+                    (SELECT room_id, rp_price, rp_date,
+                            ROW_NUMBER() OVER (PARTITION BY room_id ORDER BY rp_date DESC) AS rn
+                     FROM tbl_room_price_record
+                     WHERE rp_date <= CURDATE()
+                     ) rp ON r.room_id = rp.room_id AND rp.rn = 1
+                WHERE 
+                    mo.moveout_date IS NOT NULL;
+
+                CREATE VIEW vw_moveout_history AS
+                    SELECT 
+                    R.registration_id AS 'Registration ID',
+                    R.renter_id AS 'Renter ID',
+                    RT.renter_fname AS 'First Name',
+                    RT.renter_mname AS 'Middle Name',
+                    RT.renter_lname AS 'Last Name',
+                    RT.renter_contact AS 'Contact #',
+                    RT.renter_dob  AS 'DOB',
+                    RT.renter_sex  AS 'Sex',
+                    RT.renter_address AS 'Address',
+                    R.room_id  AS 'Room ID',
+                    MO.MoveOut_ID  AS 'Move Out ID',
+                    MO.MoveOut_date  AS 'Move Out Date',
+                    R.registration_date  AS 'Registration Date'
+                FROM 
+                    tbl_registration R
+                JOIN 
+                    tbl_renter RT ON R.renter_id = RT.renter_id
+                LEFT JOIN 
+                    tbl_moveout MO ON RT.renter_id = MO.Renter_ID
+                WHERE 
+                    MO.MoveOut_date IS NOT NULL;
+
+
+                CREATE VIEW vw_movein_history AS
+                SELECT 
+                    r.registration_id  AS 'Registration ID',
+                    r.renter_id AS 'Renter ID',
+                    rt.renter_fname AS 'First Name',
+                    rt.renter_mname AS 'Middle Name',
+                    rt.renter_lname AS 'Last Name',
+                    rt.renter_contact AS 'Contact #',
+                    rt.renter_dob AS 'DOB',
+                    rt.renter_sex AS 'Sex',
+                    rt.renter_address AS 'Address',
+                    r.room_id AS 'Room ID',
+                    m.MoveIn_ID AS 'Move In ID',
+                    m.MoveIn_date AS 'Move In Date',
+                    r.registration_date AS 'Registration Date'
+                FROM 
+                    tbl_registration r
+                JOIN 
+                    tbl_renter rt ON r.renter_id = rt.renter_id
+                JOIN 
+                    tbl_moveIn m ON r.renter_id = m.Renter_ID
+                LEFT JOIN 
+                    tbl_moveout mo ON r.registration_id =  mo.moveout_id IS NULL;
 
                 CREATE VIEW vw_current_rooms AS
                 SELECT 
@@ -255,7 +330,8 @@ namespace QSevenManagementSystem
                         tbl_room_availability_record
                     GROUP BY 
                         room_id
-                ) AS sub ON R.room_id = sub.room_id AND RAR.ra_date = sub.LatestDate;
+                ) AS sub ON R.room_id = sub.room_id AND RAR.ra_date = sub.LatestDate
+                 GROUP BY r.Room_id;
 
 
                 CREATE VIEW vw_current_rooms_tenants AS
@@ -311,6 +387,34 @@ namespace QSevenManagementSystem
                     GROUP BY 
                         RO.room_id; 
 
+                CREATE VIEW vw_renters_profile AS
+                SELECT 
+                    R.Registration_ID AS 'Registration ID',
+                    R.Renter_ID AS 'Renter ID',
+                    RT.renter_fname AS 'First Name',
+                    RT.renter_mname AS 'Middle Name',
+                    RT.renter_lname AS 'Last Name',
+                    RT.renter_contact AS 'Contact #',
+                    RT.renter_dob AS 'DOB',
+                    RT.renter_address AS 'Address',
+                    R.Room_ID AS 'Room ID',
+                    D.Deposit_total AS 'Deposit Paid',
+                    MI.MoveIn_date AS 'Move In Date',
+                    R.Registration_date AS 'Registration Date'
+                FROM 
+                    tbl_registration R
+                JOIN 
+                    tbl_renter RT ON R.Renter_ID = RT.renter_id
+                JOIN 
+                    tbl_moveIn MI ON R.Renter_ID = MI.Renter_ID
+                JOIN 
+                    tbl_Deposit D ON R.Deposit_ID = D.Deposit_ID
+                LEFT JOIN 
+                    tbl_moveOut MO ON R.Renter_ID = MO.Renter_ID
+                WHERE 
+                    MO.MoveOut_date IS NULL;
+
+
 
                 CREATE VIEW vw_room_availability_history AS 
                     SELECT 
@@ -345,17 +449,55 @@ namespace QSevenManagementSystem
                         tbl_room_damage_type rdt ON rd.rdt_id = rdt.rdt_id;
                     
 
-                    CREATE VIEW vw_room_price_history AS
+                     CREATE VIEW vw_room_price_history AS
+                     SELECT 
+                         p.RP_ID AS 'Room Price ID',
+                         p.RP_price AS 'Room Price',
+                         p.RP_date AS 'Date',
+                         r.Room_ID AS 'Room ID',
+                         r.Room_floor AS 'Floor',
+                         r.Room_max_renters  AS 'Max # of Renters'
+     
+                     FROM 
+                         tbl_room r
+                     JOIN 
+                         tbl_room_price_record p ON r.Room_ID = p.Room_ID;
+
+                   CREATE VIEW vw_rooms_current_prices AS
                     SELECT 
-                        r.Room_ID,
-                        r.Room_floor,
-                        r.Room_max_renters,
-                        p.RP_price,
-                        p.RP_date
+                         p.RP_ID AS 'Room Price ID',
+                         p.RP_price AS 'Room Price',
+                         p.RP_date AS 'Date',
+                         r.Room_ID AS 'Room ID',
+                         r.Room_floor AS 'Floor',
+                         r.Room_max_renters  AS 'Max # of Renters'
                     FROM 
                         tbl_room r
                     JOIN 
-                        tbl_room_price_record p ON r.Room_ID = p.Room_ID;
+                        tbl_room_price_record p ON r.Room_ID = p.Room_ID
+                    JOIN (
+                        SELECT 
+                            Room_ID, 
+                            MAX(RP_date) AS LatestDate
+                        FROM 
+                            tbl_room_price_record
+                        WHERE 
+                            RP_date <= CURRENT_DATE
+                        GROUP BY 
+                            Room_ID
+                    ) AS latest_prices ON p.Room_ID = latest_prices.Room_ID AND p.RP_date = latest_prices.LatestDate
+                    GROUP BY r.Room_ID;
+                    
+                     CREATE VIEW vw_bill_rate_history AS
+                    SELECT 
+                        BRR.BT_ID AS 'Bill Rate ID',
+                        BT.BT_description AS 'Bill Type',
+                        BRR.BR_price AS 'Bill Rate',
+                        BRR.BR_date AS 'Date'
+                    FROM 
+                        tbl_Bill_Rate_Record BRR
+                    JOIN 
+                        tbl_Bill_Type BT ON BT.BT_ID = BRR.BT_ID;
 
 
                     CREATE VIEW vw_bill_total AS   
@@ -383,8 +525,26 @@ namespace QSevenManagementSystem
 
                         tbl_bill b;  
 
-
-                
+                    CREATE VIEW vw_current_tenants AS
+                    SELECT 
+                        r.room_id,
+                        ro.room_floor,
+                        ro.room_max_renters,
+                        rt.renter_id,
+                        rt.renter_fname,
+                        rt.renter_mname,
+                        rt.renter_lname
+                    FROM 
+                        tbl_registration r
+                    JOIN 
+                        tbl_renter rt ON r.renter_id = rt.renter_id
+                    JOIN 
+                        tbl_room ro ON r.room_id = ro.room_id
+                    LEFT JOIN 
+                        tbl_moveOut mo ON r.renter_id = mo.renter_id
+                    WHERE 
+                        mo.moveout_date IS NULL
+                    GROUP BY room_id;
 
                 
                     CREATE VIEW vw_receipt_is_fully_paid AS  
@@ -402,44 +562,6 @@ namespace QSevenManagementSystem
                     JOIN  
                        vw_dpn_total d ON r.dpn_id = d.dpn_id; 
 
-
-                    CREATE VIEW vw_bill_rate_history AS
-                    SELECT 
-                        BRR.BT_ID,
-                        BT.BT_description,
-                        BRR.BR_price,
-                        BRR.BR_date
-                    FROM 
-                        tbl_Bill_Rate_Record BRR
-                    JOIN 
-                        tbl_Bill_Type BT ON BT.BT_ID = BRR.BT_ID;
-                
-                
-                
-
-                    CREATE VIEW vw_moveout_history AS
-                    SELECT 
-                        R.Registration_ID AS `Registration ID`,
-                        RN.Renter_ID AS `Renter ID`,
-                        RN.Renter_FName AS `First Name`,
-                        RN.Renter_MName AS `Middle Name`,
-                        RN.Renter_LName AS `Last Name`,
-                        RN.Renter_contact AS `Contact #`,
-                        RN.Renter_DOB AS `DOB`,
-                        RN.Renter_sex AS `Sex`,
-                        RN.Renter_address AS `Address`,
-                        RM.Room_ID AS `Room ID`,
-                        MO.MoveOut_date AS `Move Out Date`,
-                        R.Registration_date AS `Registration Date`
-                    FROM 
-                        tbl_MoveOut MO
-                    JOIN 
-                        tbl_Registration R ON MO.Registration_ID = R.Registration_ID
-                    JOIN 
-                        tbl_Renter RN ON R.Renter_ID = RN.Renter_ID
-                    JOIN 
-                        tbl_Room RM ON R.Room_ID = RM.Room_ID;
-                         
 
                     CREATE VIEW vw_renters_profile AS
                     SELECT 
@@ -544,32 +666,8 @@ namespace QSevenManagementSystem
                     INNER JOIN tbl_room r ON reg.room_id = r.room_id; 
 
 
-                    CREATE VIEW vw_movein_history AS
-                    SELECT 
-                        R.Registration_ID AS `Registration ID`,
-                        RN.Renter_ID AS `Renter ID`,
-                        RN.Renter_FName AS `First Name`,
-                        RN.Renter_MName AS `Middle Name`,
-                        RN.Renter_LName AS `Last Name`,
-                        RN.Renter_contact AS `Contact #`,
-                        RN.Renter_DOB AS `DOB`,
-                        RN.Renter_sex AS `Sex`,
-                        RN.Renter_address AS `Address`,
-                        RM.Room_ID AS `Room ID`,
-                        MI.MoveIn_total_Deposit_Paid AS `Deposit Paid`,
-                        MI.MoveIn_date AS `Move In Date`,
-                        R.Registration_date AS `Registration Date`
-                    FROM 
-                        tbl_Registration R
-                    JOIN 
-                        tbl_Renter RN ON R.Renter_ID = RN.Renter_ID
-                    JOIN 
-                        tbl_MoveIn MI ON R.MoveIn_ID = MI.MoveIn_ID
-                    JOIN 
-                        tbl_Room RM ON R.Room_ID = RM.Room_ID;
-
-
-                ";
+                "
+                ;
 
                 // Execute queries
                 executeQuery(connection, createViewsQuery);

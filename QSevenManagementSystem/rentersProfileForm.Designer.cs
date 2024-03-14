@@ -327,7 +327,7 @@
             txtFname.ReadOnly = true;
             txtFname.Size = new Size(125, 24);
             txtFname.TabIndex = 79;
-            txtFname.UseSystemPasswordChar = true;
+            txtFname.TabStop = false;
             // 
             // txtMname
             // 
@@ -338,7 +338,7 @@
             txtMname.ReadOnly = true;
             txtMname.Size = new Size(125, 24);
             txtMname.TabIndex = 80;
-            txtMname.UseSystemPasswordChar = true;
+            txtMname.TabStop = false;
             // 
             // txtLname
             // 
@@ -349,7 +349,6 @@
             txtLname.ReadOnly = true;
             txtLname.Size = new Size(125, 24);
             txtLname.TabIndex = 81;
-            txtLname.UseSystemPasswordChar = true;
             // 
             // txtContact
             // 
@@ -360,7 +359,6 @@
             txtContact.ReadOnly = true;
             txtContact.Size = new Size(125, 24);
             txtContact.TabIndex = 82;
-            txtContact.UseSystemPasswordChar = true;
             // 
             // txtDob
             // 
@@ -371,7 +369,6 @@
             txtDob.ReadOnly = true;
             txtDob.Size = new Size(125, 24);
             txtDob.TabIndex = 83;
-            txtDob.UseSystemPasswordChar = true;
             // 
             // txtAddress
             // 
@@ -382,7 +379,6 @@
             txtAddress.ReadOnly = true;
             txtAddress.Size = new Size(306, 24);
             txtAddress.TabIndex = 84;
-            txtAddress.UseSystemPasswordChar = true;
             // 
             // lblRegIDVal
             // 

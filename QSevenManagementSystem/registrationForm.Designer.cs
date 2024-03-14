@@ -156,6 +156,7 @@
             // 
             // sexCBox
             // 
+            sexCBox.DropDownStyle = ComboBoxStyle.DropDownList;
             sexCBox.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
             sexCBox.FormattingEnabled = true;
             sexCBox.Location = new Point(193, 203);

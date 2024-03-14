@@ -52,6 +52,8 @@
             label23 = new Label();
             moveoutData = new DataGridView();
             tableLayoutPanel5 = new TableLayoutPanel();
+            moveInIDLabel = new Label();
+            label26 = new Label();
             addressLabel = new Label();
             sexLabel = new Label();
             dobLabel = new Label();
@@ -71,19 +73,21 @@
             registrationLabel = new Label();
             label11 = new Label();
             lLabel = new Label();
-            label8 = new Label();
-            label15 = new Label();
             label14 = new Label();
             label19 = new Label();
             label10 = new Label();
-            regisDateLabel = new Label();
-            moveInLabel = new Label();
             depositLabel = new Label();
             roomLabel = new Label();
+            label8 = new Label();
+            regisDateLabel = new Label();
+            label15 = new Label();
+            moveInLabel = new Label();
             tableLayoutPanel7 = new TableLayoutPanel();
             label24 = new Label();
             label25 = new Label();
             tableLayoutPanel8 = new TableLayoutPanel();
+            moveOutIDLabel = new Label();
+            label27 = new Label();
             registrationLabel2 = new Label();
             renterLabel2 = new Label();
             fLabel2 = new Label();
@@ -103,13 +107,13 @@
             label41 = new Label();
             label46 = new Label();
             lLabel2 = new Label();
-            label51 = new Label();
-            label52 = new Label();
-            roomLabel2 = new Label();
-            label49 = new Label();
-            moveOutLabel = new Label();
             label48 = new Label();
             regisLabel2 = new Label();
+            label49 = new Label();
+            moveOutLabel = new Label();
+            label52 = new Label();
+            label51 = new Label();
+            roomLabel2 = new Label();
             ((System.ComponentModel.ISupportInitialize)moveinData).BeginInit();
             panel1.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
@@ -435,6 +439,8 @@
             tableLayoutPanel5.ColumnCount = 2;
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 37.5F));
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 62.5F));
+            tableLayoutPanel5.Controls.Add(moveInIDLabel, 1, 13);
+            tableLayoutPanel5.Controls.Add(label26, 0, 13);
             tableLayoutPanel5.Controls.Add(addressLabel, 1, 9);
             tableLayoutPanel5.Controls.Add(sexLabel, 1, 8);
             tableLayoutPanel5.Controls.Add(dobLabel, 1, 7);
@@ -454,43 +460,63 @@
             tableLayoutPanel5.Controls.Add(registrationLabel, 1, 1);
             tableLayoutPanel5.Controls.Add(label11, 0, 5);
             tableLayoutPanel5.Controls.Add(lLabel, 1, 5);
-            tableLayoutPanel5.Controls.Add(label8, 0, 14);
-            tableLayoutPanel5.Controls.Add(label15, 0, 13);
             tableLayoutPanel5.Controls.Add(label14, 0, 12);
             tableLayoutPanel5.Controls.Add(label19, 0, 11);
             tableLayoutPanel5.Controls.Add(label10, 0, 10);
-            tableLayoutPanel5.Controls.Add(regisDateLabel, 1, 14);
-            tableLayoutPanel5.Controls.Add(moveInLabel, 1, 13);
             tableLayoutPanel5.Controls.Add(depositLabel, 1, 12);
             tableLayoutPanel5.Controls.Add(roomLabel, 1, 11);
+            tableLayoutPanel5.Controls.Add(label8, 0, 15);
+            tableLayoutPanel5.Controls.Add(regisDateLabel, 1, 15);
+            tableLayoutPanel5.Controls.Add(label15, 0, 14);
+            tableLayoutPanel5.Controls.Add(moveInLabel, 1, 14);
             tableLayoutPanel5.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             tableLayoutPanel5.Location = new Point(611, 67);
             tableLayoutPanel5.Name = "tableLayoutPanel5";
-            tableLayoutPanel5.RowCount = 15;
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 6.66666651F));
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 6.66666651F));
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 6.66666651F));
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 6.66666651F));
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 6.66666651F));
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 6.66666651F));
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 6.66666651F));
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 6.66666651F));
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 6.66666651F));
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 6.66666651F));
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 6.66666651F));
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 6.66666651F));
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 6.66666651F));
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 6.66666651F));
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 6.66666651F));
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel5.RowCount = 16;
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 6.25F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 6.25F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 6.25F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 6.25F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 6.25F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 6.25F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 6.25F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 6.25F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 6.25F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 6.25F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 6.25F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 6.25F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 6.25F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 6.25F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 6.25F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 6.25F));
             tableLayoutPanel5.Size = new Size(502, 347);
             tableLayoutPanel5.TabIndex = 70;
+            // 
+            // moveInIDLabel
+            // 
+            moveInIDLabel.AutoSize = true;
+            moveInIDLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            moveInIDLabel.Location = new Point(193, 275);
+            moveInIDLabel.Name = "moveInIDLabel";
+            moveInIDLabel.Size = new Size(44, 18);
+            moveInIDLabel.TabIndex = 72;
+            moveInIDLabel.Text = "None";
+            // 
+            // label26
+            // 
+            label26.AutoSize = true;
+            label26.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label26.Location = new Point(5, 275);
+            label26.Name = "label26";
+            label26.Size = new Size(89, 17);
+            label26.TabIndex = 72;
+            label26.Text = "Move In ID:";
             // 
             // addressLabel
             // 
             addressLabel.AutoSize = true;
             addressLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            addressLabel.Location = new Point(193, 209);
+            addressLabel.Location = new Point(193, 191);
             addressLabel.Name = "addressLabel";
             addressLabel.Size = new Size(44, 18);
             addressLabel.TabIndex = 71;
@@ -500,7 +526,7 @@
             // 
             sexLabel.AutoSize = true;
             sexLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            sexLabel.Location = new Point(193, 186);
+            sexLabel.Location = new Point(193, 170);
             sexLabel.Name = "sexLabel";
             sexLabel.Size = new Size(44, 18);
             sexLabel.TabIndex = 71;
@@ -510,7 +536,7 @@
             // 
             dobLabel.AutoSize = true;
             dobLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dobLabel.Location = new Point(193, 163);
+            dobLabel.Location = new Point(193, 149);
             dobLabel.Name = "dobLabel";
             dobLabel.Size = new Size(44, 18);
             dobLabel.TabIndex = 71;
@@ -520,7 +546,7 @@
             // 
             contactLabel.AutoSize = true;
             contactLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            contactLabel.Location = new Point(193, 140);
+            contactLabel.Location = new Point(193, 128);
             contactLabel.Name = "contactLabel";
             contactLabel.Size = new Size(44, 18);
             contactLabel.TabIndex = 71;
@@ -530,7 +556,7 @@
             // 
             label44.AutoSize = true;
             label44.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label44.Location = new Point(5, 209);
+            label44.Location = new Point(5, 191);
             label44.Name = "label44";
             label44.Size = new Size(74, 17);
             label44.TabIndex = 71;
@@ -540,7 +566,7 @@
             // 
             label43.AutoSize = true;
             label43.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label43.Location = new Point(5, 186);
+            label43.Location = new Point(5, 170);
             label43.Name = "label43";
             label43.Size = new Size(40, 17);
             label43.TabIndex = 71;
@@ -550,7 +576,7 @@
             // 
             label42.AutoSize = true;
             label42.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label42.Location = new Point(5, 163);
+            label42.Location = new Point(5, 149);
             label42.Name = "label42";
             label42.Size = new Size(47, 17);
             label42.TabIndex = 71;
@@ -560,17 +586,17 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label9.Location = new Point(5, 140);
+            label9.Location = new Point(5, 128);
             label9.Name = "label9";
-            label9.Size = new Size(70, 17);
+            label9.Size = new Size(82, 17);
             label9.TabIndex = 71;
-            label9.Text = "Contact:";
+            label9.Text = "Contact #:";
             // 
             // mLabel
             // 
             mLabel.AutoSize = true;
             mLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            mLabel.Location = new Point(193, 94);
+            mLabel.Location = new Point(193, 86);
             mLabel.Name = "mLabel";
             mLabel.Size = new Size(44, 18);
             mLabel.TabIndex = 56;
@@ -580,7 +606,7 @@
             // 
             fLabel.AutoSize = true;
             fLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            fLabel.Location = new Point(193, 71);
+            fLabel.Location = new Point(193, 65);
             fLabel.Name = "fLabel";
             fLabel.Size = new Size(44, 18);
             fLabel.TabIndex = 56;
@@ -590,7 +616,7 @@
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label12.Location = new Point(5, 48);
+            label12.Location = new Point(5, 44);
             label12.Name = "label12";
             label12.Size = new Size(83, 17);
             label12.TabIndex = 44;
@@ -600,7 +626,7 @@
             // 
             label13.AutoSize = true;
             label13.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label13.Location = new Point(5, 71);
+            label13.Location = new Point(5, 65);
             label13.Name = "label13";
             label13.Size = new Size(92, 17);
             label13.TabIndex = 46;
@@ -610,7 +636,7 @@
             // 
             label16.AutoSize = true;
             label16.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label16.Location = new Point(5, 94);
+            label16.Location = new Point(5, 86);
             label16.Name = "label16";
             label16.Size = new Size(106, 17);
             label16.TabIndex = 47;
@@ -620,7 +646,7 @@
             // 
             renterLabel.AutoSize = true;
             renterLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            renterLabel.Location = new Point(193, 48);
+            renterLabel.Location = new Point(193, 44);
             renterLabel.Name = "renterLabel";
             renterLabel.Size = new Size(44, 18);
             renterLabel.TabIndex = 54;
@@ -632,7 +658,7 @@
             label20.Font = new Font("Arial Rounded MT Bold", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label20.Location = new Point(5, 2);
             label20.Name = "label20";
-            label20.Size = new Size(148, 21);
+            label20.Size = new Size(148, 19);
             label20.TabIndex = 48;
             label20.Text = "Renter Details";
             // 
@@ -640,7 +666,7 @@
             // 
             label21.AutoSize = true;
             label21.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label21.Location = new Point(5, 25);
+            label21.Location = new Point(5, 23);
             label21.Name = "label21";
             label21.Size = new Size(122, 17);
             label21.TabIndex = 49;
@@ -650,7 +676,7 @@
             // 
             registrationLabel.AutoSize = true;
             registrationLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            registrationLabel.Location = new Point(193, 25);
+            registrationLabel.Location = new Point(193, 23);
             registrationLabel.Name = "registrationLabel";
             registrationLabel.Size = new Size(44, 18);
             registrationLabel.TabIndex = 56;
@@ -660,7 +686,7 @@
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label11.Location = new Point(5, 117);
+            label11.Location = new Point(5, 107);
             label11.Name = "label11";
             label11.Size = new Size(90, 17);
             label11.TabIndex = 43;
@@ -670,37 +696,17 @@
             // 
             lLabel.AutoSize = true;
             lLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            lLabel.Location = new Point(193, 117);
+            lLabel.Location = new Point(193, 107);
             lLabel.Name = "lLabel";
             lLabel.Size = new Size(44, 18);
             lLabel.TabIndex = 53;
             lLabel.Text = "None";
             // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label8.Location = new Point(5, 324);
-            label8.Name = "label8";
-            label8.Size = new Size(140, 17);
-            label8.TabIndex = 57;
-            label8.Text = "Registration Date:";
-            // 
-            // label15
-            // 
-            label15.AutoSize = true;
-            label15.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label15.Location = new Point(5, 301);
-            label15.Name = "label15";
-            label15.Size = new Size(107, 17);
-            label15.TabIndex = 52;
-            label15.Text = "Move In Date:";
-            // 
             // label14
             // 
             label14.AutoSize = true;
             label14.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label14.Location = new Point(5, 278);
+            label14.Location = new Point(5, 254);
             label14.Name = "label14";
             label14.Size = new Size(104, 17);
             label14.TabIndex = 51;
@@ -710,7 +716,7 @@
             // 
             label19.AutoSize = true;
             label19.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label19.Location = new Point(5, 255);
+            label19.Location = new Point(5, 233);
             label19.Name = "label19";
             label19.Size = new Size(75, 17);
             label19.TabIndex = 50;
@@ -720,37 +726,17 @@
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Arial Rounded MT Bold", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label10.Location = new Point(5, 232);
+            label10.Location = new Point(5, 212);
             label10.Name = "label10";
-            label10.Size = new Size(157, 21);
+            label10.Size = new Size(157, 19);
             label10.TabIndex = 45;
             label10.Text = "Move In Details";
-            // 
-            // regisDateLabel
-            // 
-            regisDateLabel.AutoSize = true;
-            regisDateLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            regisDateLabel.Location = new Point(193, 324);
-            regisDateLabel.Name = "regisDateLabel";
-            regisDateLabel.Size = new Size(44, 18);
-            regisDateLabel.TabIndex = 58;
-            regisDateLabel.Text = "None";
-            // 
-            // moveInLabel
-            // 
-            moveInLabel.AutoSize = true;
-            moveInLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            moveInLabel.Location = new Point(193, 301);
-            moveInLabel.Name = "moveInLabel";
-            moveInLabel.Size = new Size(44, 18);
-            moveInLabel.TabIndex = 56;
-            moveInLabel.Text = "None";
             // 
             // depositLabel
             // 
             depositLabel.AutoSize = true;
             depositLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            depositLabel.Location = new Point(193, 278);
+            depositLabel.Location = new Point(193, 254);
             depositLabel.Name = "depositLabel";
             depositLabel.Size = new Size(44, 18);
             depositLabel.TabIndex = 56;
@@ -760,11 +746,51 @@
             // 
             roomLabel.AutoSize = true;
             roomLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            roomLabel.Location = new Point(193, 255);
+            roomLabel.Location = new Point(193, 233);
             roomLabel.Name = "roomLabel";
             roomLabel.Size = new Size(44, 18);
             roomLabel.TabIndex = 56;
             roomLabel.Text = "None";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label8.Location = new Point(5, 317);
+            label8.Name = "label8";
+            label8.Size = new Size(140, 17);
+            label8.TabIndex = 57;
+            label8.Text = "Registration Date:";
+            // 
+            // regisDateLabel
+            // 
+            regisDateLabel.AutoSize = true;
+            regisDateLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            regisDateLabel.Location = new Point(193, 317);
+            regisDateLabel.Name = "regisDateLabel";
+            regisDateLabel.Size = new Size(44, 18);
+            regisDateLabel.TabIndex = 58;
+            regisDateLabel.Text = "None";
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label15.Location = new Point(5, 296);
+            label15.Name = "label15";
+            label15.Size = new Size(107, 17);
+            label15.TabIndex = 52;
+            label15.Text = "Move In Date:";
+            // 
+            // moveInLabel
+            // 
+            moveInLabel.AutoSize = true;
+            moveInLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            moveInLabel.Location = new Point(193, 296);
+            moveInLabel.Name = "moveInLabel";
+            moveInLabel.Size = new Size(44, 18);
+            moveInLabel.TabIndex = 56;
+            moveInLabel.Text = "None";
             // 
             // tableLayoutPanel7
             // 
@@ -807,6 +833,8 @@
             tableLayoutPanel8.ColumnCount = 2;
             tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 37.5F));
             tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 62.5F));
+            tableLayoutPanel8.Controls.Add(moveOutIDLabel, 1, 12);
+            tableLayoutPanel8.Controls.Add(label27, 0, 12);
             tableLayoutPanel8.Controls.Add(registrationLabel2, 1, 1);
             tableLayoutPanel8.Controls.Add(renterLabel2, 1, 2);
             tableLayoutPanel8.Controls.Add(fLabel2, 1, 3);
@@ -826,17 +854,17 @@
             tableLayoutPanel8.Controls.Add(label41, 0, 1);
             tableLayoutPanel8.Controls.Add(label46, 0, 5);
             tableLayoutPanel8.Controls.Add(lLabel2, 1, 5);
-            tableLayoutPanel8.Controls.Add(label51, 0, 11);
+            tableLayoutPanel8.Controls.Add(label48, 0, 14);
+            tableLayoutPanel8.Controls.Add(regisLabel2, 1, 14);
+            tableLayoutPanel8.Controls.Add(label49, 0, 13);
+            tableLayoutPanel8.Controls.Add(moveOutLabel, 1, 13);
             tableLayoutPanel8.Controls.Add(label52, 0, 10);
+            tableLayoutPanel8.Controls.Add(label51, 0, 11);
             tableLayoutPanel8.Controls.Add(roomLabel2, 1, 11);
-            tableLayoutPanel8.Controls.Add(label49, 0, 12);
-            tableLayoutPanel8.Controls.Add(moveOutLabel, 1, 12);
-            tableLayoutPanel8.Controls.Add(label48, 0, 13);
-            tableLayoutPanel8.Controls.Add(regisLabel2, 1, 13);
             tableLayoutPanel8.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             tableLayoutPanel8.Location = new Point(611, 420);
             tableLayoutPanel8.Name = "tableLayoutPanel8";
-            tableLayoutPanel8.RowCount = 14;
+            tableLayoutPanel8.RowCount = 15;
             tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Percent, 7.14285755F));
             tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Percent, 7.142857F));
             tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Percent, 7.142857F));
@@ -852,14 +880,35 @@
             tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Percent, 7.142857F));
             tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Percent, 7.14285755F));
             tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel8.Size = new Size(502, 321);
             tableLayoutPanel8.TabIndex = 71;
+            // 
+            // moveOutIDLabel
+            // 
+            moveOutIDLabel.AutoSize = true;
+            moveOutIDLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            moveOutIDLabel.Location = new Point(193, 254);
+            moveOutIDLabel.Name = "moveOutIDLabel";
+            moveOutIDLabel.Size = new Size(44, 18);
+            moveOutIDLabel.TabIndex = 73;
+            moveOutIDLabel.Text = "None";
+            // 
+            // label27
+            // 
+            label27.AutoSize = true;
+            label27.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label27.Location = new Point(5, 254);
+            label27.Name = "label27";
+            label27.Size = new Size(101, 17);
+            label27.TabIndex = 73;
+            label27.Text = "Move Out ID:";
             // 
             // registrationLabel2
             // 
             registrationLabel2.AutoSize = true;
             registrationLabel2.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            registrationLabel2.Location = new Point(193, 24);
+            registrationLabel2.Location = new Point(193, 23);
             registrationLabel2.Name = "registrationLabel2";
             registrationLabel2.Size = new Size(44, 18);
             registrationLabel2.TabIndex = 74;
@@ -869,7 +918,7 @@
             // 
             renterLabel2.AutoSize = true;
             renterLabel2.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            renterLabel2.Location = new Point(193, 46);
+            renterLabel2.Location = new Point(193, 44);
             renterLabel2.Name = "renterLabel2";
             renterLabel2.Size = new Size(44, 18);
             renterLabel2.TabIndex = 74;
@@ -879,7 +928,7 @@
             // 
             fLabel2.AutoSize = true;
             fLabel2.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            fLabel2.Location = new Point(193, 68);
+            fLabel2.Location = new Point(193, 65);
             fLabel2.Name = "fLabel2";
             fLabel2.Size = new Size(44, 18);
             fLabel2.TabIndex = 73;
@@ -889,7 +938,7 @@
             // 
             mLabel2.AutoSize = true;
             mLabel2.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            mLabel2.Location = new Point(193, 90);
+            mLabel2.Location = new Point(193, 86);
             mLabel2.Name = "mLabel2";
             mLabel2.Size = new Size(44, 18);
             mLabel2.TabIndex = 72;
@@ -899,7 +948,7 @@
             // 
             addressLabel2.AutoSize = true;
             addressLabel2.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            addressLabel2.Location = new Point(193, 200);
+            addressLabel2.Location = new Point(193, 191);
             addressLabel2.Name = "addressLabel2";
             addressLabel2.Size = new Size(44, 18);
             addressLabel2.TabIndex = 71;
@@ -909,7 +958,7 @@
             // 
             sexLabel2.AutoSize = true;
             sexLabel2.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            sexLabel2.Location = new Point(193, 178);
+            sexLabel2.Location = new Point(193, 170);
             sexLabel2.Name = "sexLabel2";
             sexLabel2.Size = new Size(44, 18);
             sexLabel2.TabIndex = 71;
@@ -919,7 +968,7 @@
             // 
             dobLabel2.AutoSize = true;
             dobLabel2.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dobLabel2.Location = new Point(193, 156);
+            dobLabel2.Location = new Point(193, 149);
             dobLabel2.Name = "dobLabel2";
             dobLabel2.Size = new Size(44, 18);
             dobLabel2.TabIndex = 71;
@@ -929,7 +978,7 @@
             // 
             contactLabel2.AutoSize = true;
             contactLabel2.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            contactLabel2.Location = new Point(193, 134);
+            contactLabel2.Location = new Point(193, 128);
             contactLabel2.Name = "contactLabel2";
             contactLabel2.Size = new Size(44, 18);
             contactLabel2.TabIndex = 71;
@@ -939,7 +988,7 @@
             // 
             label30.AutoSize = true;
             label30.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label30.Location = new Point(5, 200);
+            label30.Location = new Point(5, 191);
             label30.Name = "label30";
             label30.Size = new Size(74, 17);
             label30.TabIndex = 71;
@@ -949,7 +998,7 @@
             // 
             label31.AutoSize = true;
             label31.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label31.Location = new Point(5, 178);
+            label31.Location = new Point(5, 170);
             label31.Name = "label31";
             label31.Size = new Size(40, 17);
             label31.TabIndex = 71;
@@ -959,7 +1008,7 @@
             // 
             label32.AutoSize = true;
             label32.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label32.Location = new Point(5, 156);
+            label32.Location = new Point(5, 149);
             label32.Name = "label32";
             label32.Size = new Size(47, 17);
             label32.TabIndex = 71;
@@ -969,7 +1018,7 @@
             // 
             label33.AutoSize = true;
             label33.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label33.Location = new Point(5, 134);
+            label33.Location = new Point(5, 128);
             label33.Name = "label33";
             label33.Size = new Size(70, 17);
             label33.TabIndex = 71;
@@ -979,7 +1028,7 @@
             // 
             label36.AutoSize = true;
             label36.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label36.Location = new Point(5, 46);
+            label36.Location = new Point(5, 44);
             label36.Name = "label36";
             label36.Size = new Size(83, 17);
             label36.TabIndex = 44;
@@ -989,7 +1038,7 @@
             // 
             label99.AutoSize = true;
             label99.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label99.Location = new Point(5, 68);
+            label99.Location = new Point(5, 65);
             label99.Name = "label99";
             label99.Size = new Size(92, 17);
             label99.TabIndex = 46;
@@ -999,7 +1048,7 @@
             // 
             label38.AutoSize = true;
             label38.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label38.Location = new Point(5, 90);
+            label38.Location = new Point(5, 86);
             label38.Name = "label38";
             label38.Size = new Size(106, 17);
             label38.TabIndex = 47;
@@ -1011,7 +1060,7 @@
             label40.Font = new Font("Arial Rounded MT Bold", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label40.Location = new Point(5, 2);
             label40.Name = "label40";
-            label40.Size = new Size(148, 20);
+            label40.Size = new Size(148, 19);
             label40.TabIndex = 48;
             label40.Text = "Renter Details";
             // 
@@ -1019,7 +1068,7 @@
             // 
             label41.AutoSize = true;
             label41.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label41.Location = new Point(5, 24);
+            label41.Location = new Point(5, 23);
             label41.Name = "label41";
             label41.Size = new Size(122, 17);
             label41.TabIndex = 49;
@@ -1029,7 +1078,7 @@
             // 
             label46.AutoSize = true;
             label46.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label46.Location = new Point(5, 112);
+            label46.Location = new Point(5, 107);
             label46.Name = "label46";
             label46.Size = new Size(90, 17);
             label46.TabIndex = 43;
@@ -1039,67 +1088,17 @@
             // 
             lLabel2.AutoSize = true;
             lLabel2.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            lLabel2.Location = new Point(193, 112);
+            lLabel2.Location = new Point(193, 107);
             lLabel2.Name = "lLabel2";
             lLabel2.Size = new Size(44, 18);
             lLabel2.TabIndex = 53;
             lLabel2.Text = "None";
             // 
-            // label51
-            // 
-            label51.AutoSize = true;
-            label51.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label51.Location = new Point(5, 244);
-            label51.Name = "label51";
-            label51.Size = new Size(75, 17);
-            label51.TabIndex = 50;
-            label51.Text = "Room ID:";
-            // 
-            // label52
-            // 
-            label52.AutoSize = true;
-            label52.Font = new Font("Arial Rounded MT Bold", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label52.Location = new Point(5, 222);
-            label52.Name = "label52";
-            label52.Size = new Size(174, 20);
-            label52.TabIndex = 45;
-            label52.Text = "Move Out Details";
-            // 
-            // roomLabel2
-            // 
-            roomLabel2.AutoSize = true;
-            roomLabel2.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            roomLabel2.Location = new Point(193, 244);
-            roomLabel2.Name = "roomLabel2";
-            roomLabel2.Size = new Size(44, 18);
-            roomLabel2.TabIndex = 56;
-            roomLabel2.Text = "None";
-            // 
-            // label49
-            // 
-            label49.AutoSize = true;
-            label49.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label49.Location = new Point(5, 266);
-            label49.Name = "label49";
-            label49.Size = new Size(119, 17);
-            label49.TabIndex = 52;
-            label49.Text = "Move Out Date:";
-            // 
-            // moveOutLabel
-            // 
-            moveOutLabel.AutoSize = true;
-            moveOutLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            moveOutLabel.Location = new Point(193, 266);
-            moveOutLabel.Name = "moveOutLabel";
-            moveOutLabel.Size = new Size(44, 18);
-            moveOutLabel.TabIndex = 56;
-            moveOutLabel.Text = "None";
-            // 
             // label48
             // 
             label48.AutoSize = true;
             label48.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label48.Location = new Point(5, 288);
+            label48.Location = new Point(5, 296);
             label48.Name = "label48";
             label48.Size = new Size(140, 17);
             label48.TabIndex = 57;
@@ -1109,11 +1108,61 @@
             // 
             regisLabel2.AutoSize = true;
             regisLabel2.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            regisLabel2.Location = new Point(193, 288);
+            regisLabel2.Location = new Point(193, 296);
             regisLabel2.Name = "regisLabel2";
             regisLabel2.Size = new Size(44, 18);
             regisLabel2.TabIndex = 58;
             regisLabel2.Text = "None";
+            // 
+            // label49
+            // 
+            label49.AutoSize = true;
+            label49.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label49.Location = new Point(5, 275);
+            label49.Name = "label49";
+            label49.Size = new Size(119, 17);
+            label49.TabIndex = 52;
+            label49.Text = "Move Out Date:";
+            // 
+            // moveOutLabel
+            // 
+            moveOutLabel.AutoSize = true;
+            moveOutLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            moveOutLabel.Location = new Point(193, 275);
+            moveOutLabel.Name = "moveOutLabel";
+            moveOutLabel.Size = new Size(44, 18);
+            moveOutLabel.TabIndex = 56;
+            moveOutLabel.Text = "None";
+            // 
+            // label52
+            // 
+            label52.AutoSize = true;
+            label52.Font = new Font("Arial Rounded MT Bold", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label52.Location = new Point(5, 212);
+            label52.Name = "label52";
+            label52.Size = new Size(174, 19);
+            label52.TabIndex = 45;
+            label52.Text = "Move Out Details";
+            // 
+            // label51
+            // 
+            label51.AutoSize = true;
+            label51.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label51.Location = new Point(5, 233);
+            label51.Name = "label51";
+            label51.Size = new Size(75, 17);
+            label51.TabIndex = 50;
+            label51.Text = "Room ID:";
+            // 
+            // roomLabel2
+            // 
+            roomLabel2.AutoSize = true;
+            roomLabel2.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            roomLabel2.Location = new Point(193, 233);
+            roomLabel2.Name = "roomLabel2";
+            roomLabel2.Size = new Size(44, 18);
+            roomLabel2.TabIndex = 56;
+            roomLabel2.Text = "None";
             // 
             // rentersHistoryForm
             // 
@@ -1245,5 +1294,9 @@
         private Label mLabel2;
         private Label renterLabel2;
         private Label registrationLabel2;
+        private Label label26;
+        private Label moveInIDLabel;
+        private Label moveOutIDLabel;
+        private Label label27;
     }
 }
