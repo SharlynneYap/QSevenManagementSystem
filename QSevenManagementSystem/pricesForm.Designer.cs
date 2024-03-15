@@ -237,6 +237,7 @@
             changeWaterBillBtn.TabIndex = 96;
             changeWaterBillBtn.Text = "CHANGE";
             changeWaterBillBtn.UseVisualStyleBackColor = false;
+            changeWaterBillBtn.Click += changeWaterBillBtn_Click;
             // 
             // pricesForm
             // 

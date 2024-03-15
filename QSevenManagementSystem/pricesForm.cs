@@ -12,6 +12,7 @@ namespace QSevenManagementSystem
 {
     public partial class pricesForm : Form
     {
+        private changeRateForm changeRateForm;
         private List<string> BillRateValues;
         private List<string> BillRateColumns;
         private List<string> BillRateValues2;
@@ -144,7 +145,14 @@ namespace QSevenManagementSystem
 
         private void changeElecBillBtn_Click(object sender, EventArgs e)
         {
+            changeRateForm = new changeRateForm(this);
+            changeRateForm.ShowDialog();
+        }
 
+        private void changeWaterBillBtn_Click(object sender, EventArgs e)
+        {
+            changeRateForm = new changeRateForm(this);
+            changeRateForm.ShowDialog();
         }
     }
 }

@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            textBox1 = new TextBox();
+            txtRate = new TextBox();
             label2 = new Label();
             dateTimePicker1 = new DateTimePicker();
             panel1 = new Panel();
             label3 = new Label();
-            button1 = new Button();
-            button2 = new Button();
+            applyButton = new Button();
+            cancelButton = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -49,13 +49,13 @@
             label1.TabIndex = 0;
             label1.Text = "Change bill rate to:";
             // 
-            // textBox1
+            // txtRate
             // 
-            textBox1.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox1.Location = new Point(224, 156);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(182, 34);
-            textBox1.TabIndex = 1;
+            txtRate.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            txtRate.Location = new Point(224, 156);
+            txtRate.Name = "txtRate";
+            txtRate.Size = new Size(182, 34);
+            txtRate.TabIndex = 1;
             // 
             // label2
             // 
@@ -95,37 +95,39 @@
             label3.TabIndex = 0;
             label3.Text = "Change Bill Rate";
             // 
-            // button1
+            // applyButton
             // 
-            button1.BackColor = Color.DarkSeaGreen;
-            button1.Location = new Point(198, 317);
-            button1.Name = "button1";
-            button1.Size = new Size(107, 40);
-            button1.TabIndex = 5;
-            button1.Text = "APPLY";
-            button1.UseVisualStyleBackColor = false;
+            applyButton.BackColor = Color.DarkSeaGreen;
+            applyButton.Location = new Point(198, 317);
+            applyButton.Name = "applyButton";
+            applyButton.Size = new Size(107, 40);
+            applyButton.TabIndex = 5;
+            applyButton.Text = "APPLY";
+            applyButton.UseVisualStyleBackColor = false;
+            applyButton.Click += applyButton_Click;
             // 
-            // button2
+            // cancelButton
             // 
-            button2.BackColor = Color.LightCoral;
-            button2.Location = new Point(332, 317);
-            button2.Name = "button2";
-            button2.Size = new Size(107, 40);
-            button2.TabIndex = 6;
-            button2.Text = "CANCEL";
-            button2.UseVisualStyleBackColor = false;
+            cancelButton.BackColor = Color.LightCoral;
+            cancelButton.Location = new Point(332, 317);
+            cancelButton.Name = "cancelButton";
+            cancelButton.Size = new Size(107, 40);
+            cancelButton.TabIndex = 6;
+            cancelButton.Text = "CANCEL";
+            cancelButton.UseVisualStyleBackColor = false;
+            cancelButton.Click += cancelButton_Click;
             // 
             // changeRateForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(633, 369);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(cancelButton);
+            Controls.Add(applyButton);
             Controls.Add(panel1);
             Controls.Add(dateTimePicker1);
             Controls.Add(label2);
-            Controls.Add(textBox1);
+            Controls.Add(txtRate);
             Controls.Add(label1);
             Name = "changeRateForm";
             StartPosition = FormStartPosition.CenterScreen;
@@ -139,12 +141,12 @@
         #endregion
 
         private Label label1;
-        private TextBox textBox1;
+        private TextBox txtRate;
         private Label label2;
         private DateTimePicker dateTimePicker1;
         private Panel panel1;
         private Label label3;
-        private Button button1;
-        private Button button2;
+        private Button applyButton;
+        private Button cancelButton;
     }
 }
