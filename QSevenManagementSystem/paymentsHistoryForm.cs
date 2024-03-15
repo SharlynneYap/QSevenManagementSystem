@@ -15,6 +15,10 @@ namespace QSevenManagementSystem
         public paymentsHistoryForm()
         {
             InitializeComponent();
+            tblDPN.SetColumnSpan(lblTbl_dpn, 2);
+            tblRcpt.SetColumnSpan(lblTbl_rcpt, 2);
+            tblBills.SetColumnSpan(lblTbl_bills, 2);
+            tblOC.SetColumnSpan(lblTbl_oc, 2);
         }
 
         public DataGridView getTable(int num)
@@ -36,6 +40,7 @@ namespace QSevenManagementSystem
                 return otherChargesData;
             }
         }
+
     }
 }
 
