@@ -57,8 +57,8 @@ namespace QSevenManagementSystem
             insertOtherChargesRecord();
 
             this.Close();
-
-
         }
+
+
     }
 }

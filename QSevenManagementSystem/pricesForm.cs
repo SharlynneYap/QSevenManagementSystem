@@ -12,37 +12,45 @@ namespace QSevenManagementSystem
 {
     public partial class pricesForm : Form
     {
-        private List<string> BillRateValues;
-        private List<string> BillRateColumns;
-        private List<string> BillRateValues2;
+        private changeRateForm changeRateForm;
+        //private List<string> BillRateValues;
+        //private List<string> BillRateColumns;
+        //private List<string> BillRateValues2;
         private List<string> priceValues;
         private List<string> priceColumns;
+        //private String elecBill, waterBill;
 
         public pricesForm()
         {
             InitializeComponent();
-        
-            BillRateValues = new List<string>();
-            BillRateColumns = new List<string> { "BT_ID", "BR_price", "BR_date" };
-            BillRateValues2 = new List<string>();
+
+            //BillRateValues = new List<string>();
+            //BillRateColumns = new List<string> { "BT_ID", "BR_price", "BR_date" };
+            //BillRateValues2 = new List<string>();
             priceValues = new List<string>();
             priceColumns = new List<string> { "room_id", "rp_price", "rp_date" };
+
+            /*elecTBox.Text = ConnectToSQL.readTableString("");
+            elecBill = elecTBox.Text;
+            waterTBox.Text = //insert query
+            waterBill = waterTBox.Text; */
         }
+        /*
         private void loadBillRateValues()
         {
             string btId = "1";
             string price = elecTBox.Text;
-            string date = elecDate.Value.ToString("yyyy-MM-dd");
+            //string date = elecDate.Value.ToString("yyyy-MM-dd");
 
             BillRateValues.Clear();
 
             BillRateValues.Add(btId);
             BillRateValues.Add(price);
-            BillRateValues.Add(date);
+            //BillRateValues.Add(date);
 
             MessageBox.Show(string.Join(", ", BillRateValues)); // Testing
         }
-
+       
         private void insertBillRateRecord()
         {
             string table = "tbl_bill_rate_record";
@@ -57,13 +65,13 @@ namespace QSevenManagementSystem
         {
             string btId = "2";
             string price = waterTBox.Text;
-            string date = waterDate.Value.ToString("yyyy-MM-dd");
+            //string date = waterDate.Value.ToString("yyyy-MM-dd");
 
             BillRateValues2.Clear();
 
             BillRateValues2.Add(btId);
             BillRateValues2.Add(price);
-            BillRateValues2.Add(date);
+            //BillRateValues2.Add(date);
 
 
             MessageBox.Show(string.Join(", ", BillRateValues2)); // Testing
@@ -78,6 +86,7 @@ namespace QSevenManagementSystem
             MessageBox.Show(table + "!!!" + columns + " !!!" + values);//testing
             ConnectToSQL.insertRecord(table, columns, values);
         }
+        */
 
         private void loadPriceValues()
         {
@@ -109,21 +118,8 @@ namespace QSevenManagementSystem
 
         }
 
-        private void applyElecButton_Click(object sender, EventArgs e)
-        {
-
-            loadBillRateValues();
-            insertBillRateRecord();
-        }
-
-        private void applyWaterButton_Click(object sender, EventArgs e)
-        {
-            loadBillRateValues2();
-            insertBillRateRecord2();
-        }
-
         private void applyRoomButton_Click(object sender, EventArgs e)
-        {       
+        {
             loadPriceValues();
             insertPriceRecords();
             ConnectToSQL.LoadDataGridView(this.getTable(), "SELECT * FROM vw_room_price_history");
@@ -132,6 +128,19 @@ namespace QSevenManagementSystem
         public DataGridView getTable()
         {
             return priceData;
+        }
+
+
+        private void changeElecBillBtn_Click(object sender, EventArgs e)
+        {
+            changeRateForm = new changeRateForm(this, 1);
+            changeRateForm.ShowDialog();
+        }
+
+        private void changeWaterBillBtn_Click(object sender, EventArgs e)
+        {
+            changeRateForm = new changeRateForm(this, 2);
+            changeRateForm.ShowDialog();
         }
     }
 }
