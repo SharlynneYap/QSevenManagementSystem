@@ -16,7 +16,9 @@ namespace QSevenManagementSystem
         {
             InitializeComponent();
             loadSearchCBox();
+            loadSearchCBox2();
             searchTBox.TextChanged += searchTBox_TextChanged;
+            searchTBox2.TextChanged += searchTBox_TextChanged2;
             moveinData.CellClick += moveinData_CellContentClick;
             moveoutData.CellClick += moveoutData_CellContentClick;
         }
@@ -148,6 +150,25 @@ namespace QSevenManagementSystem
 
         }
 
+        private void loadSearchCBox2()//adds items to the search combo box
+        {
+            searchCBox2.Items.Add("Registration ID");
+            searchCBox2.Items.Add("Renter ID");
+            searchCBox2.Items.Add("First Name");
+            searchCBox2.Items.Add("Middle Name");
+            searchCBox2.Items.Add("Last Name");
+            searchCBox2.Items.Add("Contact");
+            searchCBox2.Items.Add("Date of Birth");
+            searchCBox2.Items.Add("Sex");
+            searchCBox2.Items.Add("Address");
+            searchCBox2.Items.Add("Room ID");
+            searchCBox2.Items.Add("Move Out ID");
+            searchCBox2.Items.Add("Move Out Date");
+            searchCBox2.Items.Add("registration_date");
+
+
+        }
+
         private void searchTBox_TextChanged(object sender, EventArgs e)
         {
             string table = "vw_movein_history";
@@ -164,7 +185,26 @@ namespace QSevenManagementSystem
                 string query = $"SELECT * FROM {table} WHERE `{selectedColumn}` LIKE '%{searchValue}%'";
                 //MessageBox.Show(query); //For testing
                 //Execute the query and update the DataGridView
-                ConnectToSQL.LoadDataGridView(moveinData, query);
+                ConnectToSQL.LoadDataGridView(moveoutData, query);
+            }
+        }
+
+        private void searchTBox_TextChanged2(object sender, EventArgs e)
+        {
+            string table = "vw_moveout_history";
+            // Get the selected column from the ComboBox
+            string selectedColumn = searchCBox2.SelectedItem?.ToString();
+
+            // Get the search value from the TextBox
+            string searchValue = searchTBox2.Text.Trim();
+
+            // Check if a column and search value are provided
+            if (!string.IsNullOrEmpty(selectedColumn) && !string.IsNullOrEmpty(searchValue))
+            {
+                // Define the SQL query
+                string query = $"SELECT * FROM {table} WHERE `{selectedColumn}` LIKE '%{searchValue}%'";
+                //MessageBox.Show(query); //For testing
+                //Execute the query and update the DataGridView
                 ConnectToSQL.LoadDataGridView(moveoutData, query);
             }
         }

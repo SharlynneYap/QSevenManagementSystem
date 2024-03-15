@@ -56,9 +56,9 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(3, 100);
+            label4.Location = new Point(3, 74);
             label4.Name = "label4";
-            label4.Size = new Size(85, 17);
+            label4.Size = new Size(69, 14);
             label4.TabIndex = 3;
             label4.Text = "Last Name";
             // 
@@ -66,9 +66,9 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(3, 150);
+            label5.Location = new Point(3, 111);
             label5.Name = "label5";
-            label5.Size = new Size(100, 17);
+            label5.Size = new Size(79, 14);
             label5.TabIndex = 4;
             label5.Text = "Date of Birth";
             // 
@@ -76,9 +76,9 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(3, 50);
+            label3.Location = new Point(3, 37);
             label3.Name = "label3";
-            label3.Size = new Size(101, 17);
+            label3.Size = new Size(83, 14);
             label3.TabIndex = 2;
             label3.Text = "Middle Name";
             // 
@@ -88,7 +88,7 @@
             label2.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label2.Location = new Point(3, 0);
             label2.Name = "label2";
-            label2.Size = new Size(87, 17);
+            label2.Size = new Size(70, 14);
             label2.TabIndex = 1;
             label2.Text = "First Name";
             // 
@@ -96,9 +96,9 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label7.Location = new Point(3, 200);
+            label7.Location = new Point(3, 148);
             label7.Name = "label7";
-            label7.Size = new Size(35, 17);
+            label7.Size = new Size(28, 14);
             label7.TabIndex = 6;
             label7.Text = "Sex";
             // 
@@ -106,9 +106,9 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label8.Location = new Point(3, 300);
+            label8.Location = new Point(3, 222);
             label8.Name = "label8";
-            label8.Size = new Size(69, 17);
+            label8.Size = new Size(58, 14);
             label8.TabIndex = 7;
             label8.Text = "Address";
             // 
@@ -116,42 +116,46 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.Location = new Point(3, 250);
+            label6.Location = new Point(3, 185);
             label6.Name = "label6";
-            label6.Size = new Size(127, 17);
+            label6.Size = new Size(102, 14);
             label6.TabIndex = 5;
             label6.Text = "Contact Number";
             // 
             // mNameTBox
             // 
             mNameTBox.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            mNameTBox.Location = new Point(193, 53);
+            mNameTBox.Location = new Point(169, 39);
+            mNameTBox.Margin = new Padding(3, 2, 3, 2);
             mNameTBox.Name = "mNameTBox";
-            mNameTBox.Size = new Size(262, 25);
+            mNameTBox.Size = new Size(230, 21);
             mNameTBox.TabIndex = 8;
             // 
             // fNameTBox
             // 
             fNameTBox.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            fNameTBox.Location = new Point(193, 3);
+            fNameTBox.Location = new Point(169, 2);
+            fNameTBox.Margin = new Padding(3, 2, 3, 2);
             fNameTBox.Name = "fNameTBox";
-            fNameTBox.Size = new Size(262, 25);
+            fNameTBox.Size = new Size(230, 21);
             fNameTBox.TabIndex = 9;
             // 
             // contactTBox
             // 
             contactTBox.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            contactTBox.Location = new Point(193, 253);
+            contactTBox.Location = new Point(169, 187);
+            contactTBox.Margin = new Padding(3, 2, 3, 2);
             contactTBox.Name = "contactTBox";
-            contactTBox.Size = new Size(262, 25);
+            contactTBox.Size = new Size(230, 21);
             contactTBox.TabIndex = 13;
             // 
             // addressTBox
             // 
             addressTBox.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            addressTBox.Location = new Point(193, 303);
+            addressTBox.Location = new Point(169, 224);
+            addressTBox.Margin = new Padding(3, 2, 3, 2);
             addressTBox.Name = "addressTBox";
-            addressTBox.Size = new Size(262, 25);
+            addressTBox.Size = new Size(230, 21);
             addressTBox.TabIndex = 14;
             // 
             // sexCBox
@@ -159,17 +163,19 @@
             sexCBox.DropDownStyle = ComboBoxStyle.DropDownList;
             sexCBox.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
             sexCBox.FormattingEnabled = true;
-            sexCBox.Location = new Point(193, 203);
+            sexCBox.Location = new Point(169, 150);
+            sexCBox.Margin = new Padding(3, 2, 3, 2);
             sexCBox.Name = "sexCBox";
-            sexCBox.Size = new Size(63, 25);
+            sexCBox.Size = new Size(56, 22);
             sexCBox.TabIndex = 15;
             // 
             // nextButton
             // 
             nextButton.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            nextButton.Location = new Point(956, 650);
+            nextButton.Location = new Point(836, 488);
+            nextButton.Margin = new Padding(3, 2, 3, 2);
             nextButton.Name = "nextButton";
-            nextButton.Size = new Size(80, 40);
+            nextButton.Size = new Size(70, 30);
             nextButton.TabIndex = 17;
             nextButton.Text = ">";
             nextButton.UseVisualStyleBackColor = true;
@@ -177,9 +183,10 @@
             // 
             // dobDate
             // 
-            dobDate.Location = new Point(193, 153);
+            dobDate.Location = new Point(169, 113);
+            dobDate.Margin = new Padding(3, 2, 3, 2);
             dobDate.Name = "dobDate";
-            dobDate.Size = new Size(262, 27);
+            dobDate.Size = new Size(230, 23);
             dobDate.TabIndex = 20;
             // 
             // contextMenuStrip1
@@ -207,7 +214,8 @@
             tableLayoutPanel1.Controls.Add(label5, 0, 3);
             tableLayoutPanel1.Controls.Add(label7, 0, 4);
             tableLayoutPanel1.Controls.Add(mNameTBox, 1, 1);
-            tableLayoutPanel1.Location = new Point(156, 135);
+            tableLayoutPanel1.Location = new Point(136, 101);
+            tableLayoutPanel1.Margin = new Padding(3, 2, 3, 2);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 7;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
@@ -217,15 +225,16 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
-            tableLayoutPanel1.Size = new Size(539, 353);
+            tableLayoutPanel1.Size = new Size(472, 265);
             tableLayoutPanel1.TabIndex = 21;
             // 
             // lNameTBox
             // 
             lNameTBox.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            lNameTBox.Location = new Point(193, 103);
+            lNameTBox.Location = new Point(169, 76);
+            lNameTBox.Margin = new Padding(3, 2, 3, 2);
             lNameTBox.Name = "lNameTBox";
-            lNameTBox.Size = new Size(262, 25);
+            lNameTBox.Size = new Size(230, 21);
             lNameTBox.TabIndex = 10;
             // 
             // panel1
@@ -234,8 +243,9 @@
             panel1.Controls.Add(label1);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1152, 52);
+            panel1.Size = new Size(1008, 39);
             panel1.TabIndex = 22;
             // 
             // label1
@@ -246,19 +256,20 @@
             label1.ForeColor = SystemColors.ControlLight;
             label1.Location = new Point(0, 0);
             label1.Name = "label1";
-            label1.Size = new Size(530, 34);
+            label1.Size = new Size(417, 28);
             label1.TabIndex = 0;
             label1.Text = "Registration Form (1): Renter's Info";
             // 
             // registrationForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
-            ClientSize = new Size(1152, 753);
+            ClientSize = new Size(1008, 565);
             Controls.Add(panel1);
             Controls.Add(tableLayoutPanel1);
             Controls.Add(nextButton);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "registrationForm";
             Text = "registrationForm";
             tableLayoutPanel1.ResumeLayout(false);

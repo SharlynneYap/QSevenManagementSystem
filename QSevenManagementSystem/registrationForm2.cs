@@ -277,6 +277,8 @@ namespace QSevenManagementSystem
                 registerLabel.Text = rowData[5];
 
                 roomTBox.Text = rowData[0];
+
+                depositAmountTBox.Text = (double.Parse(rowData[1]) * 2).ToString();
             }
             else
             {

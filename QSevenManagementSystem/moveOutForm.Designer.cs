@@ -121,6 +121,7 @@
             Controls.Add(moveOutDate);
             Controls.Add(label2);
             Controls.Add(panel1);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "moveOutForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "moveOutForm";
