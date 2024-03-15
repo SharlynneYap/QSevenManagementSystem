@@ -280,6 +280,8 @@ namespace QSevenManagementSystem
                 lNameLabel.Text = rowData[8];
 
                 roomTBox.Text = rowData[0];
+
+                depositAmountTBox.Text = (double.Parse(rowData[1]) * 2).ToString();
             }
             else
             {

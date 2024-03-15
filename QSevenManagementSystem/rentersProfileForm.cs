@@ -129,21 +129,24 @@ namespace QSevenManagementSystem
 
         private void applyButton_Click(object sender, EventArgs e)
         {
-            applyButton.Visible = false;
-            moveOutButton.Enabled = true;
-            editBtn.Visible = true;
-            btnCancel.Visible = false;
-            rentersData.Enabled = true;
+            if (validate())
+            {
+                applyButton.Visible = false;
+                moveOutButton.Enabled = true;
+                editBtn.Visible = true;
+                btnCancel.Visible = false;
+                rentersData.Enabled = true;
 
-            txtFname.ReadOnly = true;
-            txtMname.ReadOnly = true;
-            txtLname.ReadOnly = true;
-            txtContact.ReadOnly = true;
-            txtDob.ReadOnly = true;
-            txtAddress.ReadOnly = true;
+                txtFname.ReadOnly = true;
+                txtMname.ReadOnly = true;
+                txtLname.ReadOnly = true;
+                txtContact.ReadOnly = true;
+                txtDob.ReadOnly = true;
+                txtAddress.ReadOnly = true;
 
-            //INSERT QUERY HERE
-            ConnectToSQL.LoadDataGridView(getTable(), "SELECT * FROM vw_renters_profile");
+                //INSERT QUERY HERE (missing edit/update query)
+                ConnectToSQL.LoadDataGridView(getTable(), "SELECT * FROM vw_renters_profile");
+            }
         }
 
         private void editBtn_Click(object sender, EventArgs e)
@@ -164,7 +167,10 @@ namespace QSevenManagementSystem
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            loadDataToLabels(this.rowData);
+            if (rowData.Count > 0)
+            {
+                loadDataToLabels(this.rowData);
+            }
             applyButton.Visible = false;
             moveOutButton.Enabled = true;
             editBtn.Visible = true;
@@ -177,6 +183,66 @@ namespace QSevenManagementSystem
             txtContact.ReadOnly = true;
             txtDob.ReadOnly = true;
             txtAddress.ReadOnly = true;
+        }
+
+        private bool validate()
+        {
+            bool isEmpty = false;
+            List<String> fields = new List<String>();
+
+            fields.Add(txtFname.Text);
+            fields.Add(txtMname.Text);
+            fields.Add(txtLname.Text);
+            fields.Add(txtContact.Text);
+            fields.Add(txtDob.Text);
+            fields.Add(txtAddress.Text);
+
+            foreach (String field in fields)
+            {
+                if (string.IsNullOrEmpty(field))
+                {
+                    isEmpty = true;
+                    break;
+                }
+            }
+
+            if (isEmpty)
+            {
+                MessageBox.Show("There are some fields empty!");
+            }
+            else if (fields[0].Any(char.IsDigit))
+            {
+                MessageBox.Show("First Name cannot contain digits!");
+            }
+            else if (fields[0].Any(c => !char.IsLetterOrDigit(c)))
+            {
+                MessageBox.Show("First Name cannot contain special characters!");
+            }
+            else if (fields[1].Any(char.IsDigit))
+            {
+                MessageBox.Show("Middle Name cannot contain digits!");
+            }
+            else if (fields[1].Any(c => !char.IsLetterOrDigit(c)))
+            {
+                MessageBox.Show("Middle Name cannot contain special characters!");
+            }
+            else if (fields[2].Any(char.IsDigit))
+            {
+                MessageBox.Show("Last Name cannot contain digits!");
+            }
+            else if (fields[2].Any(c => !char.IsLetterOrDigit(c)))
+            {
+                MessageBox.Show("Last Name cannot contain special characters!");
+            }
+            else if (fields[3].Any(char.IsLetter))
+            {
+                MessageBox.Show("Contact cannot contain letters!");
+            }
+            else
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

@@ -18,6 +18,7 @@ namespace QSevenManagementSystem
         //private List<string> BillRateValues2;
         private List<string> priceValues;
         private List<string> priceColumns;
+        List<string> rowData = new List<string>();
         //private String elecBill, waterBill;
 
         public pricesForm()
@@ -29,11 +30,20 @@ namespace QSevenManagementSystem
             //BillRateValues2 = new List<string>();
             priceValues = new List<string>();
             priceColumns = new List<string> { "room_id", "rp_price", "rp_date" };
-
+            priceData.CellClick += priceData_CellContentClick;
+            priceDate.MinDate = DateTime.Now.Date;
             /*elecTBox.Text = ConnectToSQL.readTableString("");
             elecBill = elecTBox.Text;
             waterTBox.Text = //insert query
             waterBill = waterTBox.Text; */
+            searchCBox.Items.AddRange(new String[] { "Room ID", "Room Floor", "Max # of Renters", "Room Price", "Date of Price Change" });
+            reloadBillRts();
+        }
+
+        public void reloadBillRts()
+        {
+            elecTBox.Text = ConnectToSQL.readTableString("SELECT br_price FROM tbl_bill_rate_record WHERE bt_id = 1 ORDER BY br_id DESC LIMIT 1");
+            waterTBox.Text = ConnectToSQL.readTableString("SELECT br_price FROM tbl_bill_rate_record WHERE bt_id = 2 ORDER BY br_id DESC LIMIT 1");
         }
         /*
         private void loadBillRateValues()
@@ -88,6 +98,37 @@ namespace QSevenManagementSystem
         }
         */
 
+        private void priceData_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            List<string> rowData = new List<string>();
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow selectedRow = priceData.Rows[e.RowIndex];
+                foreach (DataGridViewCell cell in selectedRow.Cells)
+                {
+                    rowData.Add(cell.Value?.ToString() ?? "");
+                }
+            }
+            loadDataToLabels(rowData);
+            this.rowData = rowData;
+        }
+
+        private void loadDataToLabels(List<string> rowData)
+        {
+
+            if (rowData.Count > 0)
+            {
+                roomIdTBox.Text = rowData[0];
+                priceTBox.Text = rowData[3];
+            }
+            else
+            {
+                // Clear labels if there is no selected row
+                roomIdTBox.Text = "None";
+                priceTBox.Text = "None";
+            }
+        }
+
         private void loadPriceValues()
         {
             string roomID = roomIdTBox.Text;
@@ -113,6 +154,26 @@ namespace QSevenManagementSystem
             ConnectToSQL.insertRecord(table, columns, values);
         }
 
+        private void searchTBox_TextChanged(object sender, EventArgs e)
+        {
+            string table = "vw_rooms_current_prices";
+            // Get the selected column from the ComboBox
+            string selectedColumn = searchCBox.SelectedItem?.ToString();
+
+            // Get the search value from the TextBox
+            string searchValue = searchTBox.Text.Trim();
+
+            // Check if a column and search value are provided
+            if (!string.IsNullOrEmpty(selectedColumn) && !string.IsNullOrEmpty(searchValue))
+            {
+                // Define the SQL query
+                string query = $"SELECT * FROM {table} WHERE `{selectedColumn}` LIKE '%{searchValue}%'";
+                //MessageBox.Show(query); //For testing
+                //Execute the query and update the DataGridView
+                ConnectToSQL.LoadDataGridView(priceData, query);
+            }
+        }
+
         private void pricesForm_Load(object sender, EventArgs e)
         {
 
@@ -120,9 +181,43 @@ namespace QSevenManagementSystem
 
         private void applyRoomButton_Click(object sender, EventArgs e)
         {
-            loadPriceValues();
-            insertPriceRecords();
-            ConnectToSQL.LoadDataGridView(this.getTable(), "SELECT * FROM vw_room_price_history");
+            if (validate())
+            {
+                applyRoomButton.Visible = false;
+                editBtn.Visible = true;
+                cancelBtn.Visible = false;
+                priceTBox.ReadOnly = true;
+                priceDate.Enabled = false;
+
+                loadPriceValues();
+                insertPriceRecords();
+                ConnectToSQL.LoadDataGridView(this.getTable(), "SELECT * FROM vw_room_price_history");
+            }
+        }
+
+        private void editBtn_Click(object sender, EventArgs e)
+        {
+            applyRoomButton.Visible = true;
+            editBtn.Visible = false;
+            cancelBtn.Visible = true;
+
+            priceTBox.ReadOnly = false;
+            priceDate.Enabled = true;
+        }
+
+        private void cancelBtn_Click(object sender, EventArgs e)
+        {
+            applyRoomButton.Visible = false;
+            editBtn.Visible = true;
+            cancelBtn.Visible = false;
+            priceTBox.ReadOnly = true;
+            priceDate.Enabled = false;
+
+            if (rowData.Count > 0)
+            {
+                roomIdTBox.Text = rowData[0];
+                priceTBox.Text = rowData[3];
+            }
         }
 
         public DataGridView getTable()
@@ -142,5 +237,62 @@ namespace QSevenManagementSystem
             changeRateForm = new changeRateForm(this, 2);
             changeRateForm.ShowDialog();
         }
+
+        private bool validate()
+        {
+            if (string.IsNullOrEmpty(priceTBox.Text))
+            {
+                MessageBox.Show("Input missing!");
+            }
+            else if (priceTBox.Text.Any(char.IsLetter))
+            {
+                MessageBox.Show("Letters are not allowed!");
+            }
+            else if (priceTBox.Text.Any(c => !char.IsDigit(c) && c != '.'))
+            {
+                MessageBox.Show("Special characters are not allowed!");
+            }
+            else
+            {
+                try
+                {
+                    double rate = double.Parse(priceTBox.Text);
+
+                    if (priceTBox.Text.Contains("."))
+                    {
+                        // Get the index of the decimal separator
+                        int decimalIndex = priceTBox.Text.IndexOf(".");
+
+                        // Check if there are more than two digits after the decimal separator
+                        if (priceTBox.Text.Length - decimalIndex - 1 > 2)
+                        {
+                            MessageBox.Show("Please enter a rate with at most two decimal places.");
+                        }
+                        else if (rate < 0)
+                        {
+                            MessageBox.Show("Number should be positive!");
+                        }
+                        else
+                        {
+                            return true;
+                        }
+                    }
+                    else if (rate < 0)
+                    {
+                        MessageBox.Show("Number should be positive!");
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
+                catch (FormatException)
+                {
+                    MessageBox.Show("Invalid input. Please enter a valid number.");
+                }
+            }
+            return false;
+        }
+
     }
 }

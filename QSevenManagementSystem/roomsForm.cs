@@ -20,6 +20,7 @@ namespace QSevenManagementSystem
             loadSearchCBox();
             searchTBox.TextChanged += searchTBox_TextChanged;
             roomsData.CellClick += roomsData_CellContentClick;
+            cbAvail.Items.AddRange(new string[] { "Occupied", "Reserved", "Unnocupied" });
         }
 
         private void createButton_Click(object sender, EventArgs e)
@@ -53,7 +54,7 @@ namespace QSevenManagementSystem
                 priceLabel.Text = rowData[1];
                 txtNoRenters.Text = rowData[2];
                 txtFloor.Text = rowData[3];
-                txtAvail.Text = rowData[4];
+                cbAvail.SelectedItem = rowData[4].Trim();
             }
             else
             {
@@ -62,7 +63,7 @@ namespace QSevenManagementSystem
                 priceLabel.Text = "None";
                 txtNoRenters.Text = "None";
                 txtFloor.Text = "None";
-                txtAvail.Text = "None";
+                cbAvail.SelectedItem = "None";
             }
         }
 
@@ -122,7 +123,7 @@ namespace QSevenManagementSystem
 
             txtNoRenters.ReadOnly = false;
             txtFloor.ReadOnly = false;
-            txtAvail.ReadOnly = false;
+            cbAvail.Enabled = true;
         }
 
         private void applyButton_Click(object sender, EventArgs e)
@@ -136,7 +137,7 @@ namespace QSevenManagementSystem
 
             txtNoRenters.ReadOnly = true;
             txtFloor.ReadOnly = true;
-            txtAvail.ReadOnly = true;
+            //cbAvail.Enabled = false;
 
             //INSERT QUERY HERE
         }
@@ -153,7 +154,7 @@ namespace QSevenManagementSystem
 
             txtNoRenters.ReadOnly = true;
             txtFloor.ReadOnly = true;
-            txtAvail.ReadOnly = true;
+            cbAvail.Enabled = true;
         }
     }
 }
