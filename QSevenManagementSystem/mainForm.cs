@@ -301,6 +301,8 @@
             {
                 ConnectToSQL.LoadDataGridView(paHForm.getTable(1), "SELECT * FROM vw_dpn_total;");
                 ConnectToSQL.LoadDataGridView(paHForm.getTable(2), "SELECT * FROM vw_receipt_is_fully_paid;");
+                ConnectToSQL.LoadDataGridView(paHForm.getTable(3), "SELECT * FROM vw_bills_history;");
+                ConnectToSQL.LoadDataGridView(paHForm.getTable(4), "SELECT * FROM vw_other_charges_history;");
                 dockForm(paHForm);
             }
         }

@@ -12,6 +12,7 @@ namespace QSevenManagementSystem
 {
     public partial class calculateWater : Form
     {
+        otherChargesForm oCForm = new otherChargesForm();
         public calculateWater()
         {
             InitializeComponent();
@@ -26,8 +27,15 @@ namespace QSevenManagementSystem
 
         private void confirmButton_Click(object sender, EventArgs e)
         {
-            loadBillValues();
             this.Close();
+            loadBillValues();
+
+            DialogResult result = MessageBox.Show("Add other charges?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            while (result == DialogResult.Yes)
+            {
+                oCForm.ShowDialog();
+                result = MessageBox.Show("Add other charges?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            }
         }
 
         List<String> billValues;

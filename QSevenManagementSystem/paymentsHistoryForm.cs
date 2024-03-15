@@ -19,7 +19,22 @@ namespace QSevenManagementSystem
 
         public DataGridView getTable(int num)
         {
-            return num == 1 ? dpnData : receiptData;
+            if (num == 1)
+            {
+                return dpnData;
+            }
+            else if (num == 2)
+            {
+                return receiptData;
+            }
+            else if (num == 3)
+            {
+                return billData;
+            }
+            else
+            {
+                return otherChargesData;
+            }
         }
     }
 }
