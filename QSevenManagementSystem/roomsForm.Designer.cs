@@ -40,8 +40,6 @@
             panel1 = new Panel();
             label1 = new Label();
             tableLayoutPanel5 = new TableLayoutPanel();
-            floorLabel = new Label();
-            maxLabel = new Label();
             label13 = new Label();
             label14 = new Label();
             label16 = new Label();
@@ -49,8 +47,12 @@
             label21 = new Label();
             roomLabel = new Label();
             label22 = new Label();
-            availabilityLabel = new Label();
             label20 = new Label();
+            txtNoRenters = new TextBox();
+            txtFloor = new TextBox();
+            txtAvail = new TextBox();
+            btnEdit = new Button();
+            btnCancel = new Button();
             ((System.ComponentModel.ISupportInitialize)roomsData).BeginInit();
             panel1.SuspendLayout();
             tableLayoutPanel5.SuspendLayout();
@@ -109,19 +111,21 @@
             // applyButton
             // 
             applyButton.BackColor = Color.DarkSeaGreen;
-            applyButton.Location = new Point(638, 376);
+            applyButton.Location = new Point(707, 376);
             applyButton.Name = "applyButton";
-            applyButton.Size = new Size(145, 42);
+            applyButton.Size = new Size(159, 42);
             applyButton.TabIndex = 26;
             applyButton.Text = "APPLY CHANGES";
             applyButton.UseVisualStyleBackColor = false;
+            applyButton.Visible = false;
+            applyButton.Click += applyButton_Click;
             // 
             // removeButton
             // 
             removeButton.BackColor = Color.Tomato;
-            removeButton.Location = new Point(789, 376);
+            removeButton.Location = new Point(903, 376);
             removeButton.Name = "removeButton";
-            removeButton.Size = new Size(145, 42);
+            removeButton.Size = new Size(159, 42);
             removeButton.TabIndex = 27;
             removeButton.Text = "REMOVE ROOM";
             removeButton.UseVisualStyleBackColor = false;
@@ -130,9 +134,9 @@
             // createButton
             // 
             createButton.BackColor = SystemColors.GradientActiveCaption;
-            createButton.Location = new Point(643, 439);
+            createButton.Location = new Point(810, 424);
             createButton.Name = "createButton";
-            createButton.Size = new Size(174, 42);
+            createButton.Size = new Size(159, 42);
             createButton.TabIndex = 28;
             createButton.Text = "CREATE NEW ROOM";
             createButton.UseVisualStyleBackColor = false;
@@ -174,8 +178,6 @@
             tableLayoutPanel5.ColumnCount = 2;
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 37.5F));
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 62.5F));
-            tableLayoutPanel5.Controls.Add(floorLabel, 1, 4);
-            tableLayoutPanel5.Controls.Add(maxLabel, 1, 3);
             tableLayoutPanel5.Controls.Add(label13, 0, 2);
             tableLayoutPanel5.Controls.Add(label14, 0, 3);
             tableLayoutPanel5.Controls.Add(label16, 0, 4);
@@ -183,8 +185,10 @@
             tableLayoutPanel5.Controls.Add(label21, 0, 1);
             tableLayoutPanel5.Controls.Add(roomLabel, 1, 1);
             tableLayoutPanel5.Controls.Add(label22, 0, 5);
-            tableLayoutPanel5.Controls.Add(availabilityLabel, 1, 5);
             tableLayoutPanel5.Controls.Add(label20, 0, 0);
+            tableLayoutPanel5.Controls.Add(txtNoRenters, 1, 3);
+            tableLayoutPanel5.Controls.Add(txtFloor, 1, 4);
+            tableLayoutPanel5.Controls.Add(txtAvail, 1, 5);
             tableLayoutPanel5.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             tableLayoutPanel5.Location = new Point(638, 115);
             tableLayoutPanel5.Name = "tableLayoutPanel5";
@@ -195,28 +199,8 @@
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 9.090909F));
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 9.090909F));
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 9.090909F));
-            tableLayoutPanel5.Size = new Size(502, 239);
+            tableLayoutPanel5.Size = new Size(478, 239);
             tableLayoutPanel5.TabIndex = 69;
-            // 
-            // floorLabel
-            // 
-            floorLabel.AutoSize = true;
-            floorLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            floorLabel.Location = new Point(193, 158);
-            floorLabel.Name = "floorLabel";
-            floorLabel.Size = new Size(44, 18);
-            floorLabel.TabIndex = 56;
-            floorLabel.Text = "None";
-            // 
-            // maxLabel
-            // 
-            maxLabel.AutoSize = true;
-            maxLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            maxLabel.Location = new Point(193, 119);
-            maxLabel.Name = "maxLabel";
-            maxLabel.Size = new Size(44, 18);
-            maxLabel.TabIndex = 56;
-            maxLabel.Text = "None";
             // 
             // label13
             // 
@@ -252,7 +236,7 @@
             // 
             priceLabel.AutoSize = true;
             priceLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            priceLabel.Location = new Point(193, 80);
+            priceLabel.Location = new Point(184, 80);
             priceLabel.Name = "priceLabel";
             priceLabel.Size = new Size(44, 18);
             priceLabel.TabIndex = 54;
@@ -272,7 +256,7 @@
             // 
             roomLabel.AutoSize = true;
             roomLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            roomLabel.Location = new Point(193, 41);
+            roomLabel.Location = new Point(184, 41);
             roomLabel.Name = "roomLabel";
             roomLabel.Size = new Size(44, 18);
             roomLabel.TabIndex = 56;
@@ -288,16 +272,6 @@
             label22.TabIndex = 43;
             label22.Text = "Availability:";
             // 
-            // availabilityLabel
-            // 
-            availabilityLabel.AutoSize = true;
-            availabilityLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            availabilityLabel.Location = new Point(193, 197);
-            availabilityLabel.Name = "availabilityLabel";
-            availabilityLabel.Size = new Size(44, 18);
-            availabilityLabel.TabIndex = 53;
-            availabilityLabel.Text = "None";
-            // 
             // label20
             // 
             label20.AutoSize = true;
@@ -308,12 +282,64 @@
             label20.TabIndex = 48;
             label20.Text = "Room Details";
             // 
+            // txtNoRenters
+            // 
+            txtNoRenters.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            txtNoRenters.Location = new Point(184, 122);
+            txtNoRenters.Name = "txtNoRenters";
+            txtNoRenters.ReadOnly = true;
+            txtNoRenters.Size = new Size(44, 24);
+            txtNoRenters.TabIndex = 57;
+            // 
+            // txtFloor
+            // 
+            txtFloor.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            txtFloor.Location = new Point(184, 161);
+            txtFloor.Name = "txtFloor";
+            txtFloor.ReadOnly = true;
+            txtFloor.Size = new Size(44, 24);
+            txtFloor.TabIndex = 58;
+            // 
+            // txtAvail
+            // 
+            txtAvail.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            txtAvail.Location = new Point(184, 200);
+            txtAvail.Name = "txtAvail";
+            txtAvail.ReadOnly = true;
+            txtAvail.Size = new Size(121, 24);
+            txtAvail.TabIndex = 59;
+            // 
+            // btnEdit
+            // 
+            btnEdit.BackColor = Color.DarkSeaGreen;
+            btnEdit.Location = new Point(707, 376);
+            btnEdit.Name = "btnEdit";
+            btnEdit.Size = new Size(159, 42);
+            btnEdit.TabIndex = 70;
+            btnEdit.Text = "EDIT ROOM";
+            btnEdit.UseVisualStyleBackColor = false;
+            btnEdit.Click += btnEdit_Click;
+            // 
+            // btnCancel
+            // 
+            btnCancel.BackColor = Color.Crimson;
+            btnCancel.Location = new Point(903, 376);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(159, 42);
+            btnCancel.TabIndex = 71;
+            btnCancel.Text = "CANCEL";
+            btnCancel.UseVisualStyleBackColor = false;
+            btnCancel.Visible = false;
+            btnCancel.Click += btnCancel_Click;
+            // 
             // roomsForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
             ClientSize = new Size(1152, 753);
+            Controls.Add(btnCancel);
+            Controls.Add(btnEdit);
             Controls.Add(tableLayoutPanel5);
             Controls.Add(panel1);
             Controls.Add(createButton);
@@ -349,8 +375,6 @@
         private Panel panel1;
         private Label label1;
         private TableLayoutPanel tableLayoutPanel5;
-        private Label floorLabel;
-        private Label maxLabel;
         private Label label13;
         private Label label14;
         private Label label16;
@@ -358,7 +382,11 @@
         private Label label21;
         private Label roomLabel;
         private Label label22;
-        private Label availabilityLabel;
         private Label label20;
+        private TextBox txtNoRenters;
+        private TextBox txtFloor;
+        private TextBox txtAvail;
+        private Button btnEdit;
+        private Button btnCancel;
     }
 }

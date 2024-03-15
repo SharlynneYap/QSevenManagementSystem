@@ -65,6 +65,7 @@
             moveOutButton = new Button();
             applyButton = new Button();
             editBtn = new Button();
+            btnCancel = new Button();
             ((System.ComponentModel.ISupportInitialize)rentersData).BeginInit();
             tableLayoutPanel5.SuspendLayout();
             panel1.SuspendLayout();
@@ -327,7 +328,6 @@
             txtFname.ReadOnly = true;
             txtFname.Size = new Size(125, 24);
             txtFname.TabIndex = 79;
-            txtFname.TabStop = false;
             // 
             // txtMname
             // 
@@ -338,7 +338,6 @@
             txtMname.ReadOnly = true;
             txtMname.Size = new Size(125, 24);
             txtMname.TabIndex = 80;
-            txtMname.TabStop = false;
             // 
             // txtLname
             // 
@@ -493,12 +492,25 @@
             editBtn.UseVisualStyleBackColor = false;
             editBtn.Click += editBtn_Click;
             // 
+            // btnCancel
+            // 
+            btnCancel.BackColor = Color.Crimson;
+            btnCancel.Location = new Point(616, 697);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(145, 42);
+            btnCancel.TabIndex = 77;
+            btnCancel.Text = "CANCEL";
+            btnCancel.UseVisualStyleBackColor = false;
+            btnCancel.Visible = false;
+            btnCancel.Click += btnCancel_Click;
+            // 
             // rentersProfileForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
             ClientSize = new Size(1152, 753);
+            Controls.Add(btnCancel);
             Controls.Add(editBtn);
             Controls.Add(moveOutButton);
             Controls.Add(applyButton);
@@ -559,5 +571,6 @@
         private Button editBtn;
         private Label lblRegIDVal;
         private Label lblRenterIDVal;
+        private Button btnCancel;
     }
 }

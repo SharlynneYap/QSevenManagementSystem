@@ -13,6 +13,7 @@ namespace QSevenManagementSystem
 {
     public partial class rentersProfileForm : Form
     {
+        List<string> rowData = new List<string>();
         public rentersProfileForm()
         {
             InitializeComponent();
@@ -86,6 +87,7 @@ namespace QSevenManagementSystem
                 }
             }
             loadDataToLabels(rowData);
+            this.rowData = rowData;
         }
 
         private void loadSearchCBox()//adds items to the search combo box
@@ -128,7 +130,11 @@ namespace QSevenManagementSystem
         private void applyButton_Click(object sender, EventArgs e)
         {
             applyButton.Visible = false;
+            moveOutButton.Enabled = true;
             editBtn.Visible = true;
+            btnCancel.Visible = false;
+            rentersData.Enabled = true;
+
             txtFname.ReadOnly = true;
             txtMname.ReadOnly = true;
             txtLname.ReadOnly = true;
@@ -143,7 +149,11 @@ namespace QSevenManagementSystem
         private void editBtn_Click(object sender, EventArgs e)
         {
             applyButton.Visible = true;
+            moveOutButton.Enabled = false;
             editBtn.Visible = false;
+            btnCancel.Visible = true;
+            rentersData.Enabled = false;
+
             txtFname.ReadOnly = false;
             txtMname.ReadOnly = false;
             txtLname.ReadOnly = false;
@@ -152,5 +162,21 @@ namespace QSevenManagementSystem
             txtAddress.ReadOnly = false;
         }
 
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            loadDataToLabels(this.rowData);
+            applyButton.Visible = false;
+            moveOutButton.Enabled = true;
+            editBtn.Visible = true;
+            btnCancel.Visible = false;
+            rentersData.Enabled = true;
+
+            txtFname.ReadOnly = true;
+            txtMname.ReadOnly = true;
+            txtLname.ReadOnly = true;
+            txtContact.ReadOnly = true;
+            txtDob.ReadOnly = true;
+            txtAddress.ReadOnly = true;
+        }
     }
 }
