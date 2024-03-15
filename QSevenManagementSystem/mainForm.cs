@@ -69,6 +69,7 @@ namespace QSevenManagementSystem
         private void dockForm(Form form)
         {
             closeAllForms();
+           
             form.FormBorderStyle = FormBorderStyle.None;
             form.TopLevel = false;
             form.Location = new Point(this.Width - form.Width, 0);
