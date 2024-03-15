@@ -122,7 +122,7 @@ namespace QSevenManagementSystem
         {
             loadPriceValues();
             insertPriceRecords();
-            ConnectToSQL.LoadDataGridView(this.getTable(), "SELECT * FROM vw_room_price_history");
+            ConnectToSQL.LoadDataGridView(this.getTable(), "SELECT * FROM vw_rooms_current_prices");
         }
 
         public DataGridView getTable()

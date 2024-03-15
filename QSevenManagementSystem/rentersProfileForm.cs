@@ -143,7 +143,29 @@ namespace QSevenManagementSystem
             txtAddress.ReadOnly = true;
 
             //INSERT QUERY HERE
+            ConnectToSQL.updateRecord("tbl_renter", $"renter_fname = '{txtFname.Text}'", $"renter_id = {lblRenterIDVal.Text};");
+            ConnectToSQL.updateRecord("tbl_renter", $"renter_mname = '{txtMname.Text}'", $"renter_id = {lblRenterIDVal.Text};");
+            ConnectToSQL.updateRecord("tbl_renter", $"renter_lname = '{txtLname.Text}'", $"renter_id = {lblRenterIDVal.Text};");
+            ConnectToSQL.updateRecord("tbl_renter", $"renter_contact = '{txtContact.Text}'", $"renter_id = {lblRenterIDVal.Text};");
+            string formattedDob = formatDob(txtDob.Text);
+            ConnectToSQL.updateRecord("tbl_renter", $"renter_dob = '{formattedDob}'", $"renter_id = {lblRenterIDVal.Text};");
+            ConnectToSQL.updateRecord("tbl_renter", $"renter_address = '{txtAddress.Text}'", $"renter_id = {lblRenterIDVal.Text};");
             ConnectToSQL.LoadDataGridView(getTable(), "SELECT * FROM vw_renters_profile");
+        }
+
+        private string formatDob(string dob)
+        {
+            // Parse the string to DateTime
+            if (DateTime.TryParse(dob, out DateTime dobDateTime))
+            {
+                // Format to year-month-day
+                return dobDateTime.ToString("yyyy-MM-dd");
+            }
+            else
+            {
+                // Return original value if parsing fails
+                return dob;
+            }
         }
 
         private void editBtn_Click(object sender, EventArgs e)
@@ -160,6 +182,7 @@ namespace QSevenManagementSystem
             txtContact.ReadOnly = false;
             txtDob.ReadOnly = false;
             txtAddress.ReadOnly = false;
+
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

@@ -185,10 +185,10 @@ namespace QSevenManagementSystem
 
         private void loadRegistrationValues2()
         {
-            string registrationID = ConnectToSQL.readTableString($"SELECT Registration_ID\r\nFROM tbl_Registration\r\nWHERE Renter_ID = {renterLabel.Text};\r\n"); ;
+            string registrationID = ConnectToSQL.readTableString($"SELECT Registration_ID\r\nFROM tbl_Registration\r\nWHERE Renter_ID = {registerLabel.Text};\r\n"); ;
             string renterID = ConnectToSQL.readTableString("SELECT MAX(renter_id) FROM tbl_renter;");
             string roomID = roomTBox.Text;
-            string depositID = ConnectToSQL.readTableString($"SELECT d.Deposit_ID \r\nFROM tbl_Deposit d\r\nINNER JOIN tbl_Registration r ON d.Deposit_ID = r.Deposit_ID\r\nWHERE r.Renter_ID = {renterLabel.Text};");
+            string depositID = ConnectToSQL.readTableString($"SELECT d.Deposit_ID \r\nFROM tbl_Deposit d\r\nINNER JOIN tbl_Registration r ON d.Deposit_ID = r.Deposit_ID\r\nWHERE r.Renter_ID = {registerLabel.Text};");
             string rDate = registrationDate.Value.ToString("yyyy-MM-dd");
 
             registrationValues.Clear();
@@ -274,10 +274,7 @@ namespace QSevenManagementSystem
                 availLabel.Text = rowData[2];
                 floorLabel.Text = rowData[3];
                 maxLabel.Text = rowData[4];
-                renterLabel.Text = rowData[5];
-                fNameLabel.Text = rowData[6];
-                mNameLabel.Text = rowData[7];
-                lNameLabel.Text = rowData[8];
+                registerLabel.Text = rowData[5];
 
                 roomTBox.Text = rowData[0];
             }
@@ -288,11 +285,7 @@ namespace QSevenManagementSystem
                 availLabel.Text = "None";
                 floorLabel.Text = "None";
                 maxLabel.Text = "None";
-                renterLabel.Text = "None";
-                fNameLabel.Text = "None";
-                mNameLabel.Text = "None";
-                lNameLabel.Text = "None";
-
+                registerLabel.Text = "None";
                 roomTBox.Text = "";
             }
         }
@@ -318,10 +311,8 @@ namespace QSevenManagementSystem
             searchCBox.Items.Add("Availability");
             searchCBox.Items.Add("Floor");
             searchCBox.Items.Add("Max # of renters");
-            searchCBox.Items.Add("Renter ID");
-            searchCBox.Items.Add("Renter First Name");
-            searchCBox.Items.Add("Renter Middle Name");
-            searchCBox.Items.Add("Renter Last Name");
+            searchCBox.Items.Add("Registration ID");
+
         }
 
         private void searchTBox_TextChanged(object sender, EventArgs e)

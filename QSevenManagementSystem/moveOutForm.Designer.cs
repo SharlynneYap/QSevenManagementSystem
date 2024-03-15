@@ -122,6 +122,7 @@
             Controls.Add(label2);
             Controls.Add(panel1);
             Name = "moveOutForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "moveOutForm";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

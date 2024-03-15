@@ -16,6 +16,9 @@ namespace QSevenManagementSystem
         {
 
             InitializeComponent();
+            loadSearchCBox();
+            searchTBox.TextChanged += searchTBox_TextChanged;
+            rDHData.CellClick += rDHData_CellContentClick;
 
         }
 
@@ -35,22 +38,22 @@ namespace QSevenManagementSystem
 
             if (rowData.Count > 0)
             {
-                roomDamageLabel.Text = rowData[0];
-                roomLabel.Text = rowData[1];
-                damageLabel.Text = rowData[2];
-                descLabel.Text = rowData[3];
-                totalLabel.Text = rowData[4];
-                dateLabel.Text = rowData[5];
+                roomDamageLabel1.Text = rowData[0];
+                roomLabel2.Text = rowData[1];
+                damageLabel3.Text = rowData[2];
+                descLabel4.Text = rowData[3];
+                totalLabel5.Text = rowData[4];
+                dateLabel6.Text = rowData[5];
             }
             else
             {
                 // Clear labels if there is no selected row
-                roomDamageLabel.Text = "None";
-                roomLabel.Text = "None";
-                damageLabel.Text = "None";
-                descLabel.Text = "None";
-                totalLabel.Text = "None";
-                dateLabel.Text = "None";
+                roomDamageLabel1.Text = "None";
+                roomLabel2.Text = "None";
+                damageLabel3.Text = "None";
+                descLabel4.Text = "None";
+                totalLabel5.Text = "None";
+                dateLabel6.Text = "None";
             }
         }
 
@@ -80,7 +83,7 @@ namespace QSevenManagementSystem
 
         private void searchTBox_TextChanged(object sender, EventArgs e)
         {
-            string table = "vw_current_rooms";
+            string table = "vw_room_damage_record";
             // Get the selected column from the ComboBox
             string selectedColumn = searchCBox.SelectedItem?.ToString();
 

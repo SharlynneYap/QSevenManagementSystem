@@ -70,7 +70,7 @@
             label14 = new Label();
             reservedPanel = new TableLayoutPanel();
             reservedLabel = new Label();
-            label16 = new Label();
+            label7 = new Label();
             sideMenuPanel.SuspendLayout();
             panel4.SuspendLayout();
             panel3.SuspendLayout();
@@ -514,7 +514,7 @@
             unoccupiedPanel.Controls.Add(unoccupiedLabel, 0, 0);
             unoccupiedPanel.Controls.Add(label8, 0, 1);
             unoccupiedPanel.ForeColor = SystemColors.ControlLight;
-            unoccupiedPanel.Location = new Point(1011, 40);
+            unoccupiedPanel.Location = new Point(1020, 40);
             unoccupiedPanel.Name = "unoccupiedPanel";
             unoccupiedPanel.Padding = new Padding(5);
             unoccupiedPanel.RowCount = 2;
@@ -670,7 +670,7 @@
             reservedPanel.ColumnCount = 1;
             reservedPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             reservedPanel.Controls.Add(reservedLabel, 0, 0);
-            reservedPanel.Controls.Add(label16, 0, 1);
+            reservedPanel.Controls.Add(label7, 0, 1);
             reservedPanel.ForeColor = SystemColors.ControlLight;
             reservedPanel.Location = new Point(269, 262);
             reservedPanel.Name = "reservedPanel";
@@ -694,15 +694,15 @@
             reservedLabel.TabIndex = 2;
             reservedLabel.Text = "0";
             // 
-            // label16
+            // label7
             // 
-            label16.AutoSize = true;
-            label16.Font = new Font("Arial Rounded MT Bold", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label16.Location = new Point(8, 134);
-            label16.Name = "label16";
-            label16.Size = new Size(274, 23);
-            label16.TabIndex = 3;
-            label16.Text = "Number of reserved rooms";
+            label7.AutoSize = true;
+            label7.Font = new Font("Arial Rounded MT Bold", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label7.Location = new Point(8, 134);
+            label7.Name = "label7";
+            label7.Size = new Size(274, 23);
+            label7.TabIndex = 3;
+            label7.Text = "Number of reserved rooms";
             // 
             // mainForm
             // 
@@ -717,6 +717,7 @@
             Controls.Add(roomsPanel);
             Controls.Add(sideMenuPanel);
             Name = "mainForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "mainMenuForm";
             Load += mainForm_Load;
             sideMenuPanel.ResumeLayout(false);
@@ -786,6 +787,6 @@
         private Label label14;
         private TableLayoutPanel reservedPanel;
         private Label reservedLabel;
-        private Label label16;
+        private Label label7;
     }
 }

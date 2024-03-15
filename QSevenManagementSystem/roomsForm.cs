@@ -53,7 +53,7 @@ namespace QSevenManagementSystem
                 priceLabel.Text = rowData[1];
                 txtNoRenters.Text = rowData[2];
                 txtFloor.Text = rowData[3];
-                txtAvail.Text = rowData[4];
+                availLabel.Text = rowData[4];
             }
             else
             {
@@ -62,7 +62,7 @@ namespace QSevenManagementSystem
                 priceLabel.Text = "None";
                 txtNoRenters.Text = "None";
                 txtFloor.Text = "None";
-                txtAvail.Text = "None";
+                availLabel.Text = "None";
             }
         }
 
@@ -122,7 +122,6 @@ namespace QSevenManagementSystem
 
             txtNoRenters.ReadOnly = false;
             txtFloor.ReadOnly = false;
-            txtAvail.ReadOnly = false;
         }
 
         private void applyButton_Click(object sender, EventArgs e)
@@ -136,9 +135,11 @@ namespace QSevenManagementSystem
 
             txtNoRenters.ReadOnly = true;
             txtFloor.ReadOnly = true;
-            txtAvail.ReadOnly = true;
 
-            //INSERT QUERY HERE
+            ConnectToSQL.updateRecord("tbl_room", $"room_max_renters= '{txtNoRenters.Text}'", $"room_id = {roomLabel.Text};");
+            ConnectToSQL.updateRecord("tbl_room", $"room_floor = '{txtFloor.Text}'", $"room_id = {roomLabel.Text};");
+
+            ConnectToSQL.LoadDataGridView(this.getTable(), "SELECT * FROM vw_current_rooms");
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -153,7 +154,6 @@ namespace QSevenManagementSystem
 
             txtNoRenters.ReadOnly = true;
             txtFloor.ReadOnly = true;
-            txtAvail.ReadOnly = true;
         }
     }
 }

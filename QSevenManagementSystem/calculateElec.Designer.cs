@@ -32,11 +32,10 @@
             meterStartMonthTBox = new TextBox();
             meterEndMonthTBox = new TextBox();
             label2 = new Label();
-            label3 = new Label();
             confirmButton = new Button();
             panel1 = new Panel();
             label6 = new Label();
-            billRateLabel = new Label();
+            startMonthButton = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -72,15 +71,6 @@
             label2.TabIndex = 2;
             label2.Text = "End month meter";
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(106, 240);
-            label3.Name = "label3";
-            label3.Size = new Size(60, 20);
-            label3.TabIndex = 4;
-            label3.Text = "Bill rate";
-            // 
             // confirmButton
             // 
             confirmButton.BackColor = Color.DarkSeaGreen;
@@ -115,29 +105,32 @@
             label6.TabIndex = 0;
             label6.Text = "Generate DPN (2): Electricity Bill Details";
             // 
-            // billRateLabel
+            // startMonthButton
             // 
-            billRateLabel.AutoSize = true;
-            billRateLabel.Location = new Point(288, 240);
-            billRateLabel.Name = "billRateLabel";
-            billRateLabel.Size = new Size(45, 20);
-            billRateLabel.TabIndex = 86;
-            billRateLabel.Text = "None";
+            startMonthButton.BackColor = Color.LightBlue;
+            startMonthButton.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            startMonthButton.Location = new Point(419, 120);
+            startMonthButton.Name = "startMonthButton";
+            startMonthButton.Size = new Size(198, 42);
+            startMonthButton.TabIndex = 87;
+            startMonthButton.Text = "Get latest meter reading";
+            startMonthButton.UseVisualStyleBackColor = false;
+            startMonthButton.Click += startMonthButton_Click;
             // 
             // calculateElec
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(682, 353);
-            Controls.Add(billRateLabel);
+            Controls.Add(startMonthButton);
             Controls.Add(panel1);
             Controls.Add(confirmButton);
-            Controls.Add(label3);
             Controls.Add(meterEndMonthTBox);
             Controls.Add(label2);
             Controls.Add(meterStartMonthTBox);
             Controls.Add(label1);
             Name = "calculateElec";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "calculateElec";
             TopMost = true;
             panel1.ResumeLayout(false);
@@ -152,10 +145,9 @@
         private TextBox meterStartMonthTBox;
         private TextBox meterEndMonthTBox;
         private Label label2;
-        private Label label3;
         private Button confirmButton;
         private Panel panel1;
         private Label label6;
-        private Label billRateLabel;
+        private Button startMonthButton;
     }
 }

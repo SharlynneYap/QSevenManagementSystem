@@ -129,6 +129,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "otherChargesForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "otherChargesForm";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

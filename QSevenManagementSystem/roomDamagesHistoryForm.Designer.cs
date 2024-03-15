@@ -36,18 +36,18 @@
             reportButton = new Button();
             applyButton = new Button();
             tableLayoutPanel5 = new TableLayoutPanel();
-            dateLabel = new Label();
+            dateLabel6 = new Label();
             label1 = new Label();
-            descLabel = new Label();
-            damageLabel = new Label();
+            descLabel4 = new Label();
+            damageLabel3 = new Label();
             label13 = new Label();
             label14 = new Label();
             label16 = new Label();
-            roomLabel = new Label();
+            roomLabel2 = new Label();
             label21 = new Label();
-            roomDamageLabel = new Label();
+            roomDamageLabel1 = new Label();
             label22 = new Label();
-            totalLabel = new Label();
+            totalLabel5 = new Label();
             label20 = new Label();
             panel1 = new Panel();
             label10 = new Label();
@@ -134,18 +134,18 @@
             tableLayoutPanel5.ColumnCount = 2;
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 37.5F));
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 62.5F));
-            tableLayoutPanel5.Controls.Add(dateLabel, 1, 6);
+            tableLayoutPanel5.Controls.Add(dateLabel6, 1, 6);
             tableLayoutPanel5.Controls.Add(label1, 0, 6);
-            tableLayoutPanel5.Controls.Add(descLabel, 1, 4);
-            tableLayoutPanel5.Controls.Add(damageLabel, 1, 3);
+            tableLayoutPanel5.Controls.Add(descLabel4, 1, 4);
+            tableLayoutPanel5.Controls.Add(damageLabel3, 1, 3);
             tableLayoutPanel5.Controls.Add(label13, 0, 2);
             tableLayoutPanel5.Controls.Add(label14, 0, 3);
             tableLayoutPanel5.Controls.Add(label16, 0, 4);
-            tableLayoutPanel5.Controls.Add(roomLabel, 1, 2);
+            tableLayoutPanel5.Controls.Add(roomLabel2, 1, 2);
             tableLayoutPanel5.Controls.Add(label21, 0, 1);
-            tableLayoutPanel5.Controls.Add(roomDamageLabel, 1, 1);
+            tableLayoutPanel5.Controls.Add(roomDamageLabel1, 1, 1);
             tableLayoutPanel5.Controls.Add(label22, 0, 5);
-            tableLayoutPanel5.Controls.Add(totalLabel, 1, 5);
+            tableLayoutPanel5.Controls.Add(totalLabel5, 1, 5);
             tableLayoutPanel5.Controls.Add(label20, 0, 0);
             tableLayoutPanel5.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             tableLayoutPanel5.Location = new Point(623, 114);
@@ -161,15 +161,15 @@
             tableLayoutPanel5.Size = new Size(502, 239);
             tableLayoutPanel5.TabIndex = 70;
             // 
-            // dateLabel
+            // dateLabel6
             // 
-            dateLabel.AutoSize = true;
-            dateLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dateLabel.Location = new Point(193, 200);
-            dateLabel.Name = "dateLabel";
-            dateLabel.Size = new Size(44, 18);
-            dateLabel.TabIndex = 72;
-            dateLabel.Text = "None";
+            dateLabel6.AutoSize = true;
+            dateLabel6.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dateLabel6.Location = new Point(193, 200);
+            dateLabel6.Name = "dateLabel6";
+            dateLabel6.Size = new Size(44, 18);
+            dateLabel6.TabIndex = 72;
+            dateLabel6.Text = "None";
             // 
             // label1
             // 
@@ -181,25 +181,25 @@
             label1.TabIndex = 72;
             label1.Text = "Date:";
             // 
-            // descLabel
+            // descLabel4
             // 
-            descLabel.AutoSize = true;
-            descLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            descLabel.Location = new Point(193, 134);
-            descLabel.Name = "descLabel";
-            descLabel.Size = new Size(44, 18);
-            descLabel.TabIndex = 56;
-            descLabel.Text = "None";
+            descLabel4.AutoSize = true;
+            descLabel4.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            descLabel4.Location = new Point(193, 134);
+            descLabel4.Name = "descLabel4";
+            descLabel4.Size = new Size(44, 18);
+            descLabel4.TabIndex = 56;
+            descLabel4.Text = "None";
             // 
-            // damageLabel
+            // damageLabel3
             // 
-            damageLabel.AutoSize = true;
-            damageLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            damageLabel.Location = new Point(193, 101);
-            damageLabel.Name = "damageLabel";
-            damageLabel.Size = new Size(44, 18);
-            damageLabel.TabIndex = 56;
-            damageLabel.Text = "None";
+            damageLabel3.AutoSize = true;
+            damageLabel3.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            damageLabel3.Location = new Point(193, 101);
+            damageLabel3.Name = "damageLabel3";
+            damageLabel3.Size = new Size(44, 18);
+            damageLabel3.TabIndex = 56;
+            damageLabel3.Text = "None";
             // 
             // label13
             // 
@@ -231,15 +231,15 @@
             label16.TabIndex = 47;
             label16.Text = "Description:";
             // 
-            // roomLabel
+            // roomLabel2
             // 
-            roomLabel.AutoSize = true;
-            roomLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            roomLabel.Location = new Point(193, 68);
-            roomLabel.Name = "roomLabel";
-            roomLabel.Size = new Size(44, 18);
-            roomLabel.TabIndex = 54;
-            roomLabel.Text = "None";
+            roomLabel2.AutoSize = true;
+            roomLabel2.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            roomLabel2.Location = new Point(193, 68);
+            roomLabel2.Name = "roomLabel2";
+            roomLabel2.Size = new Size(44, 18);
+            roomLabel2.TabIndex = 54;
+            roomLabel2.Text = "None";
             // 
             // label21
             // 
@@ -251,15 +251,15 @@
             label21.TabIndex = 49;
             label21.Text = "Room Damage ID:";
             // 
-            // roomDamageLabel
+            // roomDamageLabel1
             // 
-            roomDamageLabel.AutoSize = true;
-            roomDamageLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            roomDamageLabel.Location = new Point(193, 35);
-            roomDamageLabel.Name = "roomDamageLabel";
-            roomDamageLabel.Size = new Size(44, 18);
-            roomDamageLabel.TabIndex = 56;
-            roomDamageLabel.Text = "None";
+            roomDamageLabel1.AutoSize = true;
+            roomDamageLabel1.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            roomDamageLabel1.Location = new Point(193, 35);
+            roomDamageLabel1.Name = "roomDamageLabel1";
+            roomDamageLabel1.Size = new Size(44, 18);
+            roomDamageLabel1.TabIndex = 56;
+            roomDamageLabel1.Text = "None";
             // 
             // label22
             // 
@@ -271,15 +271,15 @@
             label22.TabIndex = 43;
             label22.Text = "Total Damages:";
             // 
-            // totalLabel
+            // totalLabel5
             // 
-            totalLabel.AutoSize = true;
-            totalLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            totalLabel.Location = new Point(193, 167);
-            totalLabel.Name = "totalLabel";
-            totalLabel.Size = new Size(44, 18);
-            totalLabel.TabIndex = 53;
-            totalLabel.Text = "None";
+            totalLabel5.AutoSize = true;
+            totalLabel5.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            totalLabel5.Location = new Point(193, 167);
+            totalLabel5.Name = "totalLabel5";
+            totalLabel5.Size = new Size(44, 18);
+            totalLabel5.TabIndex = 53;
+            totalLabel5.Text = "None";
             // 
             // label20
             // 
@@ -349,20 +349,20 @@
         private Button reportButton;
         private Button applyButton;
         private TableLayoutPanel tableLayoutPanel5;
-        private Label descLabel;
-        private Label damageLabel;
+        private Label descLabel4;
+        private Label damageLabel3;
         private Label label13;
         private Label label14;
         private Label label16;
-        private Label roomLabel;
+        private Label roomLabel2;
         private Label label21;
-        private Label roomDamageLabel;
+        private Label roomDamageLabel1;
         private Label label22;
-        private Label totalLabel;
+        private Label totalLabel5;
         private Label label20;
         private Panel panel1;
         private Label label10;
-        private Label dateLabel;
+        private Label dateLabel6;
         private Label label1;
     }
 }

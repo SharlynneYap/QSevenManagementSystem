@@ -231,33 +231,23 @@ namespace QSevenManagementSystem
             {
                 // Create table queries
                 string createViewsQuery = @"
-                CREATE VIEW vw_current_rooms AS
+
+                CREATE VIEW vw_current_rooms_availability AS
                 SELECT 
-                    R.room_id AS 'Room ID', 
-                    RPR.rp_price AS 'Room Price', 
-                    R.room_max_renters AS 'Max # of Renters', 
-                    R.room_floor AS 'Floor', 
-                    RAT.rat_description AS 'Availability' 
+                    room_id AS 'Room ID',
+                    CASE
+                        WHEN MAX(rat_id) = 4 THEN 'Removed'
+                        WHEN MAX(rat_id) = 3 THEN 'Occupied'
+                        WHEN MAX(rat_id) = 2 THEN 'Reserved'
+                        ELSE 'Unoccupied'
+                    END AS 'Current Availability'
                 FROM 
-                    tbl_room R 
-                JOIN 
-                    tbl_room_price_record RPR ON R.room_id = RPR.room_id 
-                JOIN 
-                    tbl_room_availability_record RAR ON R.room_id = RAR.room_id 
-                JOIN 
-                    tbl_room_availability_type RAT ON RAR.rat_id = RAT.rat_id
-                JOIN (
-                    SELECT 
-                        room_id, 
-                        MAX(ra_date) AS LatestDate
-                    FROM 
-                        tbl_room_availability_record
-                    GROUP BY 
-                        room_id
-                ) AS sub ON R.room_id = sub.room_id AND RAR.ra_date = sub.LatestDate
+                    tbl_room_availability_record
                 WHERE 
-                    RAT.rat_description <> 'removed'
-                GROUP BY r.Room_id;
+                    ra_date <= CURRENT_DATE
+                GROUP BY 
+                    room_id;
+
 
                 CREATE VIEW vw_dpn_renter_details AS
                 SELECT 
@@ -352,33 +342,18 @@ namespace QSevenManagementSystem
                     MI.movein_date <= CURDATE();
 
 
-                CREATE VIEW vw_current_rooms_tenants AS
+               CREATE VIEW vw_current_rooms_tenants AS
                 SELECT 
                     RO.room_id AS 'Room ID',
-                    RPR.rp_price AS 'Room Price',
-                    RAT.rat_description AS 'Availability', 
+                    MAX(RPR.rp_price) AS 'Room Price',
+                    vw.`Current Availability` AS 'Availability', 
                     RO.room_floor AS 'Floor', 
                     RO.room_max_renters AS 'Max # of Renters',
-                    R.renter_id AS 'Renter ID',
-                    R.renter_fname AS 'First Name',
-                    R.renter_mname AS 'Middle Name',
-                    R.renter_lname AS 'Last Name'
+                    REG.registration_id
                 FROM 
                     tbl_room RO
                 LEFT JOIN 
-                    (
-                        SELECT 
-                            room_id,
-                            MAX(ra_id) AS max_ra_id
-                        FROM 
-                            tbl_room_availability_record
-                        GROUP BY 
-                            room_id
-                    ) max_ra ON RO.room_id = max_ra.room_id
-                LEFT JOIN 
-                    tbl_room_availability_record RAR ON max_ra.room_id = RAR.room_id AND max_ra.max_ra_id = RAR.ra_id
-                LEFT JOIN 
-                    tbl_room_availability_type RAT ON RAR.rat_id = RAT.rat_id
+                    vw_current_rooms_availability vw ON RO.room_id = vw.`Room ID`
                 LEFT JOIN 
                     tbl_registration REG ON RO.room_id = REG.room_id
                 LEFT JOIN 
@@ -396,7 +371,7 @@ namespace QSevenManagementSystem
                                 room_id, 
                                 rp_price,
                                 rp_date,
-                                ROW_NUMBER() OVER (PARTITION BY room_id ORDER BY rp_date DESC) AS rn
+                                ROW_NUMBER() OVER (PARTITION BY room_id ORDER BY rp_id DESC) AS rn
                             FROM 
                                 tbl_room_price_record
                             WHERE 
@@ -406,19 +381,21 @@ namespace QSevenManagementSystem
                             rn = 1
                     ) RPR ON RO.room_id = RPR.room_id
                 WHERE 
-                    RAT.rat_description <> 'REMOVED'
-                AND RO.room_id NOT IN (
-                    SELECT 
-                        room_id
-                    FROM 
-                        tbl_registration
-                    GROUP BY 
-                        room_id
-                    HAVING 
-                        COUNT(registration_id) >= RO.room_max_renters
-                )
+                    vw.`Current Availability` <> 'REMOVED'
                 GROUP BY 
-                    RO.room_id, R.renter_fname, R.renter_mname, R.renter_lname;
+                    RO.room_id;
+
+
+                CREATE VIEW vw_current_rooms AS
+                SELECT
+	                `Room ID`,
+	                `Room Price`,
+	                `Max # of Renters`,
+	                `Floor`,
+	                `Availability`
+                FROM
+	                vw_current_rooms_tenants;
+	
 
                 CREATE VIEW vw_renters_profile AS
                 SELECT 
@@ -495,29 +472,16 @@ namespace QSevenManagementSystem
                      JOIN 
                          tbl_room_price_record p ON r.Room_ID = p.Room_ID;
 
-                   CREATE VIEW vw_rooms_current_prices AS
+                  CREATE VIEW vw_rooms_current_prices AS 
                     SELECT 
-                        r.Room_ID AS 'Room ID',
-                        r.Room_floor AS 'Room Floor',
-                        r.Room_max_renters AS 'Max # of Renters',
-                        p.RP_price AS 'Room Price',
-                        p.RP_date AS 'Date of Price Change'
-                    FROM 
-                        tbl_room r
-                    JOIN 
-                        tbl_room_price_record p ON r.Room_ID = p.Room_ID
-                    JOIN (
-                        SELECT 
-                            Room_ID, 
-                            MAX(RP_date) AS LatestDate
-                        FROM 
-                            tbl_room_price_record
-                        WHERE 
-                            RP_date <= CURRENT_DATE
-                        GROUP BY 
-                            Room_ID
-                    ) AS latest_prices ON p.Room_ID = latest_prices.Room_ID AND p.RP_date = latest_prices.LatestDate;
-                    
+                        `Room ID`,
+                        `Room Price`,
+                        `Availability`, 
+                        `Floor`, 
+                        `Max # of Renters`
+                    FROM
+                        vw_current_rooms_tenants;
+
                      CREATE VIEW vw_bill_rate_history AS
                     SELECT 
                         BRR.BT_ID AS 'Bill Rate ID',
@@ -557,77 +521,81 @@ namespace QSevenManagementSystem
 
                     CREATE VIEW vw_current_tenants AS
                     SELECT 
-                        r.room_id,
-                        ro.room_floor,
-                        ro.room_max_renters,
-                        rt.renter_id,
-                        rt.renter_fname,
-                        rt.renter_mname,
-                        rt.renter_lname
+                        r.room_id AS 'Room ID',
+                        vw.`Room Price`,
+                        ro.room_floor AS 'Floor',
+                        ro.room_max_renters AS 'Max # of Renters',
+                        r.registration_id AS 'Registration ID'
                     FROM 
                         tbl_registration r
                     JOIN 
                         tbl_renter rt ON r.renter_id = rt.renter_id
                     JOIN 
                         tbl_room ro ON r.room_id = ro.room_id
+                    JOIN
+                        vw_rooms_current_prices vw ON r.room_id = vw.`Room ID`  
                     LEFT JOIN 
-                        tbl_moveOut mo ON r.renter_id = mo.renter_id
+                        tbl_moveout mo ON r.renter_id = mo.renter_id
                     WHERE 
                         mo.moveout_date IS NULL
-                    GROUP BY room_id;
+                    GROUP BY r.room_id;  
+                   
+
 
                    CREATE VIEW vw_dpn_total AS
                   SELECT 
                       d.dpn_id, 
                       d.registration_id AS 'Registration ID',
-                      reg.room_id AS 'Room ID', 
-                      d.dpn_date_month AS 'For the month of', 
-                      d.dpn_date_issued AS 'DPN Date Issued', 
-                      d.dpn_is_deposit_used as 'Is Deposit Used', 
-                      (CASE 
-                          WHEN d.dpn_is_deposit_used 
-                          THEN -(COALESCE(dep.deposit_total, 0) - (
-                                  COALESCE((SELECT rp_price 
-                                            FROM tbl_room_price_record 
-                                            WHERE room_id = r.room_id 
-                                              AND rp_date <= d.dpn_date_issued 
-                                            ORDER BY rp_date DESC 
-                                            LIMIT 1), 0) 
-                                  + COALESCE((SELECT SUM(b.bill_total) 
-                                              FROM vw_bill_total b 
-                                              WHERE b.dpn_id = d.dpn_id), 0) 
-                                  + COALESCE((SELECT SUM(oc_total) 
-                                              FROM tbl_other_charges 
-                                              WHERE dpn_id = d.dpn_id), 0) 
-                              )) 
-                          ELSE 
-                              (COALESCE((SELECT rp_price 
-                                         FROM tbl_room_price_record 
-                                         WHERE room_id = r.room_id 
-                                           AND rp_date <= d.dpn_date_issued 
-                                         ORDER BY rp_date DESC 
-                                         LIMIT 1), 0) 
-                               + COALESCE((SELECT SUM(b.bill_total) 
-                                           FROM vw_bill_total b 
-                                           WHERE b.dpn_id = d.dpn_id), 0) 
-                               + COALESCE((SELECT SUM(oc_total) 
-                                           FROM tbl_other_charges 
-                                           WHERE dpn_id = d.dpn_id), 0)) 
-                      END) AS 'Total',
-                      (SELECT rp_price 
-                       FROM tbl_room_price_record 
-                       WHERE room_id = r.room_id 
-                         AND rp_date <= d.dpn_date_issued 
-                       ORDER BY rp_date DESC 
-                       LIMIT 1) AS 'Room Price'
-                  FROM 
-                      tbl_dpn d 
-                  INNER JOIN tbl_registration reg ON d.registration_id = reg.registration_id 
-                  INNER JOIN tbl_renter rt ON reg.renter_id = rt.renter_id
-                  INNER JOIN tbl_movein m ON rt.renter_id = m.renter_id
-                  INNER JOIN tbl_room r ON reg.room_id = r.room_id
-                  INNER JOIN tbl_deposit dep ON reg.deposit_id = dep.deposit_id
-                  GROUP BY reg.registration_id;
+                      reg.room_id AS 'Room ID',
+		          (SELECT rp_price 
+                           FROM tbl_room_price_record 
+                           WHERE room_id = r.room_id 
+                             AND rp_date <= d.dpn_date_issued 
+                           ORDER BY rp_date DESC 
+                           LIMIT 1) AS 'Room Price', 
+			    d.dpn_is_deposit_used as 'Is Deposit Used', 
+			     (CASE 
+                              WHEN d.dpn_is_deposit_used 
+                              THEN -(COALESCE(dep.deposit_total, 0) - (
+                                      COALESCE((SELECT rp_price 
+                                                FROM tbl_room_price_record 
+                                                WHERE room_id = r.room_id 
+                                                  AND rp_date <= d.dpn_date_issued 
+                                                ORDER BY rp_date DESC 
+                                                LIMIT 1), 0) 
+                                      + COALESCE((SELECT SUM(b.bill_total) 
+                                                  FROM vw_bill_total b 
+                                                  WHERE b.dpn_id = d.dpn_id), 0) 
+                                      + COALESCE((SELECT SUM(oc_total) 
+                                                  FROM tbl_other_charges 
+                                                  WHERE dpn_id = d.dpn_id), 0) 
+                                  )) 
+                              ELSE 
+                                  (COALESCE((SELECT rp_price 
+                                             FROM tbl_room_price_record 
+                                             WHERE room_id = r.room_id 
+                                               AND rp_date <= d.dpn_date_issued 
+                                             ORDER BY rp_date DESC 
+                                             LIMIT 1), 0) 
+                                   + COALESCE((SELECT SUM(b.bill_total) 
+                                               FROM vw_bill_total b 
+                                               WHERE b.dpn_id = d.dpn_id), 0) 
+                                   + COALESCE((SELECT SUM(oc_total) 
+                                               FROM tbl_other_charges 
+                                               WHERE dpn_id = d.dpn_id), 0)) 
+                          END) AS 'Total',
+
+                          d.dpn_date_month AS 'For the month of', 
+                          d.dpn_date_issued AS 'DPN Date Issued' 
+                                           
+                      FROM 
+                          tbl_dpn d 
+                      INNER JOIN tbl_registration reg ON d.registration_id = reg.registration_id 
+                      INNER JOIN tbl_renter rt ON reg.renter_id = rt.renter_id
+                      INNER JOIN tbl_movein m ON rt.renter_id = m.renter_id
+                      INNER JOIN tbl_room r ON reg.room_id = r.room_id
+                      INNER JOIN tbl_deposit dep ON reg.deposit_id = dep.deposit_id
+                      GROUP BY reg.registration_id;
 
 
                     CREATE VIEW vw_receipt_is_fully_paid AS  
@@ -645,9 +613,30 @@ namespace QSevenManagementSystem
                     JOIN  
                        vw_dpn_total d ON r.dpn_id = d.dpn_ID; 
 
+                    CREATE VIEW vw_receipt_history AS
+                    SELECT 
+                        r.receipt_id AS 'Receipt ID',
+                        r.dpn_id AS 'DPN ID',
+                        d.registration_id AS 'Registration ID',
+                        reg.room_id AS 'Room ID',
+                        r.receipt_amount_paid AS 'Amount Paid',
+                    CASE 
+                            WHEN r.receipt_is_fully_paid = 1 THEN 'Fully Paid'
+                            ELSE 'Not Fully Paid'
+                        END AS 'Payment Status',
+                        r.receipt_date_issued AS 'Date Issued'
+                    FROM 
+                        vw_receipt_is_fully_paid r
+                    JOIN 
+                        tbl_dpn d ON r.dpn_id = d.dpn_id
+                    JOIN 
+                        tbl_registration reg ON d.registration_id = reg.registration_id;
+
+
                      CREATE VIEW vw_bills_history AS
                     SELECT 
                         b.bill_id AS 'Bill ID',
+                        d.dpn_id AS 'DPN ID',
                         r.registration_id AS 'Registration ID',
                         r.room_id AS 'Room ID',
                         bt.bt_description AS 'Bill Type',
@@ -671,6 +660,7 @@ namespace QSevenManagementSystem
                     CREATE VIEW vw_other_charges_history AS
                     SELECT 
                         oc.oc_id AS 'Other Charges ID', 
+                        d.dpn_id AS 'DPN ID',
                         d.registration_id AS 'Registration ID',
                         reg.room_id AS 'Room ID',
                         oc.oc_description AS 'Description',
@@ -719,33 +709,7 @@ namespace QSevenManagementSystem
                    
             
         
-                    CREATE VIEW vw_current_tenants AS
-                    SELECT 
-                        RO.room_id AS 'Room ID', 
-                        RO.room_floor AS 'Floor', 
-                        RO.room_max_renters AS 'Max # of Renters',
-                        R.renter_id AS 'Renter ID',
-                        R.renter_fname AS 'Renter First Name', 
-                        R.renter_mname AS 'Renter Middle Name', 
-                        R.renter_lname AS 'Renter Last Name' 
-    
-                    FROM 
-                        tbl_renter R
-                    JOIN 
-                        tbl_registration REG ON R.renter_id = REG.renter_id
-                    JOIN 
-                        tbl_room RO ON REG.room_id = RO.room_id
-                    JOIN 
-                        tbl_room_availability_record RAR ON RO.room_id = RAR.room_id
-                    JOIN 
-                        tbl_room_availability_type RAT ON RAR.rat_id = RAT.rat_id
-                    JOIN 
-                        tbl_movein MI ON REG.movein_id = MI.movein_id
-                    WHERE 
-                        RAT.rat_description = 'occupied'
-                        AND MI.movein_date <= CURRENT_DATE()
-                    GROUP BY 
-                        RO.room_id;
+                    
 
                      
                 "
@@ -819,6 +783,30 @@ namespace QSevenManagementSystem
                 cnn.Close();
             }
         }
+
+        public static void updateRecord(string table, string setValuePairs, string condition)
+        {
+            try
+            {
+                if (cnn.State == ConnectionState.Closed)
+                {
+                    cnn.Open();
+                }
+
+                string updateQuery = $"UPDATE {table} SET {setValuePairs} WHERE {condition};";
+                executeQuery(cnn, updateQuery);
+                MessageBox.Show("Record updated successfully!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error updating record: " + ex.Message);
+            }
+            finally
+            {
+                cnn.Close();
+            }
+        }
+
 
         public static string readTableString(string query)
         {

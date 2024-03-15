@@ -17,12 +17,8 @@ namespace QSevenManagementSystem
         {
             InitializeComponent();
             billValues = new List<String>();
-            billRateLabel.Text = ConnectToSQL.readTableString(@"SELECT br_price FROM tbl_bill_rate_record 
-                                                                WHERE bt_id = 1 
-                                                                AND (br_date, br_id) = (SELECT MAX(br_date), MAX(br_id)   
-                                                                FROM tbl_bill_rate_record   
-                                                                WHERE bt_id = 1   
-                                                                AND br_date <= CURRENT_DATE);");
+
+
         }
 
         private void confirmButton_Click(object sender, EventArgs e)
@@ -51,6 +47,26 @@ namespace QSevenManagementSystem
         public List<String> getBillValues()
         {
             return billValues;
+        }
+
+        private void startMonthButton_Click(object sender, EventArgs e)
+        {
+            string roomIdQuery = "SELECT Room_ID FROM tbl_registration WHERE Registration_ID = (SELECT Registration_ID FROM tbl_dpn ORDER BY dpn_id DESC LIMIT 1)";
+            string roomId = ConnectToSQL.readTableString(roomIdQuery);
+
+            if (string.IsNullOrEmpty(roomId))
+            {
+                // Set default values to 0
+                meterStartMonthTBox.Text = "0";
+            }
+            else
+            {
+                string meterEndMonthQuery = $"SELECT MAX(`Meter End Month`) FROM vw_bills_history WHERE `Room ID` = '{roomId}' and `Bill Type` = 'Electricity';";
+                string meterEndMonth = ConnectToSQL.readTableString(meterEndMonthQuery);
+
+                meterStartMonthTBox.Text = string.IsNullOrEmpty(meterEndMonth) ? "0" : meterEndMonth.Replace(',', '.');
+
+            }
         }
     }
 }

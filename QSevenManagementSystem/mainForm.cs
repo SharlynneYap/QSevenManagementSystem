@@ -75,7 +75,7 @@
             this.unoccupiedLabel.Text = ConnectToSQL.readTableString("SELECT COUNT(*) FROM vw_current_rooms WHERE Availability = 'Unoccupied';");
             this.reservedLabel.Text = ConnectToSQL.readTableString("SELECT COUNT(*) FROM vw_current_rooms WHERE Availability = 'Reserved';");
             this.rentersLabel.Text = ConnectToSQL.readTableString("SELECT COUNT(*) FROM vw_renters_profile;");
-            
+
         }
 
         private void dockForm(Form form)
@@ -211,7 +211,7 @@
 
         public void rDHForm_reportButtonClick(object sender, EventArgs e)
         {
-            ConnectToSQL.LoadDataGridView(rDForm.getTable(), "select * from vw_current_tenants");
+            ConnectToSQL.LoadDataGridView(rDForm.getTable(), "select * from vw_current_rooms_tenants");
             dockForm(rDForm);
             Controls.Remove((Control)sender);
         }
@@ -269,7 +269,7 @@
             }
             else
             {
-                ConnectToSQL.LoadDataGridView(gDForm.getTable(), "SELECT * from vw_current_renters");
+                ConnectToSQL.LoadDataGridView(gDForm.getTable(), "SELECT * from vw_current_tenants");
                 dockForm(gDForm);
             }
         }
@@ -300,7 +300,7 @@
             else
             {
                 ConnectToSQL.LoadDataGridView(paHForm.getTable(1), "SELECT * FROM vw_dpn_total;");
-                ConnectToSQL.LoadDataGridView(paHForm.getTable(2), "SELECT * FROM vw_receipt_is_fully_paid;");
+                ConnectToSQL.LoadDataGridView(paHForm.getTable(2), "SELECT * FROM vw_receipt_history;");
                 ConnectToSQL.LoadDataGridView(paHForm.getTable(3), "SELECT * FROM vw_bills_history;");
                 ConnectToSQL.LoadDataGridView(paHForm.getTable(4), "SELECT * FROM vw_other_charges_history;");
                 dockForm(paHForm);

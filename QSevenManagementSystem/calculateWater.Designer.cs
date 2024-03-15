@@ -31,12 +31,11 @@
             panel1 = new Panel();
             label6 = new Label();
             confirmButton = new Button();
-            label3 = new Label();
             meterEndMonthTBox = new TextBox();
             label2 = new Label();
             meterStartMonthTBox = new TextBox();
             label1 = new Label();
-            billRateLabel = new Label();
+            startMonthButton = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -74,15 +73,6 @@
             confirmButton.UseVisualStyleBackColor = false;
             confirmButton.Click += confirmButton_Click;
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(87, 236);
-            label3.Name = "label3";
-            label3.Size = new Size(60, 20);
-            label3.TabIndex = 90;
-            label3.Text = "Bill rate";
-            // 
             // meterEndMonthTBox
             // 
             meterEndMonthTBox.Location = new Point(269, 175);
@@ -115,29 +105,32 @@
             label1.TabIndex = 86;
             label1.Text = "Start month meter";
             // 
-            // billRateLabel
+            // startMonthButton
             // 
-            billRateLabel.AutoSize = true;
-            billRateLabel.Location = new Point(269, 236);
-            billRateLabel.Name = "billRateLabel";
-            billRateLabel.Size = new Size(45, 20);
-            billRateLabel.TabIndex = 94;
-            billRateLabel.Text = "None";
+            startMonthButton.BackColor = Color.LightBlue;
+            startMonthButton.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            startMonthButton.Location = new Point(412, 116);
+            startMonthButton.Name = "startMonthButton";
+            startMonthButton.Size = new Size(198, 42);
+            startMonthButton.TabIndex = 95;
+            startMonthButton.Text = "Get latest meter reading";
+            startMonthButton.UseVisualStyleBackColor = false;
+            startMonthButton.Click += startMonthButton_Click;
             // 
             // calculateWater
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(682, 353);
-            Controls.Add(billRateLabel);
+            Controls.Add(startMonthButton);
             Controls.Add(panel1);
             Controls.Add(confirmButton);
-            Controls.Add(label3);
             Controls.Add(meterEndMonthTBox);
             Controls.Add(label2);
             Controls.Add(meterStartMonthTBox);
             Controls.Add(label1);
             Name = "calculateWater";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "calculateWater";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -150,11 +143,10 @@
         private Panel panel1;
         private Label label6;
         private Button confirmButton;
-        private Label label3;
         private TextBox meterEndMonthTBox;
         private Label label2;
         private TextBox meterStartMonthTBox;
         private Label label1;
-        private Label billRateLabel;
+        private Button startMonthButton;
     }
 }

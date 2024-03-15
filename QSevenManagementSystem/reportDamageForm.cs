@@ -24,6 +24,9 @@ namespace QSevenManagementSystem
             string[,] damageType = ConnectToSQL.readTableArray("Select * from tbl_room_damage_type");
             damageCBox.Items.Add(damageType[0, 1]);
             damageCBox.Items.Add(damageType[1, 1]);
+            searchTBox.TextChanged += searchTBox_TextChanged;
+            roomsData.CellClick += roomsData_CellContentClick;
+            loadSearchCBox();
         }
 
         private void confirmButton_Click(object sender, EventArgs e)
@@ -71,7 +74,7 @@ namespace QSevenManagementSystem
             return roomsData;
         }
 
-        /*
+
         private void loadDataToLabels(List<string> rowData)
         {
 
@@ -82,6 +85,8 @@ namespace QSevenManagementSystem
                 maxLabel.Text = rowData[2];
                 floorLabel.Text = rowData[3];
                 availabilityLabel.Text = rowData[4];
+
+                roomIdTBox.Text = rowData[0];
             }
             else
             {
@@ -91,6 +96,8 @@ namespace QSevenManagementSystem
                 maxLabel.Text = "None";
                 floorLabel.Text = "None";
                 availabilityLabel.Text = "None";
+
+                roomIdTBox.Text = "";
             }
         }
 
@@ -137,6 +144,5 @@ namespace QSevenManagementSystem
                 ConnectToSQL.LoadDataGridView(roomsData, query);
             }
         }
-        */
     }
 }

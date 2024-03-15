@@ -40,6 +40,7 @@
             panel1 = new Panel();
             label1 = new Label();
             tableLayoutPanel5 = new TableLayoutPanel();
+            availLabel = new Label();
             label13 = new Label();
             label14 = new Label();
             label16 = new Label();
@@ -50,7 +51,6 @@
             label20 = new Label();
             txtNoRenters = new TextBox();
             txtFloor = new TextBox();
-            txtAvail = new TextBox();
             btnEdit = new Button();
             btnCancel = new Button();
             ((System.ComponentModel.ISupportInitialize)roomsData).BeginInit();
@@ -178,6 +178,7 @@
             tableLayoutPanel5.ColumnCount = 2;
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 37.5F));
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 62.5F));
+            tableLayoutPanel5.Controls.Add(availLabel, 1, 5);
             tableLayoutPanel5.Controls.Add(label13, 0, 2);
             tableLayoutPanel5.Controls.Add(label14, 0, 3);
             tableLayoutPanel5.Controls.Add(label16, 0, 4);
@@ -188,7 +189,6 @@
             tableLayoutPanel5.Controls.Add(label20, 0, 0);
             tableLayoutPanel5.Controls.Add(txtNoRenters, 1, 3);
             tableLayoutPanel5.Controls.Add(txtFloor, 1, 4);
-            tableLayoutPanel5.Controls.Add(txtAvail, 1, 5);
             tableLayoutPanel5.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             tableLayoutPanel5.Location = new Point(638, 115);
             tableLayoutPanel5.Name = "tableLayoutPanel5";
@@ -201,6 +201,16 @@
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 9.090909F));
             tableLayoutPanel5.Size = new Size(478, 239);
             tableLayoutPanel5.TabIndex = 69;
+            // 
+            // availLabel
+            // 
+            availLabel.AutoSize = true;
+            availLabel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            availLabel.Location = new Point(184, 197);
+            availLabel.Name = "availLabel";
+            availLabel.Size = new Size(44, 18);
+            availLabel.TabIndex = 72;
+            availLabel.Text = "None";
             // 
             // label13
             // 
@@ -300,15 +310,6 @@
             txtFloor.Size = new Size(44, 24);
             txtFloor.TabIndex = 58;
             // 
-            // txtAvail
-            // 
-            txtAvail.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            txtAvail.Location = new Point(184, 200);
-            txtAvail.Name = "txtAvail";
-            txtAvail.ReadOnly = true;
-            txtAvail.Size = new Size(121, 24);
-            txtAvail.TabIndex = 59;
-            // 
             // btnEdit
             // 
             btnEdit.BackColor = Color.DarkSeaGreen;
@@ -385,8 +386,8 @@
         private Label label20;
         private TextBox txtNoRenters;
         private TextBox txtFloor;
-        private TextBox txtAvail;
         private Button btnEdit;
         private Button btnCancel;
+        private Label availLabel;
     }
 }

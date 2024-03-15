@@ -19,6 +19,10 @@ namespace QSevenManagementSystem
             InitializeComponent();
             receiptValues = new List<string>();
             receiptColumns = new List<string>() { "dpn_id", "receipt_amount_paid", "receipt_date_issued" };
+
+            searchTBox.TextChanged += searchTBox_TextChanged;
+            dpnData.CellClick += dpnData_CellContentClick;
+            loadSearchCBox();
         }
 
         private void loadReceiptValues()
@@ -61,6 +65,85 @@ namespace QSevenManagementSystem
         public DataGridView getTable()
         {
             return dpnData;
+        }
+        private void loadDataToLabels(List<string> rowData)
+        {
+
+            if (rowData.Count > 0)
+            {
+                lbl1.Text = rowData[0];
+                lbl2.Text = rowData[1];
+                lbl3.Text = rowData[2];
+                lbl4.Text = rowData[3];
+                lbl5.Text = rowData[4];
+                lbl6.Text = rowData[5];
+                lbl7.Text = rowData[6];
+                lbl8.Text = rowData[7];
+
+                dpnIdTBox.Text = rowData[0];
+
+            }
+            else
+            {
+                // Clear labels if there is no selected row
+                lbl1.Text = "None";
+                lbl2.Text = "None";
+                lbl3.Text = "None";
+                lbl4.Text = "None";
+                lbl5.Text = "None";
+                lbl6.Text = "None";
+                lbl7.Text = "None";
+                lbl8.Text = "None";
+
+                dpnIdTBox.Text = "";
+            }
+        }
+
+        private void dpnData_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            List<string> rowData = new List<string>();
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow selectedRow = dpnData.Rows[e.RowIndex];
+                foreach (DataGridViewCell cell in selectedRow.Cells)
+                {
+                    rowData.Add(cell.Value?.ToString() ?? "");
+                }
+            }
+            loadDataToLabels(rowData);
+        }
+
+        private void loadSearchCBox()//adds items to the search combo box
+        {
+            searchCBox.Items.Add("dpn_id");
+            searchCBox.Items.Add("Registration ID");
+            searchCBox.Items.Add("Room ID");
+            searchCBox.Items.Add("Room Price");
+            searchCBox.Items.Add("Is Deposit Used");
+            searchCBox.Items.Add("Total");
+            searchCBox.Items.Add("For the month of");
+            searchCBox.Items.Add("DPN Date Issued");
+
+        }
+
+        private void searchTBox_TextChanged(object sender, EventArgs e)
+        {
+            string table = "vw_dpn_total";
+            // Get the selected column from the ComboBox
+            string selectedColumn = searchCBox.SelectedItem?.ToString();
+
+            // Get the search value from the TextBox
+            string searchValue = searchTBox.Text.Trim();
+
+            // Check if a column and search value are provided
+            if (!string.IsNullOrEmpty(selectedColumn) && !string.IsNullOrEmpty(searchValue))
+            {
+                // Define the SQL query
+                string query = $"SELECT * FROM {table} WHERE `{selectedColumn}` LIKE '%{searchValue}%'";
+                //MessageBox.Show(query); //For testing
+                //Execute the query and update the DataGridView
+                ConnectToSQL.LoadDataGridView(dpnData, query);
+            }
         }
     }
 }
