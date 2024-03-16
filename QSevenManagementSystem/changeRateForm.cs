@@ -42,7 +42,7 @@ namespace QSevenManagementSystem
             {
                 MessageBox.Show("Letters are not allowed!");
             }
-            else if (txtRate.Text.Any(c => !char.IsDigit(c) && c != '.'))
+            else if (txtRate.Text.Any(c => !char.IsDigit(c) && c != '.' && c != '-'))
             {
                 MessageBox.Show("Special characters are not allowed!");
             }

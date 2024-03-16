@@ -38,16 +38,19 @@ namespace QSevenManagementSystem
 
         private void submitButton_Click(object sender, EventArgs e)
         {
-            mainForm mainForm = (mainForm)this.ParentForm;
-            mainForm.createRoomForm_submitButtonClick(this, EventArgs.Empty);
+            if (validate())
+            {
+                mainForm mainForm = (mainForm)this.ParentForm;
+                mainForm.createRoomForm_submitButtonClick(this, EventArgs.Empty);
 
-            loadRoomValues();
-            loadPriceValues();
-            loadRAValues();
+                loadRoomValues();
+                loadPriceValues();
+                loadRAValues();
 
-            insertRoomRecords();
-            insertPriceRecords();
-            insertRARecords();
+                insertRoomRecords();
+                insertPriceRecords();
+                insertRARecords();
+            }
 
         }
 
@@ -159,6 +162,96 @@ namespace QSevenManagementSystem
         private void createRoomForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private bool validate()
+        {
+            int roomNumOfRecords = int.Parse(ConnectToSQL.readTableString($"SELECT COUNT(*) FROM vw_room_availability_history WHERE `Room ID` = '{roomIdTBox.Text}'; "));
+            if (roomNumOfRecords > 0)
+            {
+                MessageBox.Show("Error: Room ID has been used. Please try again.");
+            }
+
+            else if (string.IsNullOrEmpty(priceTBox.Text))
+            {
+                MessageBox.Show("Input missing in room price field!");
+            }
+            else if (priceTBox.Text.Any(char.IsLetter))
+            {
+                MessageBox.Show("Letters are not allowed in room price field!");
+            }
+            else if (priceTBox.Text.Any(c => !char.IsDigit(c) && c != '.' && c != '-'))
+            {
+                MessageBox.Show("Special characters are not allowed in room price field!");
+            }
+            else if (priceTBox.Text.Any(char.IsDigit))
+            {
+                try
+                {
+                    double rate = double.Parse(priceTBox.Text);
+
+                    if (priceTBox.Text.Contains("."))
+                    {
+                        // Get the index of the decimal separator
+                        int decimalIndex = priceTBox.Text.IndexOf(".");
+
+                        // Check if there are more than two digits after the decimal separator
+                        if (priceTBox.Text.Length - decimalIndex - 1 > 2)
+                        {
+                            MessageBox.Show("Please enter a rate with at most two decimal places in room price field.");
+                        }
+                        else if (rate < 0)
+                        {
+                            MessageBox.Show("Number should be positive in room price field!");
+                        }
+
+                    }
+                    else if (rate < 0)
+                    {
+                        MessageBox.Show("Number should be positive in room price field!");
+                    }
+
+                }
+                catch (FormatException)
+                {
+                    MessageBox.Show("Invalid input. Please enter a valid number in total field.");
+                }
+            }
+
+            if (string.IsNullOrEmpty(floorTBox.Text))
+            {
+                MessageBox.Show("Floors field  is empty!");
+            }
+            else if (floorTBox.Text.Any(char.IsLetter))
+            {
+                MessageBox.Show("Floors field cannot contain letters!");
+            }
+            else if (floorTBox.Text.Any(c => !char.IsLetterOrDigit(c)))
+            {
+                MessageBox.Show("Floors field cannot contain special characters!");
+            }
+            else if (string.IsNullOrEmpty(maxTBox.Text))
+            {
+                MessageBox.Show("Max field is empty!");
+            }
+            else if (maxTBox.Text.Any(char.IsLetter))
+            {
+                MessageBox.Show("Max renters field cannot contain letters!");
+            }
+            else if (maxTBox.Text.Any(c => !char.IsLetterOrDigit(c)))
+            {
+                MessageBox.Show("Max renters field cannot contain special characters!");
+            }
+            else if (int.Parse(maxTBox.Text) > 10)
+            {
+                MessageBox.Show("Max renters exceeded!");
+            }
+            else
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

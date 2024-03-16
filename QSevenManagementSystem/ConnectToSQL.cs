@@ -674,44 +674,6 @@ namespace QSevenManagementSystem
                     JOIN 
                         tbl_registration reg ON d.registration_id = reg.registration_id;
 
-
-                     CREATE VIEW vw_renters_profile AS
-                    SELECT 
-                        REG.registration_id AS 'Registration ID',
-                        R.renter_id AS 'Renter ID',
-                        R.renter_fname AS 'First Name',
-                        R.renter_mname AS 'Middle Name',
-                        R.renter_lname AS 'Last Name',
-                        R.renter_contact AS 'Contact #',
-                        R.renter_dob AS 'DOB',
-                        R.renter_address AS 'Address',
-                        RO.room_id AS 'Room ID',
-                        MI.movein_total_deposit_paid AS 'Deposit Paid',
-                        MI.movein_date AS 'Move In Date',
-                        REG.registration_date AS 'Registration Date'
-                    FROM 
-                        tbl_renter R
-                    JOIN 
-                        tbl_registration REG ON R.renter_id = REG.renter_id
-                    JOIN 
-                        tbl_room RO ON REG.room_id = RO.room_id
-                    JOIN 
-                        tbl_movein MI ON REG.movein_id = MI.movein_id
-                    JOIN 
-                        tbl_room_availability_record RAR ON RO.room_id = RAR.room_id
-                    JOIN 
-                        tbl_room_availability_type RAT ON RAR.rat_id = RAT.rat_id
-                    WHERE 
-                        RAT.rat_description IN ('occupied', 'reserved')
-                    GROUP BY 
-                        reg.registration_id; 
-
-                   
-            
-        
-                    
-
-                     
                 "
                 ;
 

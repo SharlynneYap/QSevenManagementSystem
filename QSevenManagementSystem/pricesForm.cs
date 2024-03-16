@@ -248,7 +248,7 @@ namespace QSevenManagementSystem
             {
                 MessageBox.Show("Letters are not allowed!");
             }
-            else if (priceTBox.Text.Any(c => !char.IsDigit(c) && c != '.'))
+            else if (priceTBox.Text.Any(c => !char.IsDigit(c) && c != '.' && c != '-'))
             {
                 MessageBox.Show("Special characters are not allowed!");
             }

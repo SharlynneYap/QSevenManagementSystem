@@ -31,11 +31,66 @@ namespace QSevenManagementSystem
 
         private void confirmButton_Click(object sender, EventArgs e)
         {
-            mainForm mainForm = (mainForm)this.ParentForm;
-            mainForm.rDForm_confirmButtonClick(this, EventArgs.Empty);
+            bool valid = false;
+            if (string.IsNullOrEmpty(totalTBox.Text))
+            {
+                MessageBox.Show("Input missing in total field!");
+            }
+            else if (totalTBox.Text.Any(char.IsLetter))
+            {
+                MessageBox.Show("Letters are not allowed in total field!");
+            }
+            else if (totalTBox.Text.Any(c => !char.IsDigit(c) && c != '.' && c != '-'))
+            {
+                MessageBox.Show("Special characters are not allowed in total field!");
+            }
+            else
+            {
+                try
+                {
+                    double rate = double.Parse(totalTBox.Text);
 
-            loadRDValues();
-            insertRDRecords();
+                    if (totalTBox.Text.Contains("."))
+                    {
+                        // Get the index of the decimal separator
+                        int decimalIndex = totalTBox.Text.IndexOf(".");
+
+                        // Check if there are more than two digits after the decimal separator
+                        if (totalTBox.Text.Length - decimalIndex - 1 > 2)
+                        {
+                            MessageBox.Show("Please enter a rate with at most two decimal places in total field.");
+                        }
+                        else if (rate < 0)
+                        {
+                            MessageBox.Show("Number should be positive in total field!");
+                        }
+                        else
+                        {
+                            valid = true;
+                        }
+                    }
+                    else if (rate < 0)
+                    {
+                        MessageBox.Show("Number should be positive in total field!");
+                    }
+                    else
+                    {
+                        valid = true;
+                    }
+                }
+                catch (FormatException)
+                {
+                    MessageBox.Show("Invalid input. Please enter a valid number in total field.");
+                }
+            }
+            if (valid)
+            {
+                mainForm mainForm = (mainForm)this.ParentForm;
+                mainForm.rDForm_confirmButtonClick(this, EventArgs.Empty);
+
+                loadRDValues();
+                insertRDRecords();
+            }
         }
 
         private void loadRDValues()
